@@ -1,0 +1,8 @@
+[{'artist_id': '69GGBxA162lTqCwzJG5jLp',
+  'artist_name': 'The Chainsmokers',
+  'followers': 1132691,
+  'genres': [],
+  'images': {'height': 1000,
+             'url': 'https://i.scdn.co/image/59195cb7257918246e6e0ae2b58d011e599f4c36',
+             'width': 1000},
+  'popularity': 95}]
