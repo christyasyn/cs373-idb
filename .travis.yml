@@ -1,0 +1,33 @@
+# http://docs.travis-ci.com/user/build-configuration/
+
+language: python
+
+python:
+    - "3.5"
+
+sudo: false
+
+install:
+    - pip install --upgrade pip
+    - pip --version
+    - pip install Flask
+    - pip install Flask-Script
+    - pip install Flask-SQLAlchemy
+    - pip install Flask-Testing
+    - pip install gunicorn
+    - pip install requests
+
+before_script:
+    - uname -a
+    - printenv
+    - pip list
+
+script:
+    - date
+    - ls -al
+    - make check
+    - make test
+    - make log
+
+notifications:
+  slack: imusicdb:4kHuduviIqZSFoi68JHwBvOR
