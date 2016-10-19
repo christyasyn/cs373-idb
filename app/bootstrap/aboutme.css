@@ -5,7 +5,7 @@
 
 .abouttitle h2 {
 	font-weight: bold;
-	font-size: 45px;
+	font-size: 40px;
 	text-align: center;
 	position: relative;
 	top: 0;
@@ -50,7 +50,7 @@
 
 .stats h2 {
 	font-weight: bold;
-	font-size: 45px;
+	font-size: 40px;
 	text-align: center;
 	position: relative;
 	top: 0;
@@ -61,4 +61,5 @@
 	font-weight: normal;
 	font-size: 13px;
 	text-align: center;
+	line-height: 5px;
 }
