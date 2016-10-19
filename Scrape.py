@@ -71,8 +71,8 @@ def artist_album_list():
 					image = []
 					if len(item['images']) > 0:
 						image = item['images'][0]
-					ARTIST_ALBUMS +=  [{'main_artist': ident, 
-										'main_artist_id': artist, 
+					ARTIST_ALBUMS +=  [{'main_artist': artist, 
+										'main_artist_id': ident, 
 										'all_artists': d, 
 										'type': item['type'], 
 										'name': item['name'], 
