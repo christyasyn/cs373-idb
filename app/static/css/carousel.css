@@ -54,13 +54,9 @@ body {
   height: 500px;
   background-color: #777;
 }
+
 .carousel-inner > .item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
-  margin: 0 auto;
-  height: 500px;
+ margin: 0 auto;
 }
 
 
