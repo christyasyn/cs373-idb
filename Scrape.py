@@ -33,9 +33,10 @@ def getids():
 		ARTISTS_LIST += [{'artist_id': ref, 
 						  'artist_name': data['name'], 
 						  'popularity': data['popularity'], 
-						  'image': data['images'][0], 
+						  'image': data['images'][0] if len(data['images']) > 0 else [], 
 						  'genres': list(data['genres']), 
-						  'followers': data['followers']['total']}]
+						  'followers': data['followers']['total'],
+						  'direct_url': data['external_urls']['spotify']}]
 		# break
 	with open('artist_ids_cache.txt', 'w') as out:
 		pprint.pprint(ARTISTS_LIST, stream=out)
