@@ -1,0 +1,181 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/lusr/opt/nodejs-0.12.2/bin/node',
+1 verbose cli   '/lusr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'grunt-cli' ]
+2 info using npm@2.7.4
+3 info using node@v0.12.2
+4 silly cache add args [ 'grunt-cli', null ]
+5 verbose cache add spec grunt-cli
+6 silly cache add parsed spec { raw: 'grunt-cli',
+6 silly cache add   scope: null,
+6 silly cache add   name: 'grunt-cli',
+6 silly cache add   rawSpec: '',
+6 silly cache add   spec: '*',
+6 silly cache add   type: 'range' }
+7 verbose addNamed grunt-cli@*
+8 silly addNamed semver.valid null
+9 silly addNamed semver.validRange *
+10 silly addNameRange { name: 'grunt-cli', range: '*', hasData: false }
+11 silly mapToRegistry name grunt-cli
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry uri https://registry.npmjs.org/grunt-cli
+15 verbose addNameRange registry:https://registry.npmjs.org/grunt-cli not in flight; fetching
+16 verbose request uri https://registry.npmjs.org/grunt-cli
+17 verbose request no auth needed
+18 info attempt registry request try #1 at 13:49:13
+19 verbose request id 9f8a7fbbc98897d7
+20 http request GET https://registry.npmjs.org/grunt-cli
+21 http 200 https://registry.npmjs.org/grunt-cli
+22 silly get cb [ 200,
+22 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+22 silly get     etag: '"DQLIB93OIPUA8F8M2QSMETUD5"',
+22 silly get     'content-type': 'application/json',
+22 silly get     'content-encoding': 'gzip',
+22 silly get     'cache-control': 'max-age=300',
+22 silly get     'content-length': '6091',
+22 silly get     'accept-ranges': 'bytes',
+22 silly get     date: 'Mon, 17 Oct 2016 18:49:13 GMT',
+22 silly get     via: '1.1 varnish',
+22 silly get     age: '119',
+22 silly get     connection: 'keep-alive',
+22 silly get     'x-served-by': 'cache-dfw1840-DFW',
+22 silly get     'x-cache': 'HIT',
+22 silly get     'x-cache-hits': '2',
+22 silly get     'x-timer': 'S1476730153.775377,VS0,VE0',
+22 silly get     vary: 'Accept-Encoding' } ]
+23 verbose get saving grunt-cli to /u/christy/.npm/registry.npmjs.org/grunt-cli/.cache.json
+24 verbose getCacheStat cache creation not in flight; initializing
+25 silly addNameRange number 2 { name: 'grunt-cli', range: '*', hasData: true }
+26 silly addNameRange versions [ 'grunt-cli',
+26 silly addNameRange   [ '0.1.0',
+26 silly addNameRange     '0.1.1',
+26 silly addNameRange     '0.1.2',
+26 silly addNameRange     '0.1.3',
+26 silly addNameRange     '0.1.4',
+26 silly addNameRange     '0.1.5',
+26 silly addNameRange     '0.1.6',
+26 silly addNameRange     '0.1.7',
+26 silly addNameRange     '0.1.8',
+26 silly addNameRange     '0.1.9',
+26 silly addNameRange     '0.1.10',
+26 silly addNameRange     '0.1.11',
+26 silly addNameRange     '0.1.12',
+26 silly addNameRange     '0.1.13',
+26 silly addNameRange     '1.0.0-rc1',
+26 silly addNameRange     '1.0.0',
+26 silly addNameRange     '1.0.1',
+26 silly addNameRange     '1.1.0',
+26 silly addNameRange     '1.2.0' ] ]
+27 verbose addNamed grunt-cli@1.2.0
+28 silly addNamed semver.valid 1.2.0
+29 silly addNamed semver.validRange 1.2.0
+30 silly mapToRegistry name grunt-cli
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/grunt-cli
+34 verbose addRemoteTarball https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz not in flight; adding
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz',
+35 verbose addRemoteTarball   '562b119ebb069ddb464ace2845501be97b35b6a8' ]
+36 info retry fetch attempt 1 at 13:49:13
+37 info attempt registry request try #1 at 13:49:13
+38 http fetch GET https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz
+39 http fetch 200 https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz
+40 silly fetchAndShaCheck shasum 562b119ebb069ddb464ace2845501be97b35b6a8
+41 verbose addTmpTarball /tmp/npm-21032-38d8fe79/registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz not in flight; adding
+42 verbose addTmpTarball already have metadata; skipping unpack for grunt-cli@1.2.0
+43 silly cache afterAdd grunt-cli@1.2.0
+44 verbose afterAdd /u/christy/.npm/grunt-cli/1.2.0/package/package.json not in flight; writing
+45 verbose afterAdd /u/christy/.npm/grunt-cli/1.2.0/package/package.json written
+46 silly install resolved [ { name: 'grunt-cli',
+46 silly install resolved     description: 'The grunt command line interface',
+46 silly install resolved     version: '1.2.0',
+46 silly install resolved     author:
+46 silly install resolved      { name: 'Grunt Development Team',
+46 silly install resolved        url: 'http://gruntjs.com/development-team' },
+46 silly install resolved     repository:
+46 silly install resolved      { type: 'git',
+46 silly install resolved        url: 'git+https://github.com/gruntjs/grunt-cli.git' },
+46 silly install resolved     license: 'MIT',
+46 silly install resolved     engines: { node: '>=0.10.0' },
+46 silly install resolved     scripts: { test: 'node bin/grunt test' },
+46 silly install resolved     bin: { grunt: 'bin/grunt' },
+46 silly install resolved     dependencies:
+46 silly install resolved      { 'findup-sync': '~0.3.0',
+46 silly install resolved        'grunt-known-options': '~1.1.0',
+46 silly install resolved        nopt: '~3.0.6',
+46 silly install resolved        resolve: '~1.1.0' },
+46 silly install resolved     devDependencies: { grunt: '~0.4.5', 'grunt-contrib-jshint': '~1.0.0' },
+46 silly install resolved     files: [ 'bin', 'completion', 'lib' ],
+46 silly install resolved     appveyor_id: 'prp6g944b05jsq6d',
+46 silly install resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+46 silly install resolved     gitHead: 'edd8bd29a72f2f28b63fe2629fcb7b9d9f2feb46',
+46 silly install resolved     bugs: { url: 'https://github.com/gruntjs/grunt-cli/issues' },
+46 silly install resolved     homepage: 'https://github.com/gruntjs/grunt-cli#readme',
+46 silly install resolved     _id: 'grunt-cli@1.2.0',
+46 silly install resolved     _shasum: '562b119ebb069ddb464ace2845501be97b35b6a8',
+46 silly install resolved     _from: 'grunt-cli@*',
+46 silly install resolved     _npmVersion: '3.8.2',
+46 silly install resolved     _nodeVersion: '4.2.3',
+46 silly install resolved     _npmUser: { name: 'vladikoff', email: 'vlad@vladikoff.com' },
+46 silly install resolved     dist:
+46 silly install resolved      { shasum: '562b119ebb069ddb464ace2845501be97b35b6a8',
+46 silly install resolved        tarball: 'https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz' },
+46 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+46 silly install resolved     _npmOperationalInternal:
+46 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+46 silly install resolved        tmp: 'tmp/grunt-cli-1.2.0.tgz_1459558434299_0.8824446983635426' },
+46 silly install resolved     directories: {},
+46 silly install resolved     _resolved: 'https://registry.npmjs.org/grunt-cli/-/grunt-cli-1.2.0.tgz' } ]
+47 info install grunt-cli@1.2.0 into /lusr/opt/nodejs-0.12.2/lib
+48 info installOne grunt-cli@1.2.0
+49 verbose installOne of grunt-cli to /lusr/opt/nodejs-0.12.2/lib not in flight; installing
+50 verbose lock using /u/christy/.npm/_locks/grunt-cli-ec0198ae2e813cd2.lock for /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+51 silly install write writing grunt-cli 1.2.0 to /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+52 silly cache addNamed cb grunt-cli@1.2.0
+53 verbose unbuild lib/node_modules/grunt-cli
+54 silly gentlyRm /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli is being purged from base /lusr/opt/nodejs-0.12.2
+55 verbose gentlyRm don't care about contents; nuking /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+56 verbose tar unpack /u/christy/.npm/grunt-cli/1.2.0/package.tgz
+57 verbose tar unpacking to /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+58 silly gentlyRm /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli is being purged
+59 verbose gentlyRm don't care about contents; nuking /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+60 silly gunzTarPerm modes [ '700', '600' ]
+61 error tar.unpack untar error /u/christy/.npm/grunt-cli/1.2.0/package.tgz
+62 verbose unlock done using /u/christy/.npm/_locks/grunt-cli-ec0198ae2e813cd2.lock for /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+63 verbose fstream_path /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+64 verbose fstream_type Directory
+65 verbose fstream_class DirWriter
+66 verbose stack Error: EACCES, mkdir '/lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli'
+66 verbose stack     at Error (native)
+67 verbose fstream_stack /lusr/opt/nodejs-0.12.2/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+67 verbose fstream_stack /lusr/opt/nodejs-0.12.2/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+67 verbose fstream_stack FSReqWrap.oncomplete (fs.js:95:15)
+68 verbose cwd /v/filer4b/v38q001/christy/Documents/373/cs373-idb
+69 error Linux 3.13.0-98-generic
+70 error argv "/lusr/opt/nodejs-0.12.2/bin/node" "/lusr/bin/npm" "install" "-g" "grunt-cli"
+71 error node v0.12.2
+72 error npm  v2.7.4
+73 error path /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
+74 error code EACCES
+75 error errno -13
+76 error Error: EACCES, mkdir '/lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli'
+76 error     at Error (native)
+76 error  { [Error: EACCES, mkdir '/lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli']
+76 error   errno: -13,
+76 error   code: 'EACCES',
+76 error   path: '/lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli',
+76 error   fstream_type: 'Directory',
+76 error   fstream_path: '/lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli',
+76 error   fstream_class: 'DirWriter',
+76 error   fstream_stack:
+76 error    [ '/lusr/opt/nodejs-0.12.2/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+76 error      '/lusr/opt/nodejs-0.12.2/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+76 error      'FSReqWrap.oncomplete (fs.js:95:15)' ] }
+77 error Please try running this command again as root/Administrator.
+78 verbose exit [ -13, true ]
+79 verbose unbuild lib/node_modules/grunt-cli
+80 silly gentlyRm /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli is being purged from base /lusr/opt/nodejs-0.12.2
+81 verbose gentlyRm don't care about contents; nuking /lusr/opt/nodejs-0.12.2/lib/node_modules/grunt-cli
