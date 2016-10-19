@@ -1,11 +1,9 @@
-# http://docs.travis-ci.com/user/build-configuration/
-
 language: python
-
 python:
-    - "3.5"
+    - 3.5
 
-sudo: false
+sudo: required
+dist: trusty
 
 install:
     - pip install --upgrade pip
@@ -25,9 +23,6 @@ before_script:
 script:
     - date
     - ls -al
-    - make check
-    - make test
-    - make log
 
 notifications:
   slack: imusicdb:4kHuduviIqZSFoi68JHwBvOR
