@@ -23,9 +23,6 @@ before_script:
 script:
     - date
     - ls -al
-    - make check
-    - make test
-    - make log
 
 notifications:
   slack: imusicdb:4kHuduviIqZSFoi68JHwBvOR
