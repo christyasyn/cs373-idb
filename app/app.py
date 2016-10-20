@@ -7,6 +7,17 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/musicdb'
 
 db = SQLAlchemy(app)
 
+
+@app.route('/sanity', methods=['GET'])
+def sanity():
+    return "This is a sanity check!"
+
+
+@app.route('/index', methods=['GET'])
+def index_exp():
+    return send_file('index.html')
+
+
 @app.route('/', methods=['GET'])
 def index():
     return send_file('index.html')
@@ -18,8 +29,8 @@ class Artists(db.Model):
     name = db.Column(db.String)
     genres = db.Column(db.String)
     url = db.Column(db.String)
-    followers = db.Column(db.Integer(22))
-    popularity = db.Column(db.Integer(3))
+    followers = db.Column(db.Integer)
+    popularity = db.Column(db.Integer)
     image_url = db.Column(db.String)
 
     def __repr__(self):
@@ -50,7 +61,7 @@ class Tracks(db.Model):
     album_id = db.Column(db.String)
     duration = db.Column(db.String)
     explicit = db.Column(db.Boolean)
-    popularity = db.Column(db.Integer(3))
+    popularity = db.Column(db.Integer)
     preview_url = db.Column(db.String)
     direct_url = db.Column(db.String)
     image_url = db.Column(db.String)
