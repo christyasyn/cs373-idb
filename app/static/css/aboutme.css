@@ -49,13 +49,13 @@
 /* Center align the text below the about me */
 
 .stats .col-lg-4 {
-	margin-bottom: 18px;
+	margin-bottom: 40px;
 	text-align: center;
 	position: relative;
 	top: 10px;
 
 }
-.stats h2 {
+.stats .col-lg-4 h2 {
 	font-weight: bold;
 	font-size: 40px;
 	text-align: center;
@@ -64,7 +64,7 @@
 	left: 0;
 }
 
-.stats h3 {
+.stats .col-lg-4 h3 {
 	font-weight: normal;
 	font-size: 13px;
 	text-align: center;

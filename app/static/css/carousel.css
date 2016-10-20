@@ -53,9 +53,11 @@ body {
 .carousel .item {
   height: 500px;
   background-color: #777;
+  align-content: center
 }
 
 .carousel-inner > .item > img {
+ max-height: 100%;
  margin: 0 auto;
 }
 
@@ -65,15 +67,14 @@ body {
 
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
-  margin-bottom: 20px;
-  text-align: center;
+  text-align: center
 }
 .marketing h2 {
   font-weight: normal;
 }
 .marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 
