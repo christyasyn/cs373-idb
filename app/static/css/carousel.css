@@ -7,9 +7,61 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  width: 100%;
 }
 
+.artist img{
+  max-width: 400px;
+  max-height: 400px;
+}
 
+#left{
+  width: 400px;
+  float: left;
+}
+#right{
+  position:relative;
+  margin-left: 400px;
+  padding-left: 50px;
+}
+.clear{
+  clear: both;
+}
+.rTable {
+  display: block;
+  margin: auto;
+}
+.rTableHeading, .rTableBody, .rTableFoot, .rTableRow{
+    clear: both;
+}
+.rTableHead, .rTableFoot{
+    background-color: #DDD;
+    font-weight: bold;
+}
+.rTableCell, .rTableHead {
+    /*border: 0px solid #999999;*/
+    float: left;
+    height: 0 auto;
+    overflow: hidden;
+    padding: 3px 1.8%;
+    width: 28%;
+}
+.rTableCell2{
+    float: left;
+    height: 0 auto;
+    overflow: hidden;
+    padding: 3px 1.8%;
+    min-width: 500px;
+    max-height:500px;
+}
+.rTable:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+}
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
@@ -60,8 +112,6 @@ body {
  max-height: 100%;
  margin: 0 auto;
 }
-
-
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
