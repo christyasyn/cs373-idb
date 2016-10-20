@@ -13,7 +13,7 @@ def sanity():
     return "This is a sanity check!"
 
 
-@app.route('/index', methods=['GET'])
+@app.route('/index.html', methods=['GET'])
 def index_exp():
     return send_file('index.html')
 
