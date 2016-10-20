@@ -55,7 +55,7 @@
 	top: 10px;
 
 }
-.stats .col-lg-4 h2 {
+.stats h2 {
 	font-weight: bold;
 	font-size: 40px;
 	text-align: center;
@@ -64,7 +64,7 @@
 	left: 0;
 }
 
-.stats .col-lg-4 h3 {
+.stats h3 {
 	font-weight: normal;
 	font-size: 13px;
 	text-align: center;
