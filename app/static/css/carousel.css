@@ -44,7 +44,7 @@ body {
     height: 0 auto;
     overflow: hidden;
     padding: 3px 1.8%;
-    width: 28%;
+    width: 166px;
 }
 .rTableCell2{
     float: left;
@@ -52,7 +52,6 @@ body {
     overflow: hidden;
     padding: 3px 1.8%;
     min-width: 500px;
-    max-height:500px;
 }
 .rTable:after {
      visibility: hidden;
