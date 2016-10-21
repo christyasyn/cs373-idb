@@ -70,3 +70,8 @@
 	text-align: center;
 	line-height: 5px;
 }
+
+.status h4 {
+	font-weight: normal;
+	font-size: 13px;
+}
