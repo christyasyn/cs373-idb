@@ -1,0 +1,28 @@
+language: python
+python:
+    - 3.5
+
+sudo: required
+dist: trusty
+
+install:
+    - pip install --upgrade pip
+    - pip --version
+    - pip install Flask
+    - pip install Flask-Script
+    - pip install Flask-SQLAlchemy
+    - pip install Flask-Testing
+    - pip install gunicorn
+    - pip install requests
+
+before_script:
+    - uname -a
+    - printenv
+    - pip list
+
+script:
+    - date
+    - ls -al
+
+notifications:
+  slack: imusicdb:4kHuduviIqZSFoi68JHwBvOR

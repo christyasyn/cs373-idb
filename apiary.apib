@@ -1,80 +1,143 @@
-FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://imusicdb.me/api
 
 # iMusicDB
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+iMusicDB is a simple API that requests data for music albums, artists and tracks.
 
-## Questions Collection [/questions]
+## Albums List [/albums]
 
-### List All Questions [GET]
+### List All Albmums [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
-
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
-
-+ Request (application/json)
-
+{
+    "Albums": [
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            'id' : '1',
+            'name' : 'name',
+            'url' : 'url',
+            'main_albums' : 'main albums name',
+            'main_albums_id' : 'main albums id',
+            'all_albums' : ['albums'],
+            'type' = 'type',
+            'image_url' : 'image url'
+        },
+                {
+            'id' : '1',
+            'name' : 'name',
+            'url' : 'url',
+            'main_albums' : 'main albums name',
+            'main_albums_id' : 'main albums id',
+            'all_albums' : ['albums'],
+            'type' = 'type',
+            'image_url' : 'image url'
+        },
+                {
+            'id' : '1',
+            'name' : 'name',
+            'url' : 'url',
+            'main_albums' : 'main albumsalbumsname',
+            'main_albums_id' : 'main albums id',
+            'all_albums' : ['albums'],
+            'type' = 'type',
+            'image_url' : 'image url'
         }
+    ]
+}
 
-+ Response 201 (application/json)
+## Artists List [/artists]
 
-    + Headers
+### List All Artists [GET]
 
-            Location: /questions/2
++ Response 200 (application/json)
 
-    + Body
+{
+    "artists": [
+        {
+            'id' : '1',
+            'name' : 'name',
+            'genres' : 'genre',
+            'url' : 'url',
+            'followers' : 'i follow',
+            'popularity': '2',
+            'image_url' : 'image url'
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+        },
+        {
+            'id' : '1',
+            'name' : 'name',
+            'genres' : 'genre',
+            'url' : 'url',
+            'followers' : 'i follow',
+            'popularity': '2',
+            'image_url' : 'image url'
+
+        },
+        {
+            'id' : '1',
+            'name' : 'name',
+            'genres' : 'genre',
+            'url' : 'url',
+            'followers' : 'i follow',
+            'popularity': '2',
+            'image_url' : 'image url'
+
+        }
+    ]
+}
+
+## track List [/tracks]
+
+### Obtain a list of tracks. [GET]
++ Response 200 (application/json)
+
+{
+   "companies": [
+       {
+           "id" = "1",
+           "name" = "name",
+           "main_artists_id" = "1",
+           "all_artists" = ["a","b"],
+           "track_no" = "1",
+           "album_id" = "1",
+           "duration" = "3",
+           "explicit" = false,
+           "popularity" = 19,
+           "preview_url" = "prev_url",
+           "direct_url" = "direct_url",
+           "image_url" = "img_url"
+
+       },
+       {
+           "id" = "1",
+           "name" = "name",
+           "main_artists_id" = "1",
+           "all_artists" = ["a","b"],
+           "track_no" = "1",
+           "album_id" = "1",
+           "duration" = "3",
+           "explicit" = false,
+           "popularity" = 19,
+           "preview_url" = "prev_url",
+           "direct_url" = "direct_url",
+           "image_url" = "img_url"
+
+       },
+       {
+           "id" = "1",
+           "name" = "name",
+           "main_artists_id" = "1",
+           "all_artists" = ["a","b"],
+           "track_no" = "1",
+           "album_id" = "1",
+           "duration" = "3",
+           "explicit" = false,
+           "popularity" = 19,
+           "preview_url" = "prev_url",
+           "direct_url" = "direct_url",
+           "image_url" = "img_url"
+
+       }
+   ]
+}
+

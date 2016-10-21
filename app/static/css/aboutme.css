@@ -1,0 +1,77 @@
+/* ABOUTME TITLE
+-------------------------------------------------- */
+
+/* Center align the text below the navbar */
+
+.abouttitle h2 {
+	font-weight: bold;
+	font-size: 40px;
+	text-align: center;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+
+/* ABOUTME BLOBS
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the navbar and title */
+.aboutblobs .col-lg-4 {
+	margin-bottom: 18px;
+	text-align: center;
+	position: relative;
+	top: 10px;
+
+}
+.aboutblobs h2 {
+	font-weight: normal;
+	font-size: 20px;
+}
+
+.aboutblobs h3 {
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.aboutblobs h4 {
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.aboutblobs .col-lg-4 p {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+/* STATS
+-------------------------------------------------- */
+/* Center align the text below the about me */
+
+.stats .col-lg-4 {
+	margin-bottom: 40px;
+	text-align: center;
+	position: relative;
+	top: 10px;
+
+}
+.stats h2 {
+	font-weight: bold;
+	font-size: 40px;
+	text-align: center;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.stats h3 {
+	font-weight: normal;
+	font-size: 13px;
+	text-align: center;
+	line-height: 5px;
+}
+
+.status h4 {
+	font-weight: normal;
+	font-size: 13px;
+}
