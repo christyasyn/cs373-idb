@@ -42,7 +42,6 @@ log:
 	# git log > IDB3.log
 
 models.html: app/models.py
-	rm models.html
 	cp app/models.py ./
 	pydoc3 -w models
 	rm models.py
