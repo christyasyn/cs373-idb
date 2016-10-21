@@ -1,0 +1,734 @@
+commit b36a5f7d3e850b188af7897c17228708332284a2
+Merge: 3bec677 63a605a
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 02:40:16 2016 +0000
+
+    merge dev
+
+commit 63a605aadc41a77d266fc0b1c7090fb9df71b0dc
+Merge: a727d9c 5fba475
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 02:36:56 2016 +0000
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit a727d9ce9e003b174ede3693e410925e4086cd10
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 02:36:44 2016 +0000
+
+    added models.html and updated app and models
+
+commit 5fba475debee9d00215508aa03bfae7c33ea4f08
+Merge: fe5f57b 4fffdb8
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Thu Oct 20 21:17:50 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit fe5f57b5c42dc000777a5901126b1ed9f87d3f7c
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Thu Oct 20 21:17:28 2016 -0500
+
+    added UML.pdf
+
+commit 4fffdb85844bc089b14e4449db501fe3d7547152
+Merge: 4059180 8b13cea
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 21:02:05 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 4059180cdc40a7db733be912f7ad049cd40cf7d5
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 21:01:54 2016 -0500
+
+    updated makefile
+
+commit 8b13cea1cf60f1295aee10a22f41ecde6f32adc7
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 01:57:57 2016 +0000
+
+    add modified app and models.py
+
+commit 7cea93b143376cf5a31157c2f7c91b3b9a5b2b6f
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Thu Oct 20 20:39:49 2016 -0500
+
+    renamed test.py to tests.py
+
+commit 8e7ec8690422449f855fc5c1dceaab32a648e99c
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 20:38:59 2016 -0500
+
+    added makefile
+
+commit 072a9dacab0a5841a97345e4af84ab543eab1bf6
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Thu Oct 20 20:38:23 2016 -0500
+
+    tests.py
+
+commit ab85f619a7f225cc44743a93c31935f81898c95c
+Merge: ea4f984 55d8ff4
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 01:04:13 2016 +0000
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit ea4f984240fca8bef1264bec57e0005f94a9e93a
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 01:03:43 2016 +0000
+
+    merge commands
+
+commit ffdf1569dc7e2e5d83968a17d55809fe0705b4ed
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 01:01:22 2016 +0000
+
+    fixed syntax errors
+
+commit 55d8ff4761d4e4d2b7afbfec0a90eae86788a208
+Merge: 88b98e8 387481a
+Author: christy.tran <christytran@utexas.edu>
+Date:   Thu Oct 20 19:56:19 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 88b98e82ae7d6b60cffcb80d196f1ca8878e4800
+Author: christy.tran <christytran@utexas.edu>
+Date:   Thu Oct 20 19:56:07 2016 -0500
+
+    Add log
+
+commit 387481a55afbc41d147911512d4e4c123c55d3ca
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 00:55:46 2016 +0000
+
+    added models.py and renamed app_test.py to test.py to adhere to turnin naming conventions
+
+commit 2a904f91474f998a13a1df4523bf063c9af656dd
+Merge: e2b2888 0b2bfd4
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Thu Oct 20 19:46:27 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit e2b28880a598d6eeea0e63a931ba41cf2ffe1246
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Thu Oct 20 19:46:18 2016 -0500
+
+    added json_file_to be added
+
+commit 0b2bfd430242564a94107c5e90f82ffb693d31e7
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Thu Oct 20 19:41:54 2016 -0500
+
+    Update about.html
+
+commit d8a6338d4b7929550de4f15ab573cde6d5bb940d
+Merge: 8e9b758 8b1895c
+Author: christy.tran <christytran@utexas.edu>
+Date:   Thu Oct 20 19:34:43 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 8e9b758cd413287ae68aef28765cd19d5cb42c5f
+Author: christy.tran <christytran@utexas.edu>
+Date:   Thu Oct 20 19:34:25 2016 -0500
+
+    rename title
+
+commit 08558bafdf56d55702d8f530b6f45220df5e9e1b
+Author: christy.tran <christytran@utexas.edu>
+Date:   Thu Oct 20 19:33:03 2016 -0500
+
+    Added more requirements for aboutme
+
+commit 8b1895c73e69a09314075c52461b728d668dcc49
+Merge: 99c6703 1f83e2c
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 19:32:17 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 99c670359710e0afd7be7218471f3cf175b024a8
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 19:32:05 2016 -0500
+
+    add otis info to json file
+
+commit 1f83e2cda6ac6b5c09255b6fa93f6c7ef6e58fc9
+Merge: 36ed687 43372d8
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 00:19:36 2016 +0000
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 36ed687f0ceedd34231e713b343b9a782ef5048a
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 00:19:33 2016 +0000
+
+    fixed app.py isssue
+
+commit 43372d80286397661f8dcbaf8f9a7c9e244c32e2
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 19:19:08 2016 -0500
+
+    finished layouts for albums and artists
+
+commit 7be835f0dfcae6db625b38d9b9284ee0d5754071
+Merge: 587160d b45770e
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Thu Oct 20 19:17:56 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 587160dbd0a474f94177a950c5ee14ce13698de0
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Thu Oct 20 19:17:29 2016 -0500
+
+    added apiary.apy file
+
+commit b45770e53777824dda58b16c07cf61d075d1b7e1
+Merge: bcb82cf 14cbff0
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 19:00:08 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit bcb82cfa7b7957e58335eddf81b08c597cc2958e
+Merge: f125114 996fe5b
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 18:59:54 2016 -0500
+
+    removed footers
+
+commit 14cbff09c45e924cb634e38aff6c1da25e4f7ac3
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Thu Oct 20 18:59:11 2016 -0500
+
+    Update json_file_to_be_added
+
+commit f125114e116234c4026f35438f23dc251fb68975
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 18:57:08 2016 -0500
+
+    removed footer from all pages
+
+commit 996fe5b0335ea627e0b2579491dfcb31045c12ea
+Author: christy.tran <christytran@utexas.edu>
+Date:   Thu Oct 20 18:56:20 2016 -0500
+
+    Fixed aboutme.css and removed footers
+
+commit 3f7b2f1195fbade1fde79c544759bf9cdb9ec0d0
+Merge: a443199 b7fe4a6
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Thu Oct 20 18:34:41 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit a443199a153dee1e1c56f1bd0ca1cc4c9c7d2abc
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Thu Oct 20 18:34:24 2016 -0500
+
+    closes #8, added unit tests file,  and json schema in app.py
+
+commit b7fe4a63003be96af187fc7e472f18dbe0b0c7a7
+Merge: e28d2d9 f1db89a
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 18:16:26 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit e28d2d9baf54f562bac49aadbb3b1f63fd29319d
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 18:16:10 2016 -0500
+
+    layout for artist pages
+
+commit f1db89ad33e9ad089d84cf5f79e3ed0e895c7f2d
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Thu Oct 20 17:26:58 2016 -0500
+
+    Create json_file_to_be_added
+
+commit 5d9a3ce6a409417c676b34e597811ddc461faf79
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Thu Oct 20 17:04:03 2016 -0500
+
+    working on html layout
+
+commit 4713d7b4480ba76f8f03260259fa9de5c59cf305
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Thu Oct 20 16:01:42 2016 +0000
+
+    added method to produce the index.html, workaround for nav bar not working from artists,about,albums pages
+
+commit b72e4ceeae95a1aacf715ee4c6bfd34d269a49b2
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Thu Oct 20 03:28:00 2016 -0500
+
+    Add static content
+
+commit 6b5186244151e94959b37b6dc61b68dd009ceb9c
+Merge: a35076c e88a66a
+Author: Otis <otisbrower@yahoo.com>
+Date:   Thu Oct 20 00:20:40 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit a35076c02249e6efa0abbdad2c3b3d72870f4388
+Author: Otis <otisbrower@yahoo.com>
+Date:   Thu Oct 20 00:20:23 2016 -0500
+
+    worked on carousel function
+
+commit e88a66a1a2dde1eb7d7158b6136526ac7705fa2a
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Thu Oct 20 04:44:42 2016 +0000
+
+    modified app.wsgi and app/app.py to include sanity()
+
+commit a6ee01c721819019fbc7a8a937ed018bb87add2a
+Author: Ruben Elizondo <relizondo617@gmail.com>
+Date:   Wed Oct 19 23:12:33 2016 -0500
+
+    added witty bio
+
+commit 2a030999ce32f246c808fa7eac83d235c4ee7d46
+Author: Otis <otisbrower@yahoo.com>
+Date:   Wed Oct 19 22:00:54 2016 -0500
+
+    updated bio
+
+commit bb20907000014e87f638cea4b101034db04cab34
+Merge: b3cc758 1616341
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 21:21:28 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit b3cc75810901c6b4ca521a622080b1cd6784333f
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 21:21:15 2016 -0500
+
+    Wrong files again
+
+commit 1616341a0dc82e4e49cf1964b3bb7820c1916763
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Wed Oct 19 21:20:22 2016 -0500
+
+    Wrong file added
+
+commit 7462b996af3acd3340dc356a632da88b71995956
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 17:19:50 2016 -0500
+
+    Updated carousel
+
+commit 7eb94396582447494993ca3a0ac4dc6c9ea7306f
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 17:02:16 2016 -0500
+
+    Resized files, added images
+
+commit 3238598e6759582474a26bb78a38ab3731e79b3f
+Merge: 87c7a32 72be818
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 16:35:46 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 87c7a32fb7ff2a9d2029fbb369e9e2b5f17373c9
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 16:34:20 2016 -0500
+
+    Updated media content
+
+commit 72be818668351c73e77a111bf9eb32dceeb8062f
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 16:17:47 2016 -0500
+
+    clean images folder
+
+commit 1e761ee8ca681fac10c50dc8f71bc208d02a5cfb
+Merge: 9133f44 03899f9
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 16:09:36 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 9133f443dc5744d1547dfd96d3ec23752ffe1a9a
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 16:09:20 2016 -0500
+
+    Updated more links
+
+commit 35cd9b70a4002fcbd95b4a3c73dff51c22952e61
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 16:00:51 2016 -0500
+
+    Updated links
+
+commit 03899f9e5e9c2dfc711829315b2f09be2cb99a16
+Merge: c6eb474 bc02c7d
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 15:58:00 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit c6eb474421c5c950a998abd829dbb7c847c3b89f
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 15:57:55 2016 -0500
+
+    add media
+
+commit bc02c7d2b5b7ef0f63053cd2d1ae7b3534e19b1c
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 15:52:10 2016 -0500
+
+    Fixed links after reorganization
+
+commit 061692216a48c8a984cae8063ecb94c679546534
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 15:30:15 2016 -0500
+
+    minor updates
+
+commit 063ef5873ee440febccd65023f3c7c8c7a43f217
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 15:13:35 2016 -0500
+
+    remove artist.html
+
+commit 144d1141424dc5c3206d89ace768f60c54df181d
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 15:11:46 2016 -0500
+
+    Add artist img urls
+
+commit 55f9b747056e350d1b726e9a832daff058cc1c26
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Wed Oct 19 20:06:52 2016 +0000
+
+    awsome commit
+
+commit aa5f50a2bf44474eb3cdd63efd782de56dd1ee77
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 14:57:31 2016 -0500
+
+    Add artists
+
+commit 68ab767ad144f5d20e7356206e8fa7d97f1b5339
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 14:52:41 2016 -0500
+
+    relocation bug fix
+
+commit eb19b63ba8f7fbcfbfeeac84ce543f0c34ad4b1d
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 14:49:00 2016 -0500
+
+    Add artists links
+
+commit aa46f439c58fa12c8d802d393deb788c2b3632a3
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Wed Oct 19 19:43:42 2016 +0000
+
+    restructured directory
+
+commit 520ac45b866da85beace6995f1c0ab49281dd4f2
+Merge: f01e640 b3944cc
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 14:34:43 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit b3944cc9b7776f43535b880a7b91f12918886f96
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 14:32:29 2016 -0500
+
+    Add more headers
+
+commit f01e64001cdc8a45374302040b30350872620aba
+Merge: 4af8888 de8fefa
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 14:31:55 2016 -0500
+
+    fix merge issue
+
+commit 4af8888549b405e72b7c161695a75db035493763
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 14:25:53 2016 -0500
+
+    updated cache files
+
+commit de8fefaf947105ff7a532251a22b8d3856113a29
+Author: Stewart Johnson <shjohnson01@gmail.com>
+Date:   Wed Oct 19 14:23:10 2016 -0500
+
+    Add static progress
+
+commit 0f07a72fc836e2fd247eeef77aca1811fcf88aee
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 14:10:13 2016 -0500
+
+    Add ruben's photo
+
+commit 729914fb9ef01f7c4397db8a7e62da7b58aa7f77
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 14:09:39 2016 -0500
+
+    Update team info
+
+commit 8fd4ee8d9b3780bee3ac109daa19bf35b42635d5
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 13:58:30 2016 -0500
+
+    Adding team and individual stats
+
+commit acebf069e6ee40f79b861ccc8e9176de2a14b59d
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 13:22:29 2016 -0500
+
+    Fixed about me and navbar to be relative.
+
+commit 36e4d4157d5b3f88335710e57ab70e3f14ad7ea7
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 12:24:27 2016 -0500
+
+    Removed some scripts from travis.yml file
+
+commit acd98315fc06c84d28608d7a30722f9f6e20eb56
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 12:20:46 2016 -0500
+
+    Add sudo to travis.yml file
+
+commit 8781ef63b71519828593fb1b4a5c9bac3d0279ae
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 12:17:15 2016 -0500
+
+    Try to trigger travis to build again
+
+commit c07e8440459a43b7dd307a83787e399afe0a7818
+Author: christy.tran <christytran@utexas.edu>
+Date:   Wed Oct 19 12:15:59 2016 -0500
+
+    Try to trigger travis to build
+
+commit 1332551a15ea055c3e045ada79c09eebee0e50b7
+Merge: e7580b4 90568e2
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 19 12:10:07 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+    
+    because?
+
+commit 90568e252688624e2c4bf371f27264fdb3efa9b9
+Author: Otis <otisbrower@yahoo.com>
+Date:   Wed Oct 19 09:47:30 2016 -0500
+
+    updated data caches, few updates on htmls
+
+commit 212614863a15645e7da00905400fe565b25d1fc2
+Merge: e8688e6 feee2ec
+Author: christy.tran <christytran@utexas.edu>
+Date:   Tue Oct 18 11:17:14 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit e8688e6de849913d0d030e487a02f9612cad8162
+Author: christy.tran <christytran@utexas.edu>
+Date:   Tue Oct 18 11:16:54 2016 -0500
+
+    Attempt to add .travis and requirements.txt. Also added Stewart to the aboutme page
+
+commit feee2ec68233f16f6bd0cf51badd15766c14833d
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Tue Oct 18 01:29:30 2016 +0000
+
+    readding static folder with only htmls and adding app.y and app.wsgi that got removed during last pull
+
+commit 69b99d827b922b8c414e8e76aa283b5d91cadcda
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Mon Oct 17 22:04:07 2016 +0000
+
+    moved bootstrap directory into app/, website renders html page,for now...
+
+commit e7580b463b11da22b9f436b65b6ce5d3b5efaf48
+Merge: 238d42e a6746cf
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 16:43:53 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 238d42eca1e27dbb10ad91115f74f6311391c2ee
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 16:41:41 2016 -0500
+
+    artist page
+
+commit a6746cf92b964c04288dc6272a8a536b50196e63
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 16:40:17 2016 -0500
+
+    Add aboutme.css
+
+commit 5f2298b8d5e71b05f6a119afeba58a9569bbc814
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 16:32:29 2016 -0500
+
+    Added placeholders for each member and link to github
+
+commit b3d5fe414cfcd98428271c09ce88c4db7d7b1f1c
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 16:24:43 2016 -0500
+
+    Updated to make images and buttons on images for three pillars clickable
+
+commit bd348e0c7a4500a6a8b61edd79c5206238d79d7a
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 16:13:23 2016 -0500
+
+    edit to index
+
+commit cce05577b00cebb911db3d269f0266aed70d4781
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 16:00:31 2016 -0500
+
+    change to index
+
+commit ab3ee739e7bff0109c376f479275b27a8815f720
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 15:59:37 2016 -0500
+
+    added pillar.css
+
+commit 03d01d978b80c11d913d1e58900c2b9db3821f1f
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 15:59:04 2016 -0500
+
+    added artist.html
+
+commit 1c3933ea732a3b54ba799ddbf0d9203e4d71ddaa
+Merge: d44241f 13ec50c
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 15:55:41 2016 -0500
+
+    change to index
+
+commit d44241fcc3aaaddbe9eef75cf1e690302ef6780d
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 17 15:49:04 2016 -0500
+
+    changes to index.html
+
+commit 13ec50cade287c152df508ddb74e545d0cef34df
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 15:40:16 2016 -0500
+
+    Created blank home page and edited paths for tabs
+
+commit 2aaf827b4d2839ed4387e270a7c818f78b1af20b
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 15:05:29 2016 -0500
+
+    Adding carousel.css file
+
+commit 1639933816c98115cb8007b5367a606de67550ca
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 14:32:41 2016 -0500
+
+    Updated the path name for bootstrap
+
+commit f3c60de83f2305ae194f57d8dcc120df85964bad
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 13:25:02 2016 -0500
+
+    html and css in wrong place, removing
+
+commit 3f3a282aa3aeeef7ecfb6243fea250eff04469b7
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 13:06:12 2016 -0500
+
+    Added references to bootstrap page
+
+commit e68f36e52e2c9d250970074b08ed7b420602325e
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 12:59:05 2016 -0500
+
+    Initial bootstrap html and css files, still some config left with linking the two.
+
+commit 9d0be53f2395ef54e55ce1014992c247ff501a92
+Merge: 1e4189d 0ba78d4
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 12:58:16 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 1e4189ddf0cf6c6d9feaefc7bcbd55dc0b5780a0
+Author: christy.tran <christytran@utexas.edu>
+Date:   Mon Oct 17 12:56:07 2016 -0500
+
+    Initial bootstrap html and css files, still some config left with linking the two.
+
+commit 0ba78d466a64369842be549839172f888e28117c
+Author: Otis <otisbrower@yahoo.com>
+Date:   Mon Oct 17 09:26:44 2016 -0500
+
+    initial artist, album and song lists
+
+commit 3afcb214e0c93ecca9d8b62db06e9266bd75ad86
+Merge: 726c792 5fa7a31
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Sun Oct 16 13:20:59 2016 -0500
+
+    Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
+
+commit 726c792c32091f58e84ca883b43f62e375d3037f
+Author: otisbrower <otisbrower@yahoo.com>
+Date:   Sun Oct 16 13:20:51 2016 -0500
+
+    Scrape files
+
+commit 3bec677ae0e79de5e0df7ad9921c55156cc480b9
+Merge: b97da8b 5fa7a31
+Author: christy.tran <christytran@utexas.edu>
+Date:   Fri Oct 14 15:45:15 2016 -0500
+
+    Merge branch 'dev'
+    
+    Adding bootstrap files.
+
+commit b97da8b17121f2e11f65a8d52040c7cfb17d4f2c
+Author: Naveen Rajshekhar <naveen.rajshekhar@utexas.edu>
+Date:   Fri Oct 14 15:42:46 2016 -0500
+
+    Create CNAME
+
+commit 5fa7a314b14f0dfaa9593b4e0d23801dba8efa97
+Author: Naveen Rajshekhar <naveen.rajshekhar@utexas.edu>
+Date:   Fri Oct 14 15:37:18 2016 -0500
+
+    Create CNAME
+
+commit b198f06565d3ec7616fc6da790a6d1a184ce5ac6
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Fri Oct 14 14:56:00 2016 -0500
+
+    added bootstrap
+
+commit c34a50b8ec48a4d66f92983f9e3181a33cf1734e
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Fri Oct 14 13:27:58 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit cef785bf089d06d6bcec3b21166e21393ae18ef6
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Fri Oct 14 13:06:18 2016 -0500
+
+    first commit
