@@ -1,0 +1,143 @@
+FORMAT: 1A
+HOST: http://imusicdb.me/api
+
+# iMusicDB
+
+iMusicDB is a simple API that requests data for music albums, artists and tracks.
+
+## Albums List [/albums]
+
+### List All Albmums [GET]
+
++ Response 200 (application/json)
+
+{
+    "Albums": [
+        {
+            'id' : '1',
+            'name' : 'name',
+            'url' : 'url',
+            'main_albums' : 'main albums name',
+            'main_albums_id' : 'main albums id',
+            'all_albums' : ['albums'],
+            'type' = 'type',
+            'image_url' : 'image url'
+        },
+                {
+            'id' : '1',
+            'name' : 'name',
+            'url' : 'url',
+            'main_albums' : 'main albums name',
+            'main_albums_id' : 'main albums id',
+            'all_albums' : ['albums'],
+            'type' = 'type',
+            'image_url' : 'image url'
+        },
+                {
+            'id' : '1',
+            'name' : 'name',
+            'url' : 'url',
+            'main_albums' : 'main albumsalbumsname',
+            'main_albums_id' : 'main albums id',
+            'all_albums' : ['albums'],
+            'type' = 'type',
+            'image_url' : 'image url'
+        }
+    ]
+}
+
+## Artists List [/artists]
+
+### List All Artists [GET]
+
++ Response 200 (application/json)
+
+{
+    "artists": [
+        {
+            'id' : '1',
+            'name' : 'name',
+            'genres' : 'genre',
+            'url' : 'url',
+            'followers' : 'i follow',
+            'popularity': '2',
+            'image_url' : 'image url'
+
+        },
+        {
+            'id' : '1',
+            'name' : 'name',
+            'genres' : 'genre',
+            'url' : 'url',
+            'followers' : 'i follow',
+            'popularity': '2',
+            'image_url' : 'image url'
+
+        },
+        {
+            'id' : '1',
+            'name' : 'name',
+            'genres' : 'genre',
+            'url' : 'url',
+            'followers' : 'i follow',
+            'popularity': '2',
+            'image_url' : 'image url'
+
+        }
+    ]
+}
+
+## track List [/tracks]
+
+### Obtain a list of tracks. [GET]
++ Response 200 (application/json)
+
+{
+   "companies": [
+       {
+           "id" = "1",
+           "name" = "name",
+           "main_artists_id" = "1",
+           "all_artists" = ["a","b"],
+           "track_no" = "1",
+           "album_id" = "1",
+           "duration" = "3",
+           "explicit" = false,
+           "popularity" = 19,
+           "preview_url" = "prev_url",
+           "direct_url" = "direct_url",
+           "image_url" = "img_url"
+
+       },
+       {
+           "id" = "1",
+           "name" = "name",
+           "main_artists_id" = "1",
+           "all_artists" = ["a","b"],
+           "track_no" = "1",
+           "album_id" = "1",
+           "duration" = "3",
+           "explicit" = false,
+           "popularity" = 19,
+           "preview_url" = "prev_url",
+           "direct_url" = "direct_url",
+           "image_url" = "img_url"
+
+       },
+       {
+           "id" = "1",
+           "name" = "name",
+           "main_artists_id" = "1",
+           "all_artists" = ["a","b"],
+           "track_no" = "1",
+           "album_id" = "1",
+           "duration" = "3",
+           "explicit" = false,
+           "popularity" = 19,
+           "preview_url" = "prev_url",
+           "direct_url" = "direct_url",
+           "image_url" = "img_url"
+
+       }
+   ]
+}
