@@ -1,10 +1,9 @@
-
-from flask import Flask
-from sqlalchemy_searchable import SearchQueryMixin, make_searchable
-from sqlalchemy_utils.types import TSVectorType
-from flask.ext.sqlalchemy import BaseQuery
+from app import app as application
 
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/musicdb'
+application = Flask(__name__)
+db = SQLAlchemy(app)
 
 
 class Artists(db.Model):
