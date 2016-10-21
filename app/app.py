@@ -42,7 +42,7 @@ class Artists(db.Model):
 		'url' : self.url,
 		'followers' : self.followers,
 		'popularity' : self.popularity,
-		'image_url' : self.image_url,
+		'image_url' : self.image_url
 	}
 
 	def __repr__(self):
@@ -68,8 +68,8 @@ class Albums(db.Model):
 		'main_artists' : self.main_artists,
 		'main_artists_id' : self.main_artists_id,
 		'all_artists' : self.all_artists,
-		'type' = self.db.Column
-		'image_url' : self.image_url,
+	        'type' : self.db.Column,
+		'image_url' : self.image_url
 	}
 	
 	def __repr__(self):
@@ -103,7 +103,7 @@ class Tracks(db.Model):
 		'popularity' : self.popularity,
 		'preview_url' : self.preview_url,
 		'direct_url' : self.direct_url,
-		'image_url' : self.image_url,
+		'image_url' : self.image_url
 	}
 	
 	def __repr__(self):
