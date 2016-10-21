@@ -1,13 +1,11 @@
-from flask import Flask, send_file
+from flask import *
 from flask_sqlalchemy import SQLAlchemy
 import models
 import test.py
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/musicdb'
 
-db = SQLAlchemy(app)
 
 
 @app.route('/sanity', methods=['GET'])
