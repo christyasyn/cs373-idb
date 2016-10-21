@@ -1,9 +1,14 @@
+
+import os
+
 from app import app as application
+from flask import *
+from flask.ext.sqlalchemy import BaseQuery,SQLAlchemy
 
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/musicdb'
+application.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('imusicdb')
+#'postgresql://localhost/musicdb'
 application = Flask(__name__)
-db = SQLAlchemy(app)
+db = SQLAlchemy(application)
 
 
 class Artists(db.Model):

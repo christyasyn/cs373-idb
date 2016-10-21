@@ -1,7 +1,6 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
-import models
-import test.py
+
 
 
 app = Flask(__name__)
