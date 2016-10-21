@@ -1,5 +1,5 @@
-import flask from Flask
-from loader import db
+
+from flask import Flask
 from sqlalchemy_searchable import SearchQueryMixin, make_searchable
 from sqlalchemy_utils.types import TSVectorType
 from flask.ext.sqlalchemy import BaseQuery
