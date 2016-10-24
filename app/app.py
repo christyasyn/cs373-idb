@@ -1,10 +1,12 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
-import models
-import test.py
+from models import *
+import test
 
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/musicdb'
+#app.config.setdefault['SQLALCHEMY_TRACK_MODIFICATIONS']
 
 
 
