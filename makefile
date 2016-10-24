@@ -45,3 +45,9 @@ models.html: app/models.py
 	cp app/models.py ./
 	pydoc3 -w models
 	rm models.py
+
+artists: Scrape.py
+	python3.5 -c 'import Scrape; Scrape.getids()'
+
+albums: Scrape.py artist_ids_cache.pickle
+	python3.5 -c 'import Scrape; Scrape.artist_album_list()'
