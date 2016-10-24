@@ -12,8 +12,8 @@ ARTIST_ALBUMS = []
 ALBUM_TRACKS = []
 pp = pprint.PrettyPrinter(indent=4)
 
-def getids():
-	response = requests.get('http://kworb.net/spotify/')
+def getids(artist_list):
+	response = requests.get(artist_list)
 	text = response.text.split()
 	global ARTIST_IDS
 	global ARTISTS_LIST
@@ -35,15 +35,12 @@ def getids():
 						  'followers': data['followers']['total'],
 						  'direct_url': data['external_urls']['spotify']}]
 	# verify number of artists included in list						  
-	print('Number of artists: ' + str(len(ARTIST_IDS)))
-	# print list of artist ids to file
-	with open('id_list.txt', 'w') as out:
-		pprint.pprint(ARTIST_IDS, stream=out)
+	print('Number of artists: ' + str(len(ARTISTS_LIST)))
 	# save pickle file with artists info
-	with open('artist_ids_cache.pickle', 'wb') as out:
+	with open('./app/db/artist_ids_cache.pickle', 'wb') as out:
 		pickle.dump(ARTISTS_LIST, out)
 	# save readable artist info
-	with open('artist_ids_cache.txt', 'w') as out:
+	with open('./app/db/artist_ids_cache.txt', 'w') as out:
 		pprint.pprint(ARTISTS_LIST, stream=out)
 
 
@@ -51,7 +48,7 @@ def artist_album_list():
 	# if artist list is empty, read in artists from file.
 	global ARTISTS_LIST
 	if len(ARTISTS_LIST) == 0:
-		with open('artist_ids_cache.pickle', 'rb') as read:
+		with open('./app/db/artist_ids_cache.pickle', 'rb') as read:
 			ARTISTS_LIST = list(pickle.load(read))
 
 	# access global album list		
@@ -103,26 +100,35 @@ def artist_album_list():
 			else:
 				break
 	# save file of album basic info
-	with open('artist_albums_cache.pickle', 'wb') as out:
+	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
 		pickle.dump(ARTIST_ALBUMS, out)
-	with open('artist_albums_cache.txt', 'w') as out:
+	with open('./app/db/artist_albums_cache.txt', 'w') as out:
 		pprint.pprint(ARTIST_ALBUMS, stream=out)
 
 def start_track_populate():
 	global ARTIST_ALBUMS
 	if len(ARTIST_ALBUMS) == 0:
-		with open('artist_albums_cache.pickle', 'rb') as read:
+		with open('./app/db/artist_albums_cache.pickle', 'rb') as read:
 			ARTIST_ALBUMS = pickle.load(read)
 
+	album_count = 1
 	for album in ARTIST_ALBUMS:
-		album['duration'] = album_track_list(album['main_artist_id'], album['id'])
+		print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)) + ':', end='  ')
+		album['duration'] = album_track_list(album['main_artist_id'], album['id'], album['main_artist'], album['name'])
+		album_count += 1
 
-	with open('album_tracks_cache.pickle', 'wb') as out:
-		pickle.dump(ARTIST_ALBUMS, out)		
+	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
+		pickle.dump(ARTIST_ALBUMS, out)
+	with open('./app/db/artist_albums_cache.txt', 'w') as out: 
+		pprint.pprint(ARTIST_ALBUMS, stream=out)
+	with open('./app/db/album_tracks_cache.pickle', 'wb') as out:
+		pickle.dump(ALBUM_TRACKS, out)
+	with open('./app/db/album_tracks_cache.txt', 'w') as out:
+		pprint.pprint(ALBUM_TRACKS, stram=out)
 
 
 # build list of tracks: track_id, artist_id, album_id, track_number, name, preview_url, direct_url, explicit, image, popularity
-def album_track_list(artist_id, album_id):
+def album_track_list(artist_id, album_id, artist, album_name):
 
 	global ALBUM_TRACKS
 	album_duration = 0
@@ -130,11 +136,10 @@ def album_track_list(artist_id, album_id):
 	response = requests.get('https://api.spotify.com/v1/albums/' + album_id + '/tracks')
 	tracks = json.loads(response.text)
 
-	for items in tracks:
+	for items in tracks['items']:
 		track_request = requests.get(items['href'])
 		track_info = json.loads(track_request.text)
-		print(artist + '	', end='')
-		print(track_info['name'])
+		print(album_name + ' ' + str(track_info['track_number']))
 		duration = str((track_info['duration_ms']//1000)//60) + ':' + str((track_info['duration_ms']//1000)%60)
 		album_duration += int(track_info['duration_ms'])
 		all_artists = {}
@@ -158,8 +163,3 @@ def album_track_list(artist_id, album_id):
 # def populate_tracks():
 # 	if len(artist_ids_cache) == 0:
 # 		try:
-
-
-# if __name__ == "__main__":
-# 	getids()
-# 	# artist_album_list()
