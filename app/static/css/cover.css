@@ -165,6 +165,8 @@ body {
 
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
+  position: relative;
+  padding-top: 50px;
   text-align: center
 }
 .marketing h2 {
