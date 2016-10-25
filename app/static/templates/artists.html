@@ -28,9 +28,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Custom styles for this template -->
-    <link href="../css/cover.css" rel="stylesheet" type="text/css">
+    <link href="../css/artists.css" rel="stylesheet" type="text/css">
     <link href="../css/pillars.css" rel="stylesheet" type="text/css">
-
   </head>
   <body>
 
@@ -60,9 +59,10 @@
 
     <!-- CONTENT
     ================================================= -->
-    <div class="container pillar-content">
-
+    <div style="vertical-align: middle">
       <h1>Artists</h1>
+    </div>
+    <div class="container pillar-content">
 
       <div class="row"> <!-- Table Headers -->
         <div class="col-md-2">Artist</div>
@@ -90,6 +90,35 @@
       </div>
 
     </div>
+
+
+    <!--Start Artist List Table-->
+    <table id="myTable">
+      <tr>
+        <th>Column 1</div>
+        <th>Column 2</div>
+      </tr>
+      <tr>
+        <td>Row2 cell1</div>
+        <td>Row2 cell2</div>
+      </tr>
+      <tr>
+        <td>Row3 cell1</div>
+        <td>Row3 cell2</div>
+      </tr>
+    </table>
+    <br>
+    <script>
+      function myFunction() {
+          var table = document.getElementById("myTable");
+          var row = table.insertRow(0);
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          cell1.innerHTML = "NEW CELL1";
+          cell2.innerHTML = "NEW CELL2";
+      }
+    </script>
+    <button onclick="myFunciton">Add row?</button>
 </div>
 
 </div>

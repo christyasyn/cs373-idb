@@ -120,20 +120,24 @@ def start_track_populate():
 	threads = []
 	pool = multiprocessing.Pool(processes=4)
 
-		
+		# len(ARTIST_ALBUMS)):
 	for i in range(0, len(ARTIST_ALBUMS)):
 		if i % 3 == 0:
 			for t in threads:
 				t.join()
 			threads = []
-		p = multiprocessing.Process(target=album_track_process, args=(ARTIST_ALBUMS[i]['main_artist_id'], ARTIST_ALBUMS[i]['id'], ARTIST_ALBUMS[i]['main_artist'], ARTIST_ALBUMS[i]['name'], i))
+		p = threading.Thread(target=album_track_process, args=(ARTIST_ALBUMS[i]['main_artist_id'], ARTIST_ALBUMS[i]['id'], ARTIST_ALBUMS[i]['main_artist'], ARTIST_ALBUMS[i]['name'], i))
 		threads.append(p)
 		p.start()
 
 	# for album in ARTIST_ALBUMS:
 	# 	print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)))
 	# 	album['duration'] = album_track_list(album['main_artist_id'], album['id'], album['main_artist'], album['name'])
+	# 	if album_count == 50:
+	# 		break
 	# 	album_count += 1
+	for t in threads:
+		t.join()
 
 	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
 		pickle.dump(ARTIST_ALBUMS, out)
@@ -144,8 +148,8 @@ def start_track_populate():
 	t1 = time.time()
 	total_time = t1 - t0
 	print(str(total_time))
-	# with open('./app/db/album_tracks_cache.txt', 'w') as out:
-	# 	pprint.pprint(ALBUM_TRACKS, stram=out)
+	with open('./app/db/album_tracks_cache.txt', 'w') as out:
+		pprint.pprint(ALBUM_TRACKS, stream=out)
 
 
 # build list of tracks: track_id, artist_id, album_id, track_number, name, preview_url, direct_url, explicit, image, popularity
@@ -210,7 +214,9 @@ def album_track_process(artist_id, album_id, artist, album_name, album_list_numb
 								'explicit': track_info['explicit'], 
 								'direct_url': track_info['external_urls']['spotify'], 
 								'popularity': track_info['popularity']}
+			lock.acquire()
 			ALBUM_TRACKS += [track_list_entry]
+			lock.release()
 		print(str(album_list_number))
 	except:
 		print('Restarting: ' + str(album_list_number))
