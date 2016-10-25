@@ -118,14 +118,23 @@ def start_track_populate():
 	t0 = time.time()
 	album_count = 1
 	threads = []
-	pool = multiprocessing.Pool(4)
-	for album in ARTIST_ALBUMS:
-		print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)))
-		album['duration'] = album_track_list(album['main_artist_id'], album['id'], album['main_artist'], album['name'])
-		album_count += 1
+	pool = multiprocessing.Pool(processes=4)
 
-	for t in threads:
-		t.join()
+		
+	for i in range(0, len(ARTIST_ALBUMS)):
+		if i % 3 == 0:
+			for t in threads:
+				t.join()
+			threads = []
+		p = multiprocessing.Process(target=album_track_process, args=(ARTIST_ALBUMS[i]['main_artist_id'], ARTIST_ALBUMS[i]['id'], ARTIST_ALBUMS[i]['main_artist'], ARTIST_ALBUMS[i]['name'], i))
+		threads.append(p)
+		p.start()
+
+	# for album in ARTIST_ALBUMS:
+	# 	print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)))
+	# 	album['duration'] = album_track_list(album['main_artist_id'], album['id'], album['main_artist'], album['name'])
+	# 	album_count += 1
+
 	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
 		pickle.dump(ARTIST_ALBUMS, out)
 	# with open('./app/db/artist_albums_cache.txt', 'w') as out: 
@@ -169,6 +178,48 @@ def album_track_list(artist_id, album_id, artist, album_name):
 		ALBUM_TRACKS += [track_list_entry]
 
 	return str((album_duration//1000)//60) + ':' + str((album_duration//1000)%60)
+
+
+def album_track_process(artist_id, album_id, artist, album_name, album_list_number):
+	global ALBUM_TRACKS
+	global ARTIST_ALBUMS
+	album_duration = 0
+
+	lock.acquire()
+	response = requests.get('https://api.spotify.com/v1/albums/' + album_id + '/tracks')
+	tracks = json.loads(response.text)
+	lock.release()
+
+	try:
+		for items in tracks['items']:
+			track_request = requests.get(items['href'])
+			track_info = json.loads(track_request.text)
+			duration = str((track_info['duration_ms']//1000)//60) + ':' + str((track_info['duration_ms']//1000)%60)
+			album_duration += int(track_info['duration_ms'])
+			all_artists = {}
+			for artist in track_info['artists']:
+				all_artists[artist['name']]= artist['id']
+			track_list_entry = {'track_id': track_info['id'], 
+								'artist_id': artist_id, 
+								'all_artists': all_artists,
+								'album_id': album_id, 
+								'track_number': track_info['track_number'], 
+								'name': track_info['name'], 
+								'duration': duration, 
+								'preview': track_info['preview_url'], 
+								'explicit': track_info['explicit'], 
+								'direct_url': track_info['external_urls']['spotify'], 
+								'popularity': track_info['popularity']}
+			ALBUM_TRACKS += [track_list_entry]
+		print(str(album_list_number))
+	except:
+		print('Restarting: ' + str(album_list_number))
+		album_track_process(artist_id, album_id, artist, album_name, album_list_number)
+	finally:
+		pass
+	# print(ARTIST_ALBUMS[album_list_number])
+	 # = str((album_duration//1000)//60) + ':' + str((album_duration//1000)%60)
+	# return str((album_duration//1000)//60) + ':' + str((album_duration//1000)%60)
 
 
 class trackThread(threading.Thread):
