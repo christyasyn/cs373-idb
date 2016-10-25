@@ -5,12 +5,16 @@ import requests
 import json
 import pprint
 import pickle
+import threading
+import multiprocessing
+import time
 
 ARTIST_IDS = []
 ARTISTS_LIST = []
 ARTIST_ALBUMS = []
 ALBUM_TRACKS = []
 pp = pprint.PrettyPrinter(indent=4)
+lock = multiprocessing.Lock()
 
 def getids(artist_list):
 	response = requests.get(artist_list)
@@ -111,25 +115,32 @@ def start_track_populate():
 		with open('./app/db/artist_albums_cache.pickle', 'rb') as read:
 			ARTIST_ALBUMS = pickle.load(read)
 
+	t0 = time.time()
 	album_count = 1
+	threads = []
+	pool = multiprocessing.Pool(4)
 	for album in ARTIST_ALBUMS:
-		print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)) + ':', end='  ')
+		print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)))
 		album['duration'] = album_track_list(album['main_artist_id'], album['id'], album['main_artist'], album['name'])
 		album_count += 1
 
+	for t in threads:
+		t.join()
 	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
 		pickle.dump(ARTIST_ALBUMS, out)
-	with open('./app/db/artist_albums_cache.txt', 'w') as out: 
-		pprint.pprint(ARTIST_ALBUMS, stream=out)
+	# with open('./app/db/artist_albums_cache.txt', 'w') as out: 
+	# 	pprint.pprint(ARTIST_ALBUMS, stream=out)
 	with open('./app/db/album_tracks_cache.pickle', 'wb') as out:
 		pickle.dump(ALBUM_TRACKS, out)
-	with open('./app/db/album_tracks_cache.txt', 'w') as out:
-		pprint.pprint(ALBUM_TRACKS, stram=out)
+	t1 = time.time()
+	total_time = t1 - t0
+	print(str(total_time))
+	# with open('./app/db/album_tracks_cache.txt', 'w') as out:
+	# 	pprint.pprint(ALBUM_TRACKS, stram=out)
 
 
 # build list of tracks: track_id, artist_id, album_id, track_number, name, preview_url, direct_url, explicit, image, popularity
 def album_track_list(artist_id, album_id, artist, album_name):
-
 	global ALBUM_TRACKS
 	album_duration = 0
 
@@ -139,7 +150,6 @@ def album_track_list(artist_id, album_id, artist, album_name):
 	for items in tracks['items']:
 		track_request = requests.get(items['href'])
 		track_info = json.loads(track_request.text)
-		print(album_name + ' ' + str(track_info['track_number']))
 		duration = str((track_info['duration_ms']//1000)//60) + ':' + str((track_info['duration_ms']//1000)%60)
 		album_duration += int(track_info['duration_ms'])
 		all_artists = {}
@@ -159,6 +169,26 @@ def album_track_list(artist_id, album_id, artist, album_name):
 		ALBUM_TRACKS += [track_list_entry]
 
 	return str((album_duration//1000)//60) + ':' + str((album_duration//1000)%60)
+
+
+class trackThread(threading.Thread):
+	def __init__(self, threadID, artist_id, album_id, artist, album_name):
+		threading.Thread.__init__(self)
+		self.threadID = threadID
+		self.artist_id = artist_id
+		self.album_id = album_id 
+		self.artist = artist
+		self.album_name = album_name
+
+	def run(self):
+		print(str(self.threadID) +'/' + str(len(ARTIST_ALBUMS)))
+		album_track_list(artist_id=self.artist_id, album_id=self.album_id, artist=self.artist, album_name=self.album_name)
+
+
+
+
+
+
 
 # def populate_tracks():
 # 	if len(artist_ids_cache) == 0:
