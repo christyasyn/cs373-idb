@@ -5,10 +5,33 @@ from app import app as application
 from flask import *
 from flask.ext.sqlalchemy import BaseQuery,SQLAlchemy
 
+#dup of above, will delete soon
+#from sqlalchemy.ext.declarative import declarative_base
+#from sqlalchemy import Column, Integer, String
+#from sqlalchemy import Sequence
+#from sqlalchemy.orm import sessionmaker
+
 application.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('imusicdb')
 #'postgresql://localhost/musicdb'
 application = Flask(__name__)
 db = SQLAlchemy(application)
+
+# create database session like this?
+#Base = declarative_base()            # where do these statements go?
+#Session = sessionmaker(bind=engine)  # do we have an engine yet?
+#session = Session()
+
+
+def CreateTables():
+
+	Artists()
+	Albums()
+	Tracks()
+
+def populateData(): 
+
+	artist = Artist(id=11, name='Prince', followers = 23238947, popularity = 4.9)
+	session.add(artist)
 
 
 class Artists(db.Model):
@@ -97,3 +120,9 @@ class Tracks(db.Model):
 	def __repr__(self):
 		return 'Tracks %r' % self.title
 
+
+# LOOKUP TABLES - Genres, 
+
+if __name__ == "__main__":
+	createTables()
+	populateData()
