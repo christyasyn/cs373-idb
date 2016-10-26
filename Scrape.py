@@ -120,7 +120,6 @@ def start_track_populate():
 	threads = []
 	pool = multiprocessing.Pool(processes=4)
 
-		# len(ARTIST_ALBUMS)):
 	for i in range(0, len(ARTIST_ALBUMS)):
 		if i % 3 == 0:
 			for t in threads:
@@ -130,24 +129,22 @@ def start_track_populate():
 		threads.append(p)
 		p.start()
 
-	# for album in ARTIST_ALBUMS:
-	# 	print(str(album_count) +'/' + str(len(ARTIST_ALBUMS)))
-	# 	album['duration'] = album_track_list(album['main_artist_id'], album['id'], album['main_artist'], album['name'])
-	# 	if album_count == 50:
-	# 		break
-	# 	album_count += 1
 	for t in threads:
 		t.join()
 
-	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
-		pickle.dump(ARTIST_ALBUMS, out)
-	# with open('./app/db/artist_albums_cache.txt', 'w') as out: 
-	# 	pprint.pprint(ARTIST_ALBUMS, stream=out)
-	with open('./app/db/album_tracks_cache.pickle', 'wb') as out:
-		pickle.dump(ALBUM_TRACKS, out)
 	t1 = time.time()
 	total_time = t1 - t0
 	print(str(total_time))
+
+	# save artist album list
+	with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
+		pickle.dump(ARTIST_ALBUMS, out)
+	with open('./app/db/artist_albums_cache.txt', 'w') as out: 
+		pprint.pprint(ARTIST_ALBUMS, stream=out)
+
+	# save tracks list
+	with open('./app/db/album_tracks_cache.pickle', 'wb') as out:
+		pickle.dump(ALBUM_TRACKS, out)
 	with open('./app/db/album_tracks_cache.txt', 'w') as out:
 		pprint.pprint(ALBUM_TRACKS, stream=out)
 
@@ -198,7 +195,7 @@ def album_track_process(artist_id, album_id, artist, album_name, album_list_numb
 		for items in tracks['items']:
 			track_request = requests.get(items['href'])
 			track_info = json.loads(track_request.text)
-			duration = str((track_info['duration_ms']//1000)//60) + ':' + str((track_info['duration_ms']//1000)%60)
+			duration = str((track_info['duration_ms']//1000)//60) + ':' + str('{0:03d}'.format((track_info['duration_ms']//1000)%60))
 			album_duration += int(track_info['duration_ms'])
 			all_artists = {}
 			for artist in track_info['artists']:
@@ -219,29 +216,36 @@ def album_track_process(artist_id, album_id, artist, album_name, album_list_numb
 			lock.release()
 		print(str(album_list_number))
 	except:
-		print('Restarting: ' + str(album_list_number))
+		print('Restarting: ' + str(album_list_number) + ': ' + response)
 		album_track_process(artist_id, album_id, artist, album_name, album_list_number)
 	finally:
 		pass
-	# print(ARTIST_ALBUMS[album_list_number])
-	 # = str((album_duration//1000)//60) + ':' + str((album_duration//1000)%60)
-	# return str((album_duration//1000)//60) + ':' + str((album_duration//1000)%60)
 
+def verify_tracks():
+	global ALBUM_TRACKS
+	if len(ALBUM_TRACKS) == 0:
+		with open('./app/db/album_tracks_cache.pickle', 'rb') as read:
+			ALBUM_TRACKS = pickle.load(read)
+	global ARTISTS_LIST
+	if len(ARTISTS_LIST) == 0:
+		with open('./app/db/artist_ids_cache.pickle', 'rb') as read:
+			ARTISTS_LIST = pickle.load(read)
+	global ARTIST_ALBUMS
+	if len(ARTIST_ALBUMS) == 0:
+		with open('./app/db/artist_albums_cache.pickle', 'rb') as read:
+			ARTIST_ALBUMS = pickle.load(read)
 
-class trackThread(threading.Thread):
-	def __init__(self, threadID, artist_id, album_id, artist, album_name):
-		threading.Thread.__init__(self)
-		self.threadID = threadID
-		self.artist_id = artist_id
-		self.album_id = album_id 
-		self.artist = artist
-		self.album_name = album_name
-
-	def run(self):
-		print(str(self.threadID) +'/' + str(len(ARTIST_ALBUMS)))
-		album_track_list(artist_id=self.artist_id, album_id=self.album_id, artist=self.artist, album_name=self.album_name)
-
-
+	for track in ALBUM_TRACKS:
+		artist = ''
+		for a in ARTISTS_LIST:
+			if a['id'] == track['artist_id']:
+				artist = a['name']
+				break
+		album = ''
+		for a in ARTIST_ALBUMS:
+			if a['id'] == track['album_id']:
+				album = a['name']
+		print('{:30.25} {:30.25} {:30.25} {:30.25} {:30.25}'.format(track['track_id'], artist, album, track['name'], track['duration']))
 
 
 

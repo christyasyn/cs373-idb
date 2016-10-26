@@ -1,14 +1,13 @@
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
-from models import *
-import test
+from models import artists, albums, tracks
+import requests
+import sqlalchemy_searchable import parse_search_query, search
+from loader import app, db
 
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/musicdb'
-#app.config.setdefault['SQLALCHEMY_TRACK_MODIFICATIONS']
-
-
+#-----------
+# view pages
+#-----------
 
 @app.route('/sanity', methods=['GET'])
 def sanity():
