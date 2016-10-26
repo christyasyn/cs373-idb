@@ -57,7 +57,6 @@
                 </ul>
               </nav>
             </div>
-          </div>
 
     <!-- CONTENT
     ================================================= -->
@@ -67,8 +66,7 @@
 
 
           <br />                          
-
-          <table id="example" class="hover"></table>
+          <table id="example" ></table>
 
           <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
            <script type="text/javascript" charset="utf-8">
@@ -95,12 +93,13 @@
                 { "title" : "Additional Artists"} ]
                 } );   
             });
-
+            $("#example").css("width","1000px")
 
             </script>
             <script type="text/javascript">
-              $('#example').addClass('table table-striped table-bordered');
+              $('#example').addClass('table table-hover table-bordered');
             </script>
+                    </div>
           </div>
         </div>
       </div>
