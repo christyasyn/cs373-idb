@@ -14,11 +14,6 @@ from flask_sqlalchemy import SQLAlchemy
 #from sqlalchemy.orm import sessionmaker
 
 
-# create database session like this?
-#Base = declarative_base()            # where do these statements go?
-#Session = sessionmaker(bind=engine)  # do we have an engine yet?
-#session = Session()
-
 
 def CreateTables():
 
@@ -122,7 +117,6 @@ class Track(db.Model):
         return 'Track %r' % self.name
 
 
-# LOOKUP TABLES - Genres, 
 
 if __name__ == "__main__":
 	createTables()
