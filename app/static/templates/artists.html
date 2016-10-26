@@ -70,44 +70,44 @@
           </div>
 
 
-       <br />                          
+           <br />                          
 
-         <table id="example"></table>
+             <table id="example"></table>
+    
+          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+          <script type="text/javascript" charset="utf-8">
+           $(document).ready(function() 
+           {
+             $('#example').dataTable( {
+             "aaData": [
+             ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO","100", "7"],
+             ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP","100", "7"],
+             ["jQuery Tutorials","http://www.codingcage.com/search/label/jQuery","100", "7"],
+             ["Ajax Tutorials","http://www.codingcage.com/search/label/Ajax","100", "7"],
+             ["CRUD Tutorials","http://www.codingcage.com/search/label/CRUD","100", "7"],
+             ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination","100", "7"],
+             ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi","100", "7"],
+             ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5","100", "7"],
+             ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination","100", "7"],
+             ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi","100", "7"],
+             ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5","100", "7"]
+             ],
+              "columns": [
+              { "title": "Artist" },
+              { "title": "Genre" } ,
+              { "title": "Followers" },
+              { "title": "Popularity" }
+             ]
+             });   
+             });
+            </script>
 
-      <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
-      <script type="text/javascript" charset="utf-8">
-       $(document).ready(function() 
-       {
-         $('#example').dataTable( {
-         "aaData": [
-         ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO","100", "7"],
-         ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP","100", "7"],
-         ["jQuery Tutorials","http://www.codingcage.com/search/label/jQuery","100", "7"],
-         ["Ajax Tutorials","http://www.codingcage.com/search/label/Ajax","100", "7"],
-         ["CRUD Tutorials","http://www.codingcage.com/search/label/CRUD","100", "7"],
-         ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination","100", "7"],
-         ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi","100", "7"],
-         ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5","100", "7"],
-         ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination","100", "7"],
-         ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi","100", "7"],
-         ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5","100", "7"]
-         ],
-          "columns": [
-          { "title": "Artist" },
-          { "title": "Genre" } ,
-          { "title": "Followers" },
-          { "title": "Popularity" }
-         ]
-         });   
-         });
-        </script>
-
-        <script type="text/javascript">
-          $('#example').addClass('table table-striped table-bordered');
-        </script>
-    </div>
-  </div>
-</div>
+            <script type="text/javascript">
+              $('#example').addClass('table table-striped table-bordered');
+            </script>
+           </div>
+         </div>
+       </div>
 
 
     <!-- Bootstrap core JavaScript
