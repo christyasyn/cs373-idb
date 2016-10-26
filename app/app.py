@@ -1,6 +1,6 @@
-from models import artists, albums, tracks
+from models import Artist, Album, Track
 import requests
-import sqlalchemy_searchable import parse_search_query, search
+from sqlalchemy_searchable import parse_search_query, search
 from loader import app, db
 
 #-----------
