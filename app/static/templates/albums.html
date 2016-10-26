@@ -22,6 +22,9 @@
   <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
   <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
+  <!-- Database Tables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -29,11 +32,10 @@
       <![endif]-->
       <!-- Custom styles for this template -->
       <link href="../css/cover.css" rel="stylesheet" type="text/css">
-    <!--link href="../css/pillars.css" rel="stylesheet" type="text/css">
   </head>
   <body>
 
-    <!- NAVBAR
+    <!-- NAVBAR
     ================================================= -->
 
     <div class="site-wrapper">
@@ -56,60 +58,60 @@
               </nav>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-    
-
 
     <!-- CONTENT
     ================================================= -->
-    <div class="container pillar-content">
+          <div style="vertical-align: middle">
+            <h1>Albums</h1>
+          </div>
 
-      <h1>Albums</h1>
 
-      <div class="row"> <!-- Table Headers -->
-        <div class="col-md-2">Album</div>
-        <div class="col-md-2">Num Of Tracks</div>
-        <div class="col-md-2">Artist</div>
-        <div class="col-md-2">Additional Artists</div>
-      </div>
-      <div class="row">
-        <div class="col-md-2"><a href="album1.html">Purpose (Deluxe)</a></div>
-        <div class="col-md-2">18</div>
-        <div class="col-md-2"><a href="artist1.html">Justin Bieber</a></div>
-        <div class="col-md-2">-</div>
-      </div>
-      <div class="row">
-        <div class="col-md-2"><a href="album2.html">Anti</a></div>
-        <div class="col-md-2">13</div>
-        <div class="col-md-2"><a href="artist2.html">Rihanna</a></div>
-        <div class="col-md-2">-</div>
-      </div>
-      <div class="row">
-        <div class="col-md-2"><a href="album3.html">Views</a></div>
-        <div class="col-md-2">20</div>
-        <div class="col-md-2"><a href="artist3.html">Drake</a></div>
-        <div class="col-md-2">-</div>
+       <br />                          
+
+         <table id="example"></table>
+
+      <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+      <script type="text/javascript" charset="utf-8">
+       $(document).ready(function() 
+       {
+         $('#example').dataTable( {
+         "aaData": [
+         ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO", "Drake", "Rihana"],
+         ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP" , "Drake", "Rihana"],
+         ["jQuery Tutorials","http://www.codingcage.com/search/label/jQuery", "Drake", "Rihana"],
+         ["Ajax Tutorials","http://www.codingcage.com/search/label/Ajax", "Drake", "Rihana"],
+         ["CRUD Tutorials","http://www.codingcage.com/search/label/CRUD", "Drake", "Rihana"],
+         ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination", "Drake", "Rihana"],
+         ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi", "Drake", "Rihana"],
+         ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5", "Drake", "Rihana"],
+         ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination", "Drake", "Rihana"],
+         ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi", "Drake", "Rihana"],
+         ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5", "Drake", "Rihana"]
+         ],
+          "columns": [
+            { "title": "Album" },
+            { "title": "Num of Tracks" },
+            { "title" : "Artist"},
+            { "title" : "Additional Artists"} ]
+         } );   
+         });
+        </script>
+        <script type="text/javascript">
+          $('#example').addClass('table table-striped table-bordered');
+        </script>
       </div>
     </div>
   </div>
 
-</div>
-
-</div>
-
-</div>
-
-    <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript 
     ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- Placed at the end of the document so the pages load faster 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>  -->
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! 
+        <script src="../../assets/js/vendor/holder.min.js"></script>  -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug 
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>  -->
   </body>
   </html>
