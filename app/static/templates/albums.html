@@ -57,7 +57,6 @@
                 </ul>
               </nav>
             </div>
-          </div>
 
     <!-- CONTENT
     ================================================= -->
@@ -66,42 +65,44 @@
           </div>
 
 
-       <br />                          
+          <br />                          
+          <table id="example" ></table>
 
-         <table id="example"></table>
+          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+           <script type="text/javascript" charset="utf-8">
+           $(document).ready(function() 
+           {
+             $('#example').dataTable( {
+             "aaData": [
+            ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO", "Drake", "Rihana"],
+            ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP" , "Drake", "Rihana"],
+            ["jQuery Tutorials","http://www.codingcage.com/search/label/jQuery", "Drake", "Rihana"],
+            ["Ajax Tutorials","http://www.codingcage.com/search/label/Ajax", "Drake", "Rihana"],
+            ["CRUD Tutorials","http://www.codingcage.com/search/label/CRUD", "Drake", "Rihana"],
+            ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination", "Drake", "Rihana"],
+            ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi", "Drake", "Rihana"],
+            ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5", "Drake", "Rihana"],
+            ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination", "Drake", "Rihana"],
+            ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi", "Drake", "Rihana"],
+            ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5", "Drake", "Rihana"]
+            ],
+              "columns": [
+                { "title": "Album" },
+                { "title": "Num of Tracks" },
+                { "title" : "Artist"},
+                { "title" : "Additional Artists"} ]
+                } );   
+            });
+            $("#example").css("width","1000px")
 
-      <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
-      <script type="text/javascript" charset="utf-8">
-       $(document).ready(function() 
-       {
-         $('#example').dataTable( {
-         "aaData": [
-         ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO", "Drake", "Rihana"],
-         ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP" , "Drake", "Rihana"],
-         ["jQuery Tutorials","http://www.codingcage.com/search/label/jQuery", "Drake", "Rihana"],
-         ["Ajax Tutorials","http://www.codingcage.com/search/label/Ajax", "Drake", "Rihana"],
-         ["CRUD Tutorials","http://www.codingcage.com/search/label/CRUD", "Drake", "Rihana"],
-         ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination", "Drake", "Rihana"],
-         ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi", "Drake", "Rihana"],
-         ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5", "Drake", "Rihana"],
-         ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination", "Drake", "Rihana"],
-         ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi", "Drake", "Rihana"],
-         ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5", "Drake", "Rihana"]
-         ],
-          "columns": [
-            { "title": "Album" },
-            { "title": "Num of Tracks" },
-            { "title" : "Artist"},
-            { "title" : "Additional Artists"} ]
-         } );   
-         });
-        </script>
-        <script type="text/javascript">
-          $('#example').addClass('table table-striped table-bordered');
-        </script>
+            </script>
+            <script type="text/javascript">
+              $('#example').addClass('table table-hover table-bordered');
+            </script>
+                    </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
     <!-- Bootstrap core JavaScript 
     ================================================== -->

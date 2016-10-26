@@ -167,7 +167,8 @@ body {
 .marketing .col-lg-4 {
   position: relative;
   padding-top: 50px;
-  text-align: center
+  text-align: center;
+  bottom: 10px;
 }
 .marketing h2 {
   font-weight: normal;
