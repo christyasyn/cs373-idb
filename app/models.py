@@ -7,6 +7,26 @@ from loader import db
 from flask.ext.sqlalchemy import BaseQuery
 from flask_sqlalchemy import SQLAlchemy
 
+#dup of above, will delete soon
+#from sqlalchemy.ext.declarative import declarative_base
+#from sqlalchemy import Column, Integer, String
+#from sqlalchemy import Sequence
+#from sqlalchemy.orm import sessionmaker
+
+
+
+def CreateTables():
+
+	Artists()
+	Albums()
+	Tracks()
+
+def populateData(): 
+
+	artist = Artist(id=11, name='Prince', followers = 23238947, popularity = 4.9)
+	session.add(artist)
+
+
 # -------------------
 # @Artists
 # -------------------
@@ -96,3 +116,8 @@ class Track(db.Model):
     def __repr__(self):
         return 'Track %r' % self.name
 
+
+
+if __name__ == "__main__":
+	createTables()
+	populateData()

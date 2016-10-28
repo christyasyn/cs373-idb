@@ -41,7 +41,10 @@ log:
 	git log > IDB2.log
 	# git log > IDB3.log
 
-models.html: app/models.py
+run:
+	python3 app/manage.py runserver
+
+model.html: app/models.py
 	cp app/models.py ./
 	pydoc3 -w models
 	rm models.py
@@ -67,5 +70,3 @@ scrapeAllLong: Scrape.py
 	make artistsLong
 	make albums
 	make tracks
-	
-

@@ -22,8 +22,6 @@
 	text-align: center;
 	position: relative;
 	top: 100px;
-	left:-250px;
-
 }
 .aboutblobs h2 {
 	font-weight: normal;
@@ -40,10 +38,10 @@
 	font-size: 13px;
 }
 
-.aboutblobs .col-lg-4 p {
-	margin-right: 10px;
-	margin-left: 10px;
+.aboutblobs {
+	left: -100px;
 }
+
 
 /* STATS
 -------------------------------------------------- */
@@ -54,7 +52,6 @@
 	text-align: center;
 	position: relative;
 	top: 100px;	
-	left:-250px;
 
 }
 .stats h2 {
