@@ -14,19 +14,6 @@ from flask_sqlalchemy import SQLAlchemy
 #from sqlalchemy.orm import sessionmaker
 
 
-
-def CreateTables():
-
-	Artists()
-	Albums()
-	Tracks()
-
-def populateData(): 
-
-	artist = Artist(id=11, name='Prince', followers = 23238947, popularity = 4.9)
-	session.add(artist)
-
-
 # -------------------
 # @Artists
 # -------------------
@@ -117,7 +104,3 @@ class Track(db.Model):
         return 'Track %r' % self.name
 
 
-
-if __name__ == "__main__":
-	createTables()
-	populateData()
