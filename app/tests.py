@@ -2,10 +2,15 @@ import os
 import app
 import unittest
 import tempfile
+from loader import app, db
+from models import Artist, Album, Track
 from flask import Flask
+#from sqlalchemy.orm import sessionmaker
 
-app = Flask(__name__)
-db = SQLAchemy(app)
+
+
+#app = Flask(__name__)
+#db = SQLAchemy(app)
 
 
 class AppDBTestCases(unittest.TestCase):
@@ -19,7 +24,7 @@ class AppDBTestCases(unittest.TestCase):
 
 	def tearDown(self):
 		os.close(self.db_fd)
-			os.unlink(app.app.config['DATABASAE'])
+		os.unlink(app.app.config['DATABASE'])
 
 
 	# Empty database
@@ -64,23 +69,27 @@ class AppDBTestCases(unittest.TestCase):
 	def test_tracks_insert_01(self): 
 		tracks_repr = {"id": "1", "name":"Sunshine In My Pocket", "main_artist":"Justin","main_artist_id":"2", "all_artists": ["Justin", "Rhianna"],
 						"track_no":"1", "album_id":"10","duration":3.28, "explicit":false, "popularity":99,
-						"preview_url":"http://preview_url","direct_url":"http://dirUrl","image_url":"http://image_url"}
+						"preview_url":"http://preview_url","direct_url":"http://directUrl","image_url":"http://image_url"}
 		a = Tracks(**tracks_repr)
 		self.session.add(a)
 
 		r = self.session.query(Tracks).filter(Tracks.id == "1").first()
 		self.assertEqual(r.name,"Sunshine In My Pocket")
 		self.assertEqual(r.main_artist_id, "2")
-		self.assertEqual(r.all_artists[1] = "Rhianna")
+		self.assertEqual(r.all_artists[1], "Rhianna")
 		self.assertEqual(r.track_no, "1")
 		self.assertEqual(r.album_id,"10")
 		self.assertEqual(r.duration, 3.28)
 		self.assertEqual(r.explicit, false)
 		self.assertEqual(r.popularity, 99)
-		self.assertEqual(r.preview_url, )
-		self.assertEqual(r.direct_url, )		
-		self.assertEqual(r.image_url, )
+		self.assertEqual(r.preview_url, "http://preview_url")
+		self.assertEqual(r.direct_url, "http://direct_url")		
+		self.assertEqual(r.image_url, "http://image_url")
 
 
-if __name__ = '__main__': 
-	unitest.main()
+if __name__ == '__main__':
+	app.config["TESTING"] = True
+	#app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('DB_TEST')
+	db.create_all()
+	unittest.main()
+	db.drop_all()
