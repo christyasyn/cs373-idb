@@ -14,6 +14,19 @@ from flask_sqlalchemy import SQLAlchemy
 #from sqlalchemy.orm import sessionmaker
 
 
+
+def CreateTables():
+
+	Artists()
+	Albums()
+	Tracks()
+
+def populateData(): 
+
+	artist = Artist(id=11, name='Prince', followers = 23238947, popularity = 4.9)
+	session.add(artist)
+
+
 # -------------------
 # @Artists
 # -------------------
@@ -48,8 +61,8 @@ class Album(db.Model):
     id = db.Column(db.String(22), primary_key=True)
     name = db.Column(db.String)
     url = db.Column(db.String)
-    main_artist = db.Column(db.String)
-    main_artist_id = db.Column(db.String(22))
+    main_artists = db.Column(db.String)
+    main_artists_id = db.Column(db.String(22))
     all_artists = db.Column(db.String)
     type = db.Column(db.String)
     image_url = db.Column(db.String)
@@ -59,8 +72,8 @@ class Album(db.Model):
             'id' : self.id,
             'name' : self.name,
             'url' : self.url,
-            'main_artist' : self.main_artists,
-            'main_artist_id' : self.main_artists_id,
+            'main_artist' : self.main_artist,
+            'main_artist_id' : self.main_artist_id,
             'all_artists' : self.all_artists,
             'type' : self.db.Column,
             'image_url' : self.image_url
@@ -82,13 +95,12 @@ class Track(db.Model):
     popularity = db.Column(db.Integer)
     preview_url = db.Column(db.String)
     direct_url = db.Column(db.String)
-    image_url = db.Column(db.String)
 
     def to_json(self): 
         json_albums = {
             'id' : self.id,
             'name' : self.name,
-            'main_artist_id' : self.main_artists_id,
+            'main_artist_id' : self.main_artist_id,
             'all_artists' : self.all_artists,
             'track_no' : self.track_no,
             'album_id' : self.album_id,
@@ -96,11 +108,14 @@ class Track(db.Model):
             'explicit' : self.explicit,
             'popularity' : self.popularity,
             'preview_url' : self.preview_url,
-            'direct_url' : self.direct_url,
-            'image_url' : self.image_url
+            'direct_url' : self.direct_url
         }
 
     def __repr__(self):
         return 'Track %r' % self.name
 
 
+
+if __name__ == "__main__":
+	createTables()
+	populateData()
