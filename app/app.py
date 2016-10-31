@@ -22,6 +22,14 @@ def index_exp():
 def index():
 	return send_file('index.html')
 
+@app.route('/api/artists', methods=['GET'])
+def get_artists():
+	request = Artist.query.paginate()
+	artists = request.items
+	print (artists)
+	return jsonify({'artists': [artists.to_json() for artist in artists] })
+
 
 if __name__ == "__main__":
+	get_artists()
 	app.run()
