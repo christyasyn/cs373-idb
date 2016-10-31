@@ -32,17 +32,22 @@ class Artist(db.Model):
     image_url = db.Column(db.String)
 
     def to_json(self): 
-        json_artist = {
-            'id' : self.id,
-            'name' : self.name,
-            'genres' : self.genres,
-            'url' : self.url,
-            'followers' : self.followers,
-            'popularity' : self.popularity,
-            'image_url' : self.image_url
-        }
+        # json_artist = {
+        #     'id' : self.id,
+        #     'name' : self.name,
+        #     'genres' : self.genres,
+        #     'url' : self.url,
+        #     'followers' : self.followers,
+        #     'popularity' : self.popularity,
+        #     'image_url' : self.image_url
+        # }
+        json_artist = [self.name, self.genres, self.followers, self.popularity]
+        return json_artist
     def __repr__(self):
-        return 'Artist %r' % self.name
+        return 'Artist %s' % self.name
+    def __str__ (self):
+        return self.name
+
 
 class Album(db.Model):
     __tablename__ = 'albums'
@@ -66,9 +71,13 @@ class Album(db.Model):
             'type' : self.db.Column,
             'image_url' : self.image_url
         }
+        return json_albums
 
     def __repr__(self):
         return 'Album %r' % self.name
+    def __str__(self):
+        return self.name
+
 
 class Track(db.Model):
     __tablename__ = 'tracks'
@@ -98,10 +107,12 @@ class Track(db.Model):
             'preview_url' : self.preview_url,
             'direct_url' : self.direct_url
         }
+        return json_albums
 
     def __repr__(self):
         return 'Track %r' % self.name
-
+    def __str__(self):
+        return self.name
 
 
 if __name__ == "__main__":
