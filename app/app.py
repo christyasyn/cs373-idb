@@ -25,8 +25,16 @@ def index():
 @app.route('/api/artists', methods=['GET'])
 def get_artists():
 	artists  = Artist.query.all()
+	artists = {'artists': [artist.to_json() for artist in artists]}
+	artists['columns'] = [
+              { "title": "Artist" },
+              { "title": "Genre" } ,
+              { "title": "Followers" },
+              { "title": "Popularity" }
+             ]
 	#artists = request.items
-	return json.dumps({'artists': [artist.to_json() for artist in artists]})
+	# return json.dumps({'artists': [artist.to_json() for artist in artists]})
+	return render_template('/static/tempates/artists.html', artists=artists)
 
 
 if __name__ == "__main__":

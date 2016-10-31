@@ -32,15 +32,16 @@ class Artist(db.Model):
     image_url = db.Column(db.String)
 
     def to_json(self): 
-        json_artist = {
-            'id' : self.id,
-            'name' : self.name,
-            'genres' : self.genres,
-            'url' : self.url,
-            'followers' : self.followers,
-            'popularity' : self.popularity,
-            'image_url' : self.image_url
-        }
+        # json_artist = {
+        #     'id' : self.id,
+        #     'name' : self.name,
+        #     'genres' : self.genres,
+        #     'url' : self.url,
+        #     'followers' : self.followers,
+        #     'popularity' : self.popularity,
+        #     'image_url' : self.image_url
+        # }
+        json_artist = [self.name, self.genres, self.followers, self.popularity]
         return json_artist
     def __repr__(self):
         return 'Artist %s' % self.name

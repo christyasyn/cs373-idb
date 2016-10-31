@@ -77,27 +77,7 @@
           <script type="text/javascript" charset="utf-8">
            $(document).ready(function() 
            {
-             $('#example').dataTable( {
-             "aaData": [
-             ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO","100", "7"],
-             ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP","100", "7"],
-             ["jQuery Tutorials","http://www.codingcage.com/search/label/jQuery","100", "7"],
-             ["Ajax Tutorials","http://www.codingcage.com/search/label/Ajax","100", "7"],
-             ["CRUD Tutorials","http://www.codingcage.com/search/label/CRUD","100", "7"],
-             ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination","100", "7"],
-             ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi","100", "7"],
-             ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5","100", "7"],
-             ["Pagination Tutorials","http://www.codingcage.com/search/label/Pagination","100", "7"],
-             ["PHP MySQLi Tutorials","http://www.codingcage.com/search/label/MySQLi","100", "7"],
-             ["HTML5 Tutorials","http://www.codingcage.com/search/label/HTML5","100", "7"]
-             ],
-              "columns": [
-              { "title": "Artist" },
-              { "title": "Genre" } ,
-              { "title": "Followers" },
-              { "title": "Popularity" }
-             ]
-             });   
+             $('#example').dataTable( {{artists}});   
              });
 
             $("#example").css("width","1000px")
