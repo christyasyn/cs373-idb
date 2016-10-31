@@ -156,7 +156,7 @@ def artist_album_list(a, artist_num):
 				response = requests.get(data['next'])
 				data = json.loads(response.text)
 				if 'items' not in data:
-					print(artist + ': ' + response.status_code)
+					print(artist + ': ' + str(response.status_code))
 					data = temp_data
 					continue
 				else:
