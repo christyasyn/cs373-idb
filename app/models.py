@@ -15,18 +15,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 
-def CreateTables():
-
-	Artists()
-	Albums()
-	Tracks()
-
-def populateData(): 
-
-	artist = Artist(id=11, name='Prince', followers = 23238947, popularity = 4.9)
-	session.add(artist)
-
-
 # -------------------
 # @Artists
 # -------------------
