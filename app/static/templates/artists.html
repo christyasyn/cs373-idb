@@ -36,48 +36,51 @@
       <!-- Custom styles for this template -->
       <link href="../css/artists.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
+  <body>
 
     <!-- NAVBAR
     ================================================= -->
-    <div class="site-wrapper">
+     <div class="navbar-wrapper">
+      <div class="container">
 
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <a href="../../index.html"><h3 class="masthead-brand">iMusicDB</h3></a>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li><a href="../../index.html">Home</a></li>
-                  <li><a href="about.html">About</a></li>
-                  <li class="active"><a href="artists.html">Artists</a></li>
-                  <li><a href="tracks.html">Tracks</a></li>
-                  <li><a href="albums.html">Albums</a></li>
-                </ul>
-              </nav>
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="../../index.html">iMusicDB</a>
             </div>
-
-
-
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li class="active"><a href="artists.html">Artists</a></li>
+                <li><a href="tracks.html">Tracks</a></li>
+                <li><a href="albums.html">Albums</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
     <!-- CONTENT
     ================================================= -->
-          <div style="vertical-align: middle">
-            <h1>Artists</h1>
-          </div>
-
-
-           <br />                          
-
-             <table id="example"></table>
-    
-          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+      <h1>Artists</h1>
+      <br />  
+        <table id="example" width="100%" ></table>
+          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js">
+          </script>
           <script type="text/javascript" charset="utf-8">
            $(document).ready(function() 
            {
              $('#example').dataTable( {
+                "bInfo" : false,
+                "bLengthChange": false,
              "aaData": [
              ["PHP Data Object | PDO","http://www.codingcage.com/search/label/PDO","100", "7"],
              ["Object Oriented PHP","http://www.codingcage.com/search/label/PHP OOP","100", "7"],
@@ -97,29 +100,14 @@
               { "title": "Followers" },
               { "title": "Popularity" }
              ]
-             });   
-             });
-
+                       } );   
+            });
             $("#example").css("width","1000px")
 
-            </script>
-            <script type="text/javascript">
-              $('#example').addClass('table table-hover table-bordered');            </script>
-           </div>
-         </div>
-       </div>
-      </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script> -->
-    <!-- Just to make our placeholder images work. Don't actually copy the next line!
-    <script src="../../assets/js/vendor/holder.min.js"></script>-->
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+          </script>
+          <script type="text/javascript">
+             $('#example').addClass('table table-hover table-bordered');
+          </script>
+    </div>
   </body>
-  </html>
+</html>
