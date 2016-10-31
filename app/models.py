@@ -41,8 +41,12 @@ class Artist(db.Model):
             'popularity' : self.popularity,
             'image_url' : self.image_url
         }
+        return json_artist
     def __repr__(self):
-        return 'Artist %r' % self.name
+        return 'Artist %s' % self.name
+    def __str__ (self):
+        return self.name
+
 
 class Album(db.Model):
     __tablename__ = 'albums'
@@ -66,9 +70,13 @@ class Album(db.Model):
             'type' : self.db.Column,
             'image_url' : self.image_url
         }
+        return json_albums
 
     def __repr__(self):
         return 'Album %r' % self.name
+    def __str__(self):
+        return self.name
+
 
 class Track(db.Model):
     __tablename__ = 'tracks'
@@ -98,10 +106,12 @@ class Track(db.Model):
             'preview_url' : self.preview_url,
             'direct_url' : self.direct_url
         }
+        return json_albums
 
     def __repr__(self):
         return 'Track %r' % self.name
-
+    def __str__(self):
+        return self.name
 
 
 if __name__ == "__main__":
