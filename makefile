@@ -56,7 +56,7 @@ artistsLong: Scrape.py
 	python3.5 -c 'import Scrape; Scrape.getids('\"http://kworb.net/spotify/artists.html'")'
 
 albums: Scrape.py ./app/db/artist_ids_cache.pickle
-	python3.5 -c 'import Scrape; Scrape.artist_album_list()'
+	python3.5 -c 'import Scrape; Scrape.start_album_populate()'
 
 tracks: Scrape.py ./app/db/artist_albums_cache.pickle
 	python3.5 -c 'import Scrape; Scrape.start_track_populate()'
