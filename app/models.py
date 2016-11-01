@@ -6,6 +6,7 @@ database models.
 from loader import db
 from flask.ext.sqlalchemy import BaseQuery
 from flask_sqlalchemy import SQLAlchemy
+import re
 
 #dup of above, will delete soon
 #from sqlalchemy.ext.declarative import declarative_base
@@ -32,17 +33,22 @@ class Artist(db.Model):
     image_url = db.Column(db.String)
 
     def to_json(self): 
-        # json_artist = {
-        #     'id' : self.id,
-        #     'name' : self.name,
-        #     'genres' : self.genres,
-        #     'url' : self.url,
-        #     'followers' : self.followers,
-        #     'popularity' : self.popularity,
-        #     'image_url' : self.image_url
-        # }
-        json_artist = [self.name, self.genres, self.followers, self.popularity]
+        json_artist = {
+            'id' : self.id,
+            'name' : self.name,
+            'genres' : self.genres,
+            'url' : self.url,
+            'followers' : self.followers,
+            'popularity' : self.popularity,
+            'image_url' : self.image_url
+        }
         return json_artist
+    def to_list(self):
+        genres = str(self.genres)
+        genres = genres.replace('{', '')
+        genres = genres.replace('}', '')
+        genres = genres.replace('\"', '')
+        return [self.name, genres, str(self.followers), str(self.popularity)]
     def __repr__(self):
         return 'Artist %s' % self.name
     def __str__ (self):

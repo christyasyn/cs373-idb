@@ -8,6 +8,18 @@ import json
 #-----------
 
 
+artist_data = {}
+
+def prelist_test():
+	global artist_data
+	artists = Artist.query.all()
+	artist_data['aaData'] = [artist.to_list() for artist in artists]
+	artist_data['columns'] = [
+              { "title": "Artist" },
+              { "title": "Genre" } ,
+              { "title": "Followers" },
+              { "title": "Popularity" }
+             ]
 
 @app.route('/sanity', methods=['GET'])
 def sanity():
@@ -19,28 +31,24 @@ def index():
 
 @app.route("/artists", methods=['GET'])
 def get_artists():
-	# artists  = Artist.query.all()
-	# artists = {'artists': [artists[i].to_json() for i in range(0, 10)]}
-	# artists['columns'] = [
- #              { "title": "Artist" },
- #              { "title": "Genre" } ,
- #              { "title": "Followers" },
- #              { "title": "Popularity" }
- #             ]
-	artists = {"artists":[
-		["Drake", "canadian pop", "6856957", "100"],
-		["Justing Bieber", "canadian pop", "6548382", "97"]
-		],
-		"columns": [
-			{ "title": "Artist" },
-			{ "title": "Genre" } ,
-			{ "title": "Followers" },
-			{ "title": "Popularity" }
-			]}
+
+	# artists = {"aaData":[
+	# 	["Drake", "canadian pop", "6856957", "100"],
+	# 	["Justing Bieber", "canadian pop", "6548382", "97"]
+	# 	],
+	# 	"columns": [
+	# 		{ "title": "Artist" },
+	# 		{ "title": "Genre" } ,
+	# 		{ "title": "Followers" },
+	# 		{ "title": "Popularity" }
+	# 		]}
 	#artists = request.items
 	# return json.dumps({'artists': [artist.to_json() for artist in artists]})
-	return render_template('artists.html', artists=jsonify(artists))
+	return render_template('artists.html', artists=json.dumps(artist_data))
+
+
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	prelist_test()
+	app.run()
