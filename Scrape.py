@@ -62,14 +62,33 @@ def start_album_populate():
 		with open('./app/db/artist_ids_cache.pickle', 'rb') as read:
 			ARTISTS_LIST = list(pickle.load(read))
 
+	# open progress log if available
+	start_point = 0
+	try:
+		with open('./app/db/album_progress.txt', 'r') as f:
+			start_point = int(f.readline().rstrip())
+	except:
+		pass
+
 	# access global album list		
 	global ARTIST_ALBUMS
+
+	if start_point != 0:
+		with open('./app/db/artist_albums_cache.pickle', 'rb') as read:
+			ARTIST_ALBUMS = list(pickle.load(read))
 	# Iterate through artist ids and retrieve all albums listed for the artist
 	print(len(ARTISTS_LIST))
 	threads = []
-	for i in range(0, len(ARTISTS_LIST)):
+	for i in range(start_point, len(ARTISTS_LIST)):
 		while threading.active_count() > 4:
 			"""do some stuff"""
+		if i % 100 == 0:
+			with open('./app/db/artist_albums_cache.pickle', 'wb') as out:
+				pickle.dump(ARTIST_ALBUMS, out)
+			with open('./app/db/artist_albums_cache.txt', 'w') as out:
+				pprint.pprint(ARTIST_ALBUMS, stream=out)
+			with open('./app/db/album_progress.txt', 'w') as out:
+				out.write(str(i))
 		# if i % 5 == 0:
 		# 	for t in threads:
 		# 		t.join()
@@ -82,6 +101,8 @@ def start_album_populate():
 		pickle.dump(ARTIST_ALBUMS, out)
 	with open('./app/db/artist_albums_cache.txt', 'w') as out:
 		pprint.pprint(ARTIST_ALBUMS, stream=out)
+	with open('./app/db/album_progress.txt', 'w') as out:
+		out.write(str(len(ARTISTS_LIST)))
 
 
 def artist_album_list(a, artist_num):
