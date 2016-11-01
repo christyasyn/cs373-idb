@@ -11,28 +11,36 @@ import json
 
 @app.route('/sanity', methods=['GET'])
 def sanity():
-	return "This is a sanity check!"
+	return render_template('index.html')
 
 @app.route('/', methods=['GET'])
 def index():
-	return send_file('index.html')
+	return render_template('index.html')
 
-@app.route('/#/artists', methods=['GET'])
+@app.route("/artists", methods=['GET'])
 def get_artists():
-	artists  = Artist.query.all()
-	artists = {'artists': [artist.to_json() for artist in artists]}
-	artists['columns'] = [
-              { "title": "Artist" },
-              { "title": "Genre" } ,
-              { "title": "Followers" },
-              { "title": "Popularity" }
-             ]
+	# artists  = Artist.query.all()
+	# artists = {'artists': [artists[i].to_json() for i in range(0, 10)]}
+	# artists['columns'] = [
+ #              { "title": "Artist" },
+ #              { "title": "Genre" } ,
+ #              { "title": "Followers" },
+ #              { "title": "Popularity" }
+ #             ]
+	artists = {"artists":[
+		["Drake", "canadian pop", "6856957", "100"],
+		["Justing Bieber", "canadian pop", "6548382", "97"]
+		],
+		"columns": [
+			{ "title": "Artist" },
+			{ "title": "Genre" } ,
+			{ "title": "Followers" },
+			{ "title": "Popularity" }
+			]}
 	#artists = request.items
 	# return json.dumps({'artists': [artist.to_json() for artist in artists]})
-	return render_template('artists.html', artists=artists)
+	return render_template('artists.html', artists=jsonify(artists))
 
 
 if __name__ == "__main__":
-	# artist_list = get_artists()
-	# print (artist_list)
-	app.run()
+	app.run(debug=True)
