@@ -12,19 +12,16 @@ import sys
 # artist_data = {}
 
 def prelist_test():
-	tracks = Track.query.all()
-	track_data = {}
-	track_data['aaData'] = [track.to_list() for track in tracks]
-	track_data['colums'] = [
-		{ "title": "Track" },
-        { "title": "Number" },
-        { "title": "Album" },
-        { "title": "Artist" },
-        { "title": "Duration" },
-        { "title": "Explicit" },
-        { "title": "Popularity" }
+	albums = Album.query.all()
+	album_data = {}
+	album_data['aaData'] = [albums[0].to_list()]
+	album_data['columns'] = [
+		{"title": "Album"},
+		{"title": "Main Artist"},
+		{"title": "All Artists"}
 	]
-	print(json.dumps(track_data))
+
+	print(json.dumps(album_data))
 
 
 
@@ -51,7 +48,7 @@ def get_artists():
 	return render_template('artists.html', artists=json.dumps(artist_data))
 
 @app.route('/tracks', methods=['GET'])
-def get_albums():
+def get_tracks():
 	tracks = Track.query.all()
 	track_data = {}
 	track_data['aaData'] = [track.to_list() for track in tracks]
@@ -66,6 +63,23 @@ def get_albums():
 	]
 	return render_template('tracks.html', tracks=json.dumps(track_data))
 
+@app.route('/albums', methods=['GET'])
+def get_albums():
+	albums = Album.query.all()
+	album_data = {}
+	album_data['aaData'] = [album.to_list() for album in albums]
+	album_data['columns'] = [
+		{"title": "Album"},
+		{"title": "Main Artist"},
+		{"title": "All Artists"}
+	]
+
+	return render_template('albums.html', albums=json.dumps(album_data))
+
+
+@app.route('/about', methods=['GET'])
+def get_about():
+        return render_template('about.html')
 
 @app.route('/run_unittests')
 def run_tests():

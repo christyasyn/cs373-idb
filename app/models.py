@@ -50,7 +50,7 @@ class Artist(db.Model):
         genres = genres.replace('\"', '')
         return [self.name, genres, str(self.followers), str(self.popularity)]
     def __repr__(self):
-        return 'Artist %s' % self.name
+        return '%s' % self.name
     def __str__ (self):
         return self.name
 
@@ -71,13 +71,23 @@ class Album(db.Model):
             'id' : self.id,
             'name' : self.name,
             'url' : self.url,
-            'main_artist' : self.main_artist,
-            'main_artist_id' : self.main_artist_id,
+            'main_artist' : self.main_artists,
+            'main_artist_id' : self.main_artists_id,
             'all_artists' : self.all_artists,
             'type' : self.db.Column,
             'image_url' : self.image_url
         }
         return json_albums
+
+    def to_list(self):
+        artist_list = self.all_artists[1:-1]
+        artist_list = artist_list.split(",")
+        all_artists_names = ''
+        for id in artist_list:
+            if Artist.query.filter_by(id=id).first() != None:
+                all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
+        all_artists_names = all_artists_names[0:-2]
+        return [self.name, self.main_artists, all_artists_names]
 
     def __repr__(self):
         return 'Album %r' % self.name
@@ -115,7 +125,9 @@ class Track(db.Model):
         }
         return json_albums
     def to_list(self):
-        return [self.name, str(self.track_no), self.album_id, self.main_artist_id, self.duration, str(self.explicit), str(self.popularity)]
+        album_name = Album.query.filter_by(id=self.album_id).first().name
+        artist_name = Artist.query.filter_by(id=self.main_artist_id).first().name
+        return [self.name, str(self.track_no), album_name, artist_name, self.duration, str(self.explicit), str(self.popularity)]
 
     def __repr__(self):
         return 'Track %r' % self.name
