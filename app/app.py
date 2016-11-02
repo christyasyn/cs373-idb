@@ -12,16 +12,22 @@ import sys
 # artist_data = {}
 
 def prelist_test():
-	albums = Album.query.all()
-	album_data = {}
-	album_data['aaData'] = [albums[0].to_list()]
-	album_data['columns'] = [
-		{"title": "Album"},
-		{"title": "Main Artist"},
-		{"title": "All Artists"}
-	]
-
-	print(json.dumps(album_data))
+	# albums = Album.query.all()
+	# album_data = {}
+	# album_data['aaData'] = [albums[0].to_list()]
+	# album_data['columns'] = [
+	# 	{"title": "Album"},
+	# 	{"title": "Main Artist"},
+	# 	{"title": "All Artists"}
+	#]
+        id = '69GGBxA162lTqCwzJG5jLp'
+        albums = Album.query.filter(Album.main_artists_id==id).all()
+        album_data = {'aaData': [], 'columns':[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
+        print(str(albums))
+        for album in albums:
+                print("preList_text()::")
+                album_data['aaData'].append([album.name, "add later", "add later"])
+        print(json.dumps(album_data))
 
 
 
@@ -76,10 +82,26 @@ def get_albums():
 
 	return render_template('albums.html', albums=json.dumps(album_data))
 
+@app.route('/artist/<string:id>', methods=['GET'])
+def single_artist(id):
+	artist = Artist.query.filter_by(id=id).first()
 
-@app.route('/about', methods=['GET'])
-def get_about():
-        return render_template('about.html')
+	albums = Album.query.filter(Album.main_artists_id==id).all()
+        album_data = {'aaData': [], 'columns':[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
+
+        for album in albums:
+		album_data['aaData'].append([album.name, "add later", "add later"])
+
+	template_stuff = {
+		"artist_img": artist.image_url,
+		"artist_genres": artist.genres,
+		"artist_followers": artist.followers,
+		"artist_popularity": artist.popularity,
+		"artist_name": artist.name,
+		"albums": album_data
+	}
+	return render_template('artist.html', **template_stuff)
+
 
 @app.route('/run_unittests')
 def run_tests():
@@ -91,6 +113,6 @@ def run_tests():
 	return jsonify({'output': str(output)})
 
 if __name__ == "__main__":
-	prelist_test()
+	#prelist_test()
 	app.debug = True
 	app.run()
