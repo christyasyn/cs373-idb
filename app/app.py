@@ -87,9 +87,9 @@ def single_artist(id):
 	artist = Artist.query.filter_by(id=id).first()
 
 	albums = Album.query.filter(Album.main_artists_id==id).all()
-        album_data = {'aaData': [], 'columns':[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
+		album_data = {'aaData': [], 'columns':[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
 
-        for album in albums:
+		for album in albums:
 		album_data['aaData'].append([album.name, "add later", "add later"])
 
 	template_stuff = {
