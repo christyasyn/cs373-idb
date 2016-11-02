@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Code is modified from bootstrap examples on:http://getbootstrap.com/getting-started/ -->
-<html lang="en">
+<html lang="en"  ng-app = "musicApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,9 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- AngularJS info-->
+    <!--<script src="bower_components/angular/angular.js"></script> don't need this i don't think-->
+    <script src="app.js"</script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,7 +35,7 @@
     <link href="../css/aboutme.css" rel="stylesheet" type="text/css">
   </head>
 <!-- NAVBAR ================================================== -->
-  <body>
+  <body ng-controller="musicController">
      <div class="navbar-wrapper">
       <div class="container">
         <nav class="navbar navbar-inverse navbar-static-top">

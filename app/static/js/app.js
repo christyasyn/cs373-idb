@@ -1,9 +1,9 @@
 
-var mainApp = angular.module('iMusicDB', ['ngRoute' , 'ngAnimate', 'ui.bootstrap']);
+var musicApp = angular.module('musicApp', []);
 
 
 // Controller for about page
-mainApp.controller('aboutCtrl', function($scope, $http) {
+musicApp.controller('musicController', function musicController($scope) {
     $scope.runTests = function() {
         $scope.showTestsOutput = true;
         $scope.testOutput = '\nPlease wait for the tests... '
@@ -11,5 +11,6 @@ mainApp.controller('aboutCtrl', function($scope, $http) {
             $scope.finished = true;
             $scope.testOutput = '\n' + result.data.output;
         });
+       // return ($scope.testOutput); it gets back through testOutput instead
     }
 });
