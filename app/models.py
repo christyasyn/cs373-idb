@@ -114,6 +114,8 @@ class Track(db.Model):
             'direct_url' : self.direct_url
         }
         return json_albums
+    def to_list(self):
+        return [self.name, str(self.track_no), self.album_id, self.main_artist_id, self.duration, str(self.explicit), str(self.popularity)]
 
     def __repr__(self):
         return 'Track %r' % self.name
