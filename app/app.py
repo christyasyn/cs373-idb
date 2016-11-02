@@ -87,10 +87,10 @@ def single_artist(id):
 	artist = Artist.query.filter_by(id=id).first()
 
 	albums = Album.query.filter(Album.main_artists_id==id).all()
-	album_data = {'aaData': [], 'columns':[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
+	album_data = {"aaData": [], "columns":[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
 
 	for album in albums:
-		album_data['aaData'].append([album.name, "add later", "add later"])
+		album_data["aaData"].append([album.name, "add later", "add later"])
 
 	template_stuff = {
 		"artist_img": artist.image_url,
@@ -98,7 +98,7 @@ def single_artist(id):
 		"artist_followers": artist.followers,
 		"artist_popularity": artist.popularity,
 		"artist_name": artist.name,
-		"albums": album_data
+		"albums": json.dumps(album_data)
 	}
 	return render_template('artist.html', **template_stuff)
 

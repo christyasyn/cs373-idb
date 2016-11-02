@@ -21,6 +21,9 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- Database Tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -69,7 +72,7 @@
       <div class="rTable"><!--Outer Table-->
         <div class="rTableRow"><!--Outer Table Row 1-->
           <div class="rTableCell" style="width: 400px">
-            <div class="artist"><!--Artist Image-->
+            <div class="artist" style="width: 300px height: 300px" ><!--Artist Image-->
               <img src= {{ artist_img }} ></img>
             </div><!--End Artist image-->
           </div>
@@ -91,28 +94,30 @@
           </div>
         </div>
       </div>
-    </div>
-            <h3>Albums</h3>
-            <br />  
-            <table id="example" width="100%" ></table>
-              <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js">
-              </script>
-              <script type="text/javascript" charset="utf-8">
-                $(document).ready(function() 
-               {
-                 $('#example').dataTable(
-                  {{ albums|safe }}
-                  );   
-                 });
-                $("#example").css("width","1000px")
+    </div>      
+<div class="container">
+
+         <h3>Albums</h3>
+
+	 <table id="example" width="100%" ></table>
+         <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js">
+         </script>
+         <script type="text/javascript" charset="utf-8">
+           $(document).ready(function() 
+           {
+           $('#example').dataTable(
+           {{ albums|safe }}
+           );   
+           });
+           $("#example").css("width","1000px")
 
 
-              </script>
-              <script type="text/javascript">
-                 $('#example').addClass('table table-hover table-bordered');
-              </script>
-    
-    <div class="clear"</div>
+         </script>
+         <script type="text/javascript">
+           $('#example').addClass('table table-hover table-bordered');
+         </script>
+</div>
+
 
     <!-- CONTENT
     ================================================= -->
