@@ -20,14 +20,12 @@ def prelist_test():
 	# 	{"title": "Main Artist"},
 	# 	{"title": "All Artists"}
 	#]
-        id = '69GGBxA162lTqCwzJG5jLp'
-        albums = Album.query.filter(Album.main_artists_id==id).all()
-        album_data = {'aaData': [], 'columns':[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
-        print(str(albums))
-        for album in albums:
-                print("preList_text()::")
-                album_data['aaData'].append([album.name, "add later", "add later"])
-        print(json.dumps(album_data))
+	track = Track.query.filter_by(id=id).first()
+	print(track)
+
+	artist_name = Artist.query.filter_by(Artist.id == track.main_artist_id).first().name
+	print(artist_name)
+	print(json.dumps(album_data))
 
 
 
@@ -101,6 +99,23 @@ def single_artist(id):
 		"albums": json.dumps(album_data)
 	}
 	return render_template('artist.html', **template_stuff)
+
+@app.route('/track/<string:id>', methods=['GET'])
+def single_track(id):
+	track = Track.query.filter_by(id=id).first()
+
+	artist_name = Artist.query.filter_by(id=track.main_artist_id).first().name
+
+	template_stuff = {
+		"track_name": track.name,
+		"track_duration": track.duration,
+		"track_explicit": track.explicit,
+		"track_number": track.track_no,
+		"track_popularity": track.popularity,
+		"artist_name": artist_name
+	}
+
+	return render_template('track.html', **template_stuff)
 
 
 @app.route('/run_unittests')
