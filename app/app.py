@@ -42,5 +42,14 @@ def get_artists():
 	return render_template('artists.html', artists=jsonify(artists))
 
 
+@app.route('/run_unittests')
+def run_tests():
+	from subprocess import getoutput
+	from os import path
+	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
+	output = getoutput('python '+p)
+	print(output)
+	return jsonify({'output': str(output)})
+
 if __name__ == "__main__":
 	app.run(debug=True)
