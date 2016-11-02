@@ -81,7 +81,9 @@
           <script type="text/javascript" charset="utf-8">
             $(document).ready(function() 
            {
-             $('#example').DataTable();   
+             $('#example').dataTable(
+              {{ artists|safe }}
+              );   
              });
             $("#example").css("width","1000px")
 
