@@ -31,27 +31,9 @@ def index():
 
 @app.route("/artists", methods=['GET'])
 def get_artists():
-<<<<<<< HEAD
-
-	# artists = {"aaData":[
-	# 	["Drake", "canadian pop", "6856957", "100"],
-	# 	["Justing Bieber", "canadian pop", "6548382", "97"]
-	# 	],
-	# 	"columns": [
-	# 		{ "title": "Artist" },
-	# 		{ "title": "Genre" } ,
-	# 		{ "title": "Followers" },
-	# 		{ "title": "Popularity" }
-	# 		]}
-	#artists = request.items
-	# return json.dumps({'artists': [artist.to_json() for artist in artists]})
-	return render_template('artists.html', artists=json.dumps(artist_data))
-
-=======
 	prelist_test()
 	# return json.dumps({'artists': [artist.to_json() for artist in artists]})
 	return render_template('artists.html', artists=jsonify(artist_data))
->>>>>>> b2c32143b7c42ef9dcad2221d4364665e887312a
 
 
 @app.route('/run_unittests')
