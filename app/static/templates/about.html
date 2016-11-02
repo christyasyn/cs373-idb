@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Code is modified from bootstrap examples on:http://getbootstrap.com/getting-started/ -->
-<html lang="en">
+<html lang="en"  ng-app = "musicApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,9 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!-- AngularJS info-->
+    <!--<script src="bower_components/angular/angular.js"></script> don't need this i don't think-->
+    <script src="app.js"</script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -32,7 +35,7 @@
     <link href="../css/aboutme.css" rel="stylesheet" type="text/css">
   </head>
 <!-- NAVBAR ================================================== -->
-  <body>
+  <body ng-controller="musicController">
      <div class="navbar-wrapper">
       <div class="container">
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -125,7 +128,7 @@
                 <p>Major Responsibilities: Front End, Wiki</p>
                 <p>Number of commits: 12</p>
                 <p>Number of issues: 9</p>
-                <p>Number of unit tests: 0</p>
+                <p>Number of unit tests: 3</p>
               </h4>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
@@ -174,7 +177,7 @@
 
           <div class="col-lg-4">
             <h2>Tools</h2>
-              <a href="https://github.com/ChristyTran/cs373-idb/wiki/www.angularjs.org">
+              <a href="http:www.angularjs.org">
               <h3>Angular JS</h3> </a>
               <a href="http://getbootstrap.com/">
               <h3>Bootstrap</h3> </a>
@@ -194,7 +197,7 @@
           <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4 text-center">
             <div class="container-fluid">
                 <i class="fa fa-play-circle fa-5x"></i>
-                <h2 class="page-header">Run Unittests</h1>
+                <h2>Run Unit Tests</h2>
                 <div class="row" align="center" stlye="padding-bottom: 15px;">
                     <button type="button" class="btn btn-primary" ng-click="runTests()" data-toggle="modal" data-target="#myModal">Run Tests
                     </button>
