@@ -1,1 +1,1 @@
-Internet Song Database
+Internet Music Database
