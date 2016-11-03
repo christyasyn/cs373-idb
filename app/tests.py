@@ -1,14 +1,14 @@
 import os 
 import unittest
 import tempfile
-import models
-import flask
+from models import *
+from flask import * 
 #om flask import Flask
 #from sqlalchemy.orm import sessionmaker
 from flask.ext.sqlalchemy import SQLAlchemy
 
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 db = SQLAlchemy(app)
 
 
