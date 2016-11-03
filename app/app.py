@@ -33,6 +33,7 @@ def index():
 	return render_template('index.html')
 
 @app.route("/artists", methods=['GET'])
+# @app.cache.cached(timeout=600)
 def get_artists():
 	artists = Artist.query.all()
 	artist_data = {}
@@ -49,7 +50,7 @@ def get_artists():
 		"visible": FALSE,
 		"searchable": FALSE
 		}]
-	artist_data['scrollY'] = "300px"
+	artist_data['scrollY'] = "500px"
 	artist_data['paging'] = "true"
 	return render_template('artists.html', artists=json.dumps(artist_data))
 
@@ -59,6 +60,7 @@ def get_tracks():
 	track_data = {}
 	track_data['aaData'] = [track.to_list() for track in tracks]
 	track_data['columns'] = [
+		{ "title": "ID"},
 		{ "title": "Track" },
         { "title": "Number" },
         { "title": "Album" },
@@ -67,6 +69,13 @@ def get_tracks():
         { "title": "Explicit" },
         { "title": "Popularity" }
 	]
+	track_data["columnDefs"] = [{
+	"targets": [0],
+	"visible": FALSE,
+	"searchable": FALSE
+	}]
+	track_data['scrollY'] = "500px"
+	track_data['paging'] = "true"
 	return render_template('tracks.html', tracks=json.dumps(track_data))
 
 @app.route('/albums', methods=['GET'])
@@ -75,11 +84,18 @@ def get_albums():
 	album_data = {}
 	album_data['aaData'] = [album.to_list() for album in albums]
 	album_data['columns'] = [
-		{"title": "Album"},
-		{"title": "Main Artist"},
-		{"title": "All Artists"}
+		{ "title": "ID" },
+		{ "title": "Album"},
+		{ "title": "Main Artist"},
+		{ "title": "All Artists"}
 	]
-
+	album_data["columnDefs"] = [{
+		"targets": [0],
+		"visible": FALSE,
+		"searchable": FALSE
+	}]
+	album_data['scrollY'] = "500px"
+	album_data['paging'] = "true"
 	return render_template('albums.html', albums=json.dumps(album_data))
 
 @app.route('/artist/<string:id>', methods=['GET'])
@@ -149,19 +165,14 @@ def get_about():
 
 @app.route('/run_unittests')
 def run_tests():
-        import subprocess
-        from os import path
-
-        p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-        #output = subprocess.check_output('python3 tests.py', shell=True)
-        output = subprocess.Popen('python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
-        #output = subprocess.getoutput('python3 '+ p)
-        print(output)
-        return jsonify({'output': str(output)})
+	import subprocess
+	from os import path
+	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
+	output = subprocess.Popen('python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+	print(output)
+	return jsonify({'output': str(output)})
 
 if __name__ == "__main__":
 	#prelist_test()
 	app.debug = True
 	app.run()
-
-
