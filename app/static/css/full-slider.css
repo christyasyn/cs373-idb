@@ -75,8 +75,9 @@ html {
     height: 100%;
 }
 .title {
-    position: fixed;
-    bottom:100px;
+    position: relative;
+ 
+    margin-top:50%;
   text-align: center;
   min-width: 100%;
   /*padding: 10px;*/
