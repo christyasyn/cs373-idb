@@ -15,26 +15,26 @@ db = SQLAlchemy(app)
 class AppDBTestCases(unittest.TestCase):
 
 
-        def test(self):
-                return True
+	def test(self):
+		return True
 
 
 
-        def setUp(self):
-                self.db_fd, app.config['DATABASAE'] = tempfile.mkstemp()
-                app.config['TESTING'] = True
-                self.app = app.test_client()
-                with app.app_context():
-                        app.init_db()
+	def setUp(self):
+		self.db_fd, app.config['DATABASAE'] = tempfile.mkstemp()
+		app.config['TESTING'] = True
+		self.app = app.test_client()
+		with app.app_context():
+			app.init_db()
 
-        def tearDown(self):
-                os.close(self.db_fd)
-                os.unlink(app.config['DATABASE'])
+	def tearDown(self):
+		os.close(self.db_fd)
+		os.unlink(app.config['DATABASE'])
 
 
 	# Empty database
-        def test_empty_db(self):
-                rv = self.app.get('/')
+	def test_empty_db(self):
+		rv = self.app.get('/')
 		assert b'No entries here so far' in rv.data
 
 
