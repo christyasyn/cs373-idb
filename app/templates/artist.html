@@ -22,6 +22,7 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
     <!-- Database Tables -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 
@@ -97,20 +98,18 @@
     </div>      
 <div class="container">
 
-         <h3>Albums</h3>
+         <h1>Albums</h1>
 
 	 <table id="example" width="100%" ></table>
+
          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js">
          </script>
          <script type="text/javascript" charset="utf-8">
            $(document).ready(function() 
            {
-           $('#example').dataTable(
-           {{ albums|safe }}
-           );   
+             $('#example').dataTable( {{ albums|safe }} );   
            });
            $("#example").css("width","1000px")
-
 
          </script>
          <script type="text/javascript">
@@ -127,7 +126,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
