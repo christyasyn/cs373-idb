@@ -9,17 +9,12 @@ import sys
 # view pages
 #-----------
 
+TRUE = True
+FALSE = False
+
 # artist_data = {}
 
 def prelist_test():
-	# albums = Album.query.all()
-	# album_data = {}
-	# album_data['aaData'] = [albums[0].to_list()]
-	# album_data['columns'] = [
-	# 	{"title": "Album"},
-	# 	{"title": "Main Artist"},
-	# 	{"title": "All Artists"}
-	#]
 	track = Track.query.filter_by(id=id).first()
 	print(track)
 
@@ -38,17 +33,25 @@ def index():
 	return render_template('index.html')
 
 @app.route("/artists", methods=['GET'])
+# @app.cache.cached(timeout=600)
 def get_artists():
 	artists = Artist.query.all()
 	artist_data = {}
 	artist_data["aaData"] = [artist.to_list() for artist in artists]
 	artist_data["columns"] = [
+		{ "title": "ID"},
 		{ "title": "Artist" },
 		{ "title": "Genre" } ,
 		{ "title": "Followers" },
 		{ "title": "Popularity" }
 		]
-
+	artist_data["columnDefs"] = [{
+		"targets": [0],
+		"visible": FALSE,
+		"searchable": FALSE
+		}]
+	artist_data['scrollY'] = "300px"
+	artist_data['paging'] = "true"
 	return render_template('artists.html', artists=json.dumps(artist_data))
 
 @app.route('/tracks', methods=['GET'])
@@ -147,14 +150,19 @@ def get_about():
 
 @app.route('/run_unittests')
 def run_tests():
-	from subprocess import getoutput
-	from os import path
-	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-	output = getoutput('python '+p)
-	print(output)
-	return jsonify({'output': str(output)})
+        import subprocess
+        from os import path
+
+        p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
+        #output = subprocess.check_output('python3 tests.py', shell=True)
+        output = subprocess.Popen('python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+        #output = subprocess.getoutput('python3 '+ p)
+        print(output)
+        return jsonify({'output': str(output)})
 
 if __name__ == "__main__":
 	#prelist_test()
 	app.debug = True
 	app.run()
+
+

@@ -48,7 +48,7 @@ class Artist(db.Model):
         genres = genres.replace('{', '')
         genres = genres.replace('}', '')
         genres = genres.replace('\"', '')
-        return [self.name, genres, str(self.followers), str(self.popularity)]
+        return [self.id, self.name, genres, str(self.followers), str(self.popularity)]
     def __repr__(self):
         return '%s' % self.name
     def __str__ (self):
