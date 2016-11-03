@@ -38,6 +38,7 @@ def index():
 	return render_template('index.html')
 
 @app.route("/artists", methods=['GET'])
+@app.cache.cached(timeout=600)
 def get_artists():
 	artists = Artist.query.all()
 	artist_data = {}
