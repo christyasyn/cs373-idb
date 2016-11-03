@@ -115,6 +115,10 @@ body {
   padding: 10px 20px;
   font-weight: bold;
 }
+.artist img{
+  max-width: 400px;
+  max-height: 400px;
+}
 
 /*
  * Affix and center
