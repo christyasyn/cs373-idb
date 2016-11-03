@@ -103,10 +103,16 @@ def single_artist(id):
 	artist = Artist.query.filter_by(id=id).first()
 
 	albums = Album.query.filter(Album.main_artists_id==id).all()
-	album_data = {"aaData": [], "columns":[{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
-
+	album_data = {"aaData": [], "columns":[{"title": "ID"},{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
+	album_data["columnDefs"] = [{
+		"targets": [0],
+		"visible": FALSE,
+		"searchable": FALSE
+	}]
+	album_data['scrollY'] = "500px"
+	album_data['paging'] = "true"
 	for album in albums:
-		album_data["aaData"].append([album.name, "add later", "add later"])
+		album_data["aaData"].append([album.id,album.name, "add later", "add later"])
 
 	template_stuff = {
 		"artist_img": artist.image_url,
@@ -165,19 +171,14 @@ def get_about():
 
 @app.route('/run_unittests')
 def run_tests():
-        import subprocess
-        from os import path
-        activate = '/var/www/cs373-idb/app/venv/bin/activate'
-        p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-
-        output = subprocess.Popen('. /var/www/cs373-idb/app/venv/bin/activate && python3 /var/www/cs373-idb/app/tests.py', stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
-        print(output)
-        return jsonify({'output': str(output)})
+	import subprocess
+	from os import path
+	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
+	output = subprocess.Popen('python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+	print(output)
+	return jsonify({'output': str(output)})
 
 if __name__ == "__main__":
 	#prelist_test()
 	app.debug = True
 	app.run()
-
-
-#gsource ' + activate + ' &&  python3 ' + p
