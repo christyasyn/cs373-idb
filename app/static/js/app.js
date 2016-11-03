@@ -3,7 +3,7 @@ var musicApp = angular.module('musicApp', []);
 
 
 // Controller for about page
-musicApp.controller('musicController', function musicController($scope) {
+musicApp.controller('musicController', function musicController($scope, $http) {
     $scope.runTests = function() {
         $scope.showTestsOutput = true;
         $scope.testOutput = '\nPlease wait for the tests... '
