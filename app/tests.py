@@ -1,30 +1,35 @@
 import os 
-import app
 import unittest
 import tempfile
-from loader import app, db
-from models import Artist, Album, Track
-from flask import Flask
+from models import *
+from flask import * 
+#om flask import Flask
 #from sqlalchemy.orm import sessionmaker
+from flask.ext.sqlalchemy import SQLAlchemy
 
 
-
-#app = Flask(__name__)
-#db = SQLAchemy(app)
+app = Flask(__name__)
+db = SQLAlchemy(app)
 
 
 class AppDBTestCases(unittest.TestCase):
 
+
+	def test(self):
+		return True
+
+
+
 	def setUp(self):
-		self.db_fd, app.app.config['DATABASAE'] = tempfile.mkstemp()
-		app.app.config['TESTING'] = True
-		self.app = app.app.test_client()
-		with app.app.app_context():
-			app.inti_db()
+		self.db_fd, app.config['DATABASAE'] = tempfile.mkstemp()
+		app.config['TESTING'] = True
+		self.app = app.test_client()
+		with app.app_context():
+			app.init_db()
 
 	def tearDown(self):
 		os.close(self.db_fd)
-		os.unlink(app.app.config['DATABASE'])
+		os.unlink(app.config['DATABASE'])
 
 
 	# Empty database
@@ -65,7 +70,7 @@ class AppDBTestCases(unittest.TestCase):
 	# Insert Albums
 	def test_album_insert_01(self): 
 		albums_repr = {"id": "1", "name":"Drake Album 1", "url":"http://albumURL","main_artist": "Drake", "main_artist_id":"1",
-						 "all_artists":["Drake","Justin"],"type":"Hip-hop","image_url":"http://albumimage"}
+			       "all_artists":["Drake","Justin"],"type":"Hip-hop","image_url":"http://albumimage"}
 		a = Albums(**albums_repr)
 		self.session.add(a)
 
@@ -81,7 +86,7 @@ class AppDBTestCases(unittest.TestCase):
 	# Delete Album
 	def test_album_delete_01(self): 
 		albums_repr = {"id": "1", "name":"Drake Album 1", "url":"http://albumURL","main_artist": "Drake", "main_artist_id":"1",
-						 "all_artists":["Drake","Justin"],"type":"Hip-hop","image_url":"http://albumimage"}
+			       "all_artists":["Drake","Justin"],"type":"Hip-hop","image_url":"http://albumimage"}
 		a = Albums(**albums_repr)
 		self.session.add(a)
 		r = self.session.query(Albums).filter(Albums.id == "1").first()
@@ -97,8 +102,8 @@ class AppDBTestCases(unittest.TestCase):
 	# Insert Tracks
 	def test_track_insert_01(self): 
 		tracks_repr = {"id": "1", "name":"Sunshine In My Pocket", "main_artist":"Justin","main_artist_id":"2", "all_artists": ["Justin", "Rhianna"],
-						"track_no":"1", "album_id":"10","duration":3.28, "explicit":false, "popularity":99,
-						"preview_url":"http://preview_url","direct_url":"http://directUrl","image_url":"http://image_url"}
+			       "track_no":"1", "album_id":"10","duration":3.28, "explicit":false, "popularity":99,
+			       "preview_url":"http://preview_url","direct_url":"http://directUrl","image_url":"http://image_url"}
 		a = Tracks(**tracks_repr)
 		self.session.add(a)
 
@@ -118,8 +123,8 @@ class AppDBTestCases(unittest.TestCase):
 	# Delete Track
 	def test_track_delete_01(self): 
 		tracks_repr = {"id": "1", "name":"Sunshine In My Pocket", "main_artist":"Justin","main_artist_id":"2", "all_artists": ["Justin", "Rhianna"],
-						"track_no":"1", "album_id":"10","duration":3.28, "explicit":false, "popularity":99,
-						"preview_url":"http://preview_url","direct_url":"http://directUrl","image_url":"http://image_url"}
+			       "track_no":"1", "album_id":"10","duration":3.28, "explicit":false, "popularity":99,
+			       "preview_url":"http://preview_url","direct_url":"http://directUrl","image_url":"http://image_url"}
 		a = Tracks(**tracks_repr)
 		self.session.add(a)
 		r = self.session.query(Tracks).filter(Tracks.id == "1").first()

@@ -24,11 +24,11 @@
 
   <!-- Database Tables -->
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
   <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 
-
   <!-- cliable data table -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
   <script type="text/javascript" src="https://datatables.net/release-datatables/extensions/ColVis/js/dataTables.colVis.js"></script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -82,7 +82,7 @@
             $(document).ready(function() 
             {
 
-              $('#example').dataTable( {{ albums|safe}}); 
+              var table = $('#example').DataTable( {{ albums|safe}}); 
 
               $('#example tbody').on('click', 'tr', function () {
                 var data = table.row( this ).data();
