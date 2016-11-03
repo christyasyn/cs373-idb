@@ -88,7 +88,13 @@ class Album(db.Model):
                 all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
         all_artists_names = all_artists_names[0:-2]
         return [self.name, self.main_artists, all_artists_names]
-
+    def get_all_artists(self):
+        all_artists_names = ''
+        for id in artist_list:
+            if Artist.query.filter_by(id=id).first() != None:
+                all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
+        all_artists_names = all_artists_names[0:-2]
+        return all_artists_names
     def __repr__(self):
         return 'Album %r' % self.name
     def __str__(self):

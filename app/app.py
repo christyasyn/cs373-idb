@@ -106,17 +106,44 @@ def single_track(id):
 
 	artist_name = Artist.query.filter_by(id=track.main_artist_id).first().name
 
+	album_name = Album.query.filter_by(id=track.album_id).first().name
+
 	template_stuff = {
 		"track_name": track.name,
 		"track_duration": track.duration,
 		"track_explicit": track.explicit,
 		"track_number": track.track_no,
 		"track_popularity": track.popularity,
-		"artist_name": artist_name
+		"artist_name": artist_name,
+		"album_name": album_name
 	}
 
 	return render_template('track.html', **template_stuff)
 
+@app.route('/album/<string:id>', methods=['GET'])
+def single_album(id):
+	album = Album.query.filter_by(id=id).first()
+
+	tracks = Track.query.filter_by(album_id=id).all()
+
+	track_data = {"aaData": [], "columns":[{"title": "#"}, {"title": "Title"}, {"title": "Duration"}]}
+	for track in tracks:
+		track_data['aaData'].append([track.track_no, track.name, track.duration])
+
+	template_stuff = {
+		"album_img": album.image_url,
+		"album_name": album.name,
+		"artist_name": album.main_artists,
+		"additional_artists": album.get_all_artists,
+		"number_of_tracks": "add later",
+		"tracks": json.dumps(track_data)
+	}
+
+	return render_template('album.html', **template_stuff)
+
+@app.route('/about', methods=['GET'])
+def get_about():
+	return render_template('about.html')
 
 @app.route('/run_unittests')
 def run_tests():
