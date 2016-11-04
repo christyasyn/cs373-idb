@@ -11,6 +11,6 @@ musicApp.controller('musicController', function musicController($scope, $http) {
             $scope.finished = true;
             $scope.testOutput = '\n' + result.data.output;
         });
-        return ($scope.testOutput); // it gets back through testOutput instead
+        //return ($scope.testOutput); // it gets back through testOutput instead
     }
 });
