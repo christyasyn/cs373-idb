@@ -3,29 +3,40 @@ import unittest
 import tempfile
 from models import *
 from flask import * 
-#om flask import Flask
+from app import db, app
 #from sqlalchemy.orm import sessionmaker
 from flask.ext.sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-db = SQLAlchemy(app)
+# app = Flask(__name__)
+# db = SQLAlchemy(app)
 
 class AppDBTestCases(unittest.TestCase):
 
-		def test_artist_select_1(self):
-				artist = Artist.query.filter_by(id='3TVXtAsR1Inumwj472S9r4').first()
-				self.assertEqual(artist.name,"Drake")
-		def test_album_select_1(self):
-				album = Album.query.filter_by(id='2eSzVxzsdcAJal6U6WqTVB').first()
-				self.assertEqual(album.name,"Closer (Jauz Remix)")
-		def test_track_select_1(self):
-				track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
-				self.assertEqual(track.name,"All We Know")
-		def test_artist_insert_1(self):
-				db.session.add(Artist(id='1',name='bob'))
-				db.session.commit()
-				artist = db.session.query(Artist).get('1')
-				self.assertEqual(artist.name,"bob")
+	def test_artist_select_1(self):
+		artist = Artist.query.filter_by(id='3TVXtAsR1Inumwj472S9r4').first()
+		self.assertEqual(artist.name,"Drake")
+	def test_album_select_1(self):
+		album = Album.query.filter_by(id='2eSzVxzsdcAJal6U6WqTVB').first()
+		self.assertEqual(album.name,"Closer (Jauz Remix)")
+	def test_track_select_1(self):
+		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
+		self.assertEqual(track.name,"All We Know")
+
+	def test_artist_insert_1(self):
+		artist = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
+		db.session.add(artist)
+		db.session.commit()
+		artist = Artist.query.filter_by(id='1').first()
+		self.assertEqual(artist.name,"bob")
+
+
+	def test_artist_delete_1(self):
+			a = Artist.query.filter_by(id = "1").first()
+			self.assertEqual(a.name, 'bob')
+			db.session.delete(a)
+			db.session.commit()
+			a = Artist.query.filter_by(id = "1").first()
+			self.assertEqual(a, 'None')
 
 
 	# def setUp(self):
@@ -40,7 +51,7 @@ class AppDBTestCases(unittest.TestCase):
 	# 	os.unlink(app.config['DATABASE'])
 
 
-	# Empty database
+	# # Empty database
 	# def test_empty_db(self):
 	# 	rv = self.app.get('/')
 	# 	assert b'No entries here so far' in rv.data
@@ -60,18 +71,18 @@ class AppDBTestCases(unittest.TestCase):
 	# 	self.assertEqual(r.popularity, "10")
 	# 	self.assertEqual(r.image_url, "http://artistimage")
 
-	# #Delete Artist
+	#Delete Artist
 	# def test_artist_delete_01(self): 
 	# 	artists_repr = {"id": "1", "name":"Justin", "genres":"pop","url":"http://artistpage", "followers":"1000", "popularity":"10","image_url":"http://artistimage"}
 	# 	a = Artists(**artists_repr)
-	# 	self.session.add(a)
-	# 	r = self.session.query(Artists).filter(Artists.id == "1").first()
+	# 	db.session.add(a)
+	# 	r = db.session.query(Artists).filter(Artists.id == "1").first()
 	# 	self.assertEqual(r.name,"Justin")
 
-	# 	self.session.delete(a)
-	# 	self.session.commit()
+	# 	db.session.delete(a)
+	# 	db.session.commit()
 
-	# 	s = self.session.query(Arists.filter(Artists.id == "1".first()))
+        # 	s = self.session.query(Arists.filter(Artists.id == "1".first()))
 	# 	self.assertNotEqual(r.name, s.name)
 
 
