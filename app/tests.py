@@ -35,8 +35,8 @@ class AppDBTestCases(unittest.TestCase):
 			self.assertEqual(a.name, 'bob')
 			db.session.delete(a)
 			db.session.commit()
-                        a = Artist.query.filter_by(id = "1").first()
-                        self.assertEqual(a, 'None')
+			a = Artist.query.filter_by(id = "1").first()
+			self.assertEqual(a, 'None')
 
 
 	# def setUp(self):
