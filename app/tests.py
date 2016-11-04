@@ -33,8 +33,8 @@ class AppDBTestCases(unittest.TestCase):
 		self.db_fd, app.config['DATABASAE'] = tempfile.mkstemp()
 		app.config['TESTING'] = True
 		self.app = app.test_client()
-		        with app.app_context():
-                                app.init_db()
+			with app.app_context():
+ 				app.init_db()
 
 	def tearDown(self):
 		os.close(self.db_fd)
