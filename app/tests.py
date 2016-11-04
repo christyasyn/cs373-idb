@@ -22,15 +22,15 @@ class AppDBTestCases(unittest.TestCase):
 		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
 		self.assertEqual(track.name,"All We Know")
 
-        def test_artist_select_1(self):
-                artist = Artist.query.filter_by(id='5').first()
-                self.assertEqual(artist,None)
-        def test_album_select_1(self):
-                album = Album.query.filter_by(id='5').first()
-                self.assertEqual(album,None)
-        def test_track_select_1(self):
-                track = Track.query.filter_by(id='5').first()
-                self.assertEqual(track,None)
+	def test_artist_select_1(self):
+		artist = Artist.query.filter_by(id='5').first()
+		self.assertEqual(artist,None)
+	def test_album_select_1(self):
+		album = Album.query.filter_by(id='5').first()
+		self.assertEqual(album,None)
+	def test_track_select_1(self):
+		track = Track.query.filter_by(id='5').first()
+		self.assertEqual(track,None)
 
 	def test_artist_insert_1(self):
 		artist = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
