@@ -150,9 +150,16 @@ def single_album(id):
 
 	tracks = Track.query.filter_by(album_id=id).all()
 
-	track_data = {"aaData": [], "columns":[{"title": "#"}, {"title": "Title"}, {"title": "Duration"}]}
+	track_data = {"aaData": [], "columns":[{"title": "ID"},{"title": "#"}, {"title": "Title"}, {"title": "Duration"}]}
+	track_data["columnDefs"] = [{
+		"targets": [0],
+		"visible": FALSE,
+		"searchable": FALSE
+	}]
+	track_data['scrollY'] = "500px"
+	track_data['paging'] = "true"
 	for track in tracks:
-		track_data['aaData'].append([track.track_no, track.name, track.duration])
+		track_data['aaData'].append([track.id,track.track_no, track.name, track.duration])
 
 	template_stuff = {
 		"album_img": album.image_url,
