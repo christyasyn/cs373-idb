@@ -184,7 +184,7 @@ def run_tests():
 	import subprocess
 	from os import path
 	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-	output = subprocess.Popen('python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+	output = subprocess.Popen('. /var/www/cs373-idb/app && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 	print(output)
 	return jsonify({'output': str(output)})
 
