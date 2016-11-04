@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- Code is modified from bootstrap examples on:http://getbootstrap.com/getting-started/ -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Artist Page">
+    <meta name="author" content="iMusicDB Team">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>iMusicDB Artist Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+
+  <!-- Database Tables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
+  <script type="text/javascript" src="https://datatables.net/release-datatables/extensions/ColVis/js/dataTables.colVis.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Custom styles for this template -->
+    <link href="static/css/cover.css" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <body>
+
+    <!-- NAVBAR
+    ================================================= -->
+     <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">iMusicDB</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="about">About</a></li>
+                <li><a href="artists">Artists</a></li>
+                <li class="active"><a href="tracks">Tracks</a></li>
+                <li><a href="albums">Albums</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="container">
+    <!-- CONTENT
+    ================================================= -->
+      <h1>Tracks</h1>
+      <br />  
+        <table id="example" width="100%" ></table>
+          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js">
+          </script>
+          <script type="text/javascript" charset="utf-8">
+            $(document).ready(function() 
+            {
+              var table = $('#example').DataTable( {{ tracks|safe }} );  
+
+              $('#example tbody').on('click', 'tr', function () {
+               var data = table.row( this ).data();
+               window.location.href = "/track/" + data[0];
+              }); 
+            });
+            $("#example").css("width","1000px")
+
+          </script>
+          <script type="text/javascript">
+             $('#example').addClass('table table-hover table-bordered');
+          </script>
+    </div>
+  </body>
+</html>

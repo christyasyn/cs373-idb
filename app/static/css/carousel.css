@@ -27,18 +27,20 @@ body {
 .clear{
   clear: both;
 }
-.rTable {
-  display: block;
+#table {
+  display: table;
   margin: auto;
+  border:1px solid #999999;
 }
-.rTableHeading, .rTableBody, .rTableFoot, .rTableRow{
+.tr{
+    display: table-row;
     clear: both;
 }
-.rTableHead, .rTableFoot{
+.th{
     background-color: #DDD;
     font-weight: bold;
 }
-.rTableCell, .rTableHead {
+.td {
     /*border: 0px solid #999999;*/
     float: left;
     height: 0 auto;

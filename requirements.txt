@@ -20,3 +20,4 @@ python-editor==1.0.1
 six==1.10.0
 SQLAlchemy==1.1.1
 Werkzeug==0.11.11
+Flask_Script==2.0.5

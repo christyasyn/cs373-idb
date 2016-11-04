@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!-- Code is modified from bootstrap examples on:http://getbootstrap.com/getting-started/ -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Artist Page">
+    <meta name="author" content="iMusicDB Team">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>iMusicDB Album Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Database Tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
+  <script type="text/javascript" src="https://datatables.net/release-datatables/extensions/ColVis/js/dataTables.colVis.js"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Custom styles for this template -->
+    <link href="../static/css/cover.css" rel="stylesheet" type="text/css">
+        <link href="../static/css/artists.css" rel="stylesheet" type="text/css">
+
+  </head>
+  <body>
+
+    <!-- NAVBAR
+    ================================================= -->
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">iMusicDB</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/artists">Artists</a></li>
+                <li><a href="/tracks">Tracks</a></li>
+                <li class="active"><a href="/albums">Albums</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+
+    <!-- CONTENT
+    ================================================= -->
+    <div class="container">
+      <div class="rTable"><!--Outer Table-->
+        <div class="rTableRow"><!--Outer Table Row 1-->
+          <div class="rTableCell2">
+            <div class="artist"><!--Artist Image-->
+              <img src={{ album_img|safe }}></img>
+            </div><!--End Artist image-->
+          </div>
+          <div class="rTableCell2">
+            <h1>{{ album_name|safe }}</h1>
+            <div class="rTable"><!--Inner Table Artist Stats-->
+              <div class="rTableRow">
+                <div class="rTableHead">Artist</div>
+                <div class="rTableHead">Additional Artists</div>
+                <div class="rTableHead">Number of Tracks</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">
+                  <a href="/artist/{{ artist_id|safe}}">
+                  {{ artist_name|safe }}
+                  </a>
+                </div>
+                <div class="rTableCell">{{ additional_artists|safe }}</div>
+                <div class="rTableCell">{{ number_of_tracks|safe }}</div>
+              </div>
+            </div><!--end of artists stats-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
+    <div class="container">
+    <br />  
+        <table id="example" width="100%" ></table>
+          <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js">
+          </script>
+          <script type="text/javascript" charset="utf-8">
+           $(document).ready(function() 
+           {
+
+             var table = $('#example').DataTable( {{ tracks|safe}});
+
+              $('#example tbody').on('click', 'tr', function () {
+              var data = table.row( this ).data();
+              // alert( 'You clicked on '+data[]+'\'s row' );
+              window.location.href = "/track/" + data[0];
+            });
+            });
+            $("#example").css("width","1000px")
+
+          </script>
+          <script type="text/javascript">
+             $('#example').addClass('table table-hover table-bordered');
+          </script>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
+
+<!--
+<h3>Tracks</h3>
+            <div class="rTable" style="width= 500px">
+              
+              <div class="rTableRow">
+                <div class="rTableHead">#</div>
+                <div class="rTableHead">Title</div>
+                <div class="rTableHead">Duration</div>
+              </div>
+              
+              <div class="rTableRow">
+                <div class="rTableCell">1</div>
+                <div class="rTableCell"><a href="track1.html">Mark My Words</a></div>
+                <div class="rTableCell">2:41</div>
+              </div>
+              
+              <div class="rTableRow">
+                <div class="rTableCell">2</div>
+                <div class="rTableCell">I'll Show You</div>
+                <div class="rTableCell">3:20</div>
+              </div>
+              
+              <div class="rTableRow">
+                <div class="rTableCell">3</div>
+                <div class="rTableCell">What Do You Mean?</div>
+                <div class="rTableCell">3:25</div>
+              </div>
+              
+              <div class="rTableRow">
+                <div class="rTableCell">4</div>
+                <div class="rTableCell">Sorry</div>
+                <div class="rTableCell">3:20</div>
+              </div>
+              
+              <div class="rTableRow">
+                <div class="rTableCell">5</div>
+                <div class="rTableCell">Love Yourself</div>
+                <div class="rTableCell">3:53</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">6</div>
+                <div class="rTableCell">Company</div>
+                <div class="rTableCell">3:28</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">7</div>
+                <div class="rTableCell">No Pressure</div>
+                <div class="rTableCell">4:46</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">8</div>
+                <div class="rTableCell">No Sense</div>
+                <div class="rTableCell">4:35</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">9</div>
+                <div class="rTableCell">The Feeling</div>
+                <div class="rTableCell">4:05</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">10</div>
+                <div class="rTableCell">Life Is Woth Living</div>
+                <div class="rTableCell">3:55</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">11</div>
+                <div class="rTableCell">Where Are You Now</div>
+                <div class="rTableCell">4:06</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">12</div>
+                <div class="rTableCell">Children</div>
+                <div class="rTableCell">3:43</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">13</div>
+                <div class="rTableCell">Purpose</div>
+                <div class="rTableCell">3:30</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">14</div>
+                <div class="rTableCell">Been You</div>
+                <div class="rTableCell">3:19</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">15</div>
+                <div class="rTableCell">Get Used To It</div>
+                <div class="rTableCell">3:58</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">16</div>
+                <div class="rTableCell">We Are</div>
+                <div class="rTableCell">3:22</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">17</div>
+                <div class="rTableCell">Trust</div>
+                <div class="rTableCell">3:23</div>
+              </div>
+
+              <div class="rTableRow">
+                <div class="rTableCell">18</div>
+                <div class="rTableCell">All In It</div>
+                <div class="rTableCell">3:51</div>
+              </div>
+            </div>
+-->
