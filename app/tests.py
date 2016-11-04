@@ -21,19 +21,23 @@ class AppDBTestCases(unittest.TestCase):
 	def test_track_select_1(self):
 		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
 		self.assertEqual(track.name,"All We Know")
-	# def test_artist_insert_1(self):
-	# 	artist = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
-	# 	db.session.add(artist)
-	# 	db.session.commit()
-	# 	artist = Artist.query.filter_by(id='1').first()
-	# 	self.assertEqual(artist.name,"bob")
+
+	def test_artist_insert_1(self):
+		artist = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
+		db.session.add(artist)
+		db.session.commit()
+		artist = Artist.query.filter_by(id='1').first()
+		self.assertEqual(artist.name,"bob")
+
 
 	def test_artist_delete_1(self):
-			artist = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
-			db.session.delete(artist)
+			a = Artist.query.filter_by(id = "1").first()
+			self.assertEqual(a.name, 'bob')
+			db.session.delete(a)
 			db.session.commit()
-			s = db.session.query(Arists.filter(Artists.id == "1".first()))
-			self.assertNotEqual(s.name, 'bob')
+                        a = Artist.query.filter_by(id = "1").first()
+                        self.assertEqual(a, 'None')
+
 
 	# def setUp(self):
 	# 	self.db_fd, app.config['DATABASAE'] = tempfile.mkstemp()
