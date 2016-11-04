@@ -94,7 +94,11 @@
               </div>
 
               <div class="rTableRow">
-                <div class="rTableCell">{{ artist_name|safe }}</div>
+                <div class="rTableCell">
+                  <a href="/artist/{{ artist_id|safe}}">
+                  {{ artist_name|safe }}
+                  </a>
+                </div>
                 <div class="rTableCell">{{ additional_artists|safe }}</div>
                 <div class="rTableCell">{{ number_of_tracks|safe }}</div>
               </div>
