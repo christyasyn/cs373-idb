@@ -1,3 +1,22 @@
+commit f06f84bdb8654f7f5d5fdd5c6d361471c7c4d9ca
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Nov 4 02:39:26 2016 +0000
+
+    final push
+
+commit 12b56b81d31d2d6f112de9a501344989fa474219
+Merge: 1ad95f7 dc57a41
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Nov 4 02:35:10 2016 +0000
+
+    merge
+
+commit dc57a4189dc06b063d744b60e431cd8f3d9a9fd9
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Nov 4 02:31:45 2016 +0000
+
+    final for phase 2
+
 commit f7631e830a72fd885d8f66e0d305e252e3ee5f3f
 Merge: cc7aade 704dd3d
 Author: Carol Ramsey <carolram@cs.utexas.edu>
@@ -565,6 +584,18 @@ Date:   Wed Nov 2 12:57:09 2016 -0500
 
     Merge branch 'dev' of https://github.com/ChristyTran/cs373-idb into dev
 
+commit 1ad95f7fd6979bb6180c366fdbd965f610d144ce
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Wed Nov 2 12:00:58 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
+commit 4b16fc2849b8503b7728286674b9e48acc5dd936
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Wed Nov 2 12:00:04 2016 -0500
+
+    Transferring API Description file from Apiary.io
+
 commit b0dc8cc8546cd0e156306cbd79c5bdf208190a4b
 Author: ruben elizondo <ruben.elizondo@utexas.edu>
 Date:   Wed Nov 2 16:49:23 2016 +0000
@@ -880,6 +911,12 @@ Date:   Wed Oct 26 13:50:30 2016 -0500
 
     updated models.py
 
+commit 673bc3577e479496d9545cbef944bdc9cdf1e267
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Wed Oct 26 13:40:01 2016 -0500
+
+    Updated models.py with create table code
+
 commit b830476d11fabf9b58f28b6d940700d4d7ee6c5d
 Merge: 63a605a 077d4b5
 Author: ruben elizondo <ruben.elizondo@utexas.edu>
@@ -949,6 +986,19 @@ Date:   Mon Oct 24 13:30:27 2016 -0500
 
     added navbar to all pillar pages
 
+commit fb30a20e8910a782648df6e56151e3c735268074
+Merge: 0122b13 15fcc9d
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 24 13:05:18 2016 -0500
+
+    Merge branch 'master' of https://github.com/ChristyTran/cs373-idb
+
+commit 0122b13b884b3a78c6782036d0f75e391b0676b9
+Author: Carol Ramsey <carolram@cs.utexas.edu>
+Date:   Mon Oct 24 13:04:38 2016 -0500
+
+    first commit with submodule docs
+
 commit 7a411d6246b9c60fcc8a354fc4a35f1d9e5e31a7
 Author: christy.tran <christytran@utexas.edu>
 Date:   Mon Oct 24 12:34:51 2016 -0500
@@ -960,6 +1010,31 @@ Author: Otis <Otis@Server.local>
 Date:   Mon Oct 24 01:04:48 2016 -0500
 
     updating database cache files
+
+commit 15fcc9d0c23f712cde4dab5daf547e93354b6fdd
+Author: Carol Ramsey <carolramsey@utexas.edu>
+Date:   Fri Oct 21 17:30:46 2016 -0500
+
+    moved models.html
+
+commit 063c2395371d8191f012c262115ac7750d575166
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 02:44:54 2016 +0000
+
+    added project3.json with git sha
+
+commit 3ab347be87d4096336fe7df92923d96a73d9cb7d
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 02:41:48 2016 +0000
+
+    added idb1.log
+
+commit b36a5f7d3e850b188af7897c17228708332284a2
+Merge: 3bec677 63a605a
+Author: ruben elizondo <ruben.elizondo@utexas.edu>
+Date:   Fri Oct 21 02:40:16 2016 +0000
+
+    merge dev
 
 commit 63a605aadc41a77d266fc0b1c7090fb9df71b0dc
 Merge: a727d9c 5fba475
@@ -1650,6 +1725,21 @@ Date:   Sun Oct 16 13:20:51 2016 -0500
 
     Scrape files
 
+commit 3bec677ae0e79de5e0df7ad9921c55156cc480b9
+Merge: b97da8b 5fa7a31
+Author: christy.tran <christytran@utexas.edu>
+Date:   Fri Oct 14 15:45:15 2016 -0500
+
+    Merge branch 'dev'
+    
+    Adding bootstrap files.
+
+commit b97da8b17121f2e11f65a8d52040c7cfb17d4f2c
+Author: Naveen Rajshekhar <naveen.rajshekhar@utexas.edu>
+Date:   Fri Oct 14 15:42:46 2016 -0500
+
+    Create CNAME
+
 commit 5fa7a314b14f0dfaa9593b4e0d23801dba8efa97
 Author: Naveen Rajshekhar <naveen.rajshekhar@utexas.edu>
 Date:   Fri Oct 14 15:37:18 2016 -0500
@@ -1661,6 +1751,12 @@ Author: Carol Ramsey <carolram@cs.utexas.edu>
 Date:   Fri Oct 14 14:56:00 2016 -0500
 
     added bootstrap
+
+commit c34a50b8ec48a4d66f92983f9e3181a33cf1734e
+Author: ChristyTran <christytran.thu@gmail.com>
+Date:   Fri Oct 14 13:27:58 2016 -0500
+
+    Transferring API Description file from Apiary.io
 
 commit cef785bf089d06d6bcec3b21166e21393ae18ef6
 Author: Carol Ramsey <carolram@cs.utexas.edu>
