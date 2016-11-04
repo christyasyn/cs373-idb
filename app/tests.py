@@ -22,6 +22,27 @@ class AppDBTestCases(unittest.TestCase):
 		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
 		self.assertEqual(track.name,"All We Know")
 
+	def test_artist_select_2(self):
+		artist = Artist.query.filter_by(name='Drake').first()
+		self.assertEqual(artist.id,"3TVXtAsR1Inumwj472S9r4")
+	def test_album_select_2(self):
+		album = Album.query.filter_by(name='"Closer (Jauz Remix)').first()
+		self.assertEqual(album.id,"2eSzVxzsdcAJal6U6WqTVB")
+	def test_track_select_2(self):
+		track = Track.query.filter_by(name='All We Know').first()
+		self.assertEqual(track.id,"2rizacJSyD9S1IQUxUxnsK")
+
+
+	def test_artist_select_none(self):
+		artist = Artist.query.filter_by(id='5').first()
+		self.assertEqual(artist,None)
+	def test_album_select_none(self):
+		album = Album.query.filter_by(id='5').first()
+		self.assertEqual(album,None)
+	def test_track_select_none(self):
+		track = Track.query.filter_by(id='5').first()
+		self.assertEqual(track,None)
+
 	def test_artist_insert_1(self):
 		artist = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
 		db.session.add(artist)
@@ -70,53 +91,53 @@ class AppDBTestCases(unittest.TestCase):
 			a = Track.query.filter_by(id = "1").first()
 			self.assertEqual(a, None)
 
-        def test_artist_insert_2(self):
-                artist = Artist(id='2',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
-                db.session.add(artist)
-                db.session.commit()
-                artist = Artist.query.filter_by(id='2').first()
-                self.assertEqual(artist.name,"bob")
+	def test_artist_insert_2(self):
+		artist = Artist(id='2',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
+		db.session.add(artist)
+		db.session.commit()
+		artist = Artist.query.filter_by(id='2').first()
+		self.assertEqual(artist.name,"bob")
 
 
-        def test_artist_delete_2(self):
-                        a = Artist.query.filter_by(id = "2").first()
-                        self.assertEqual(a.name, 'bob')
-                        db.session.delete(a)
-                        db.session.commit()
-                        a = Artist.query.filter_by(id = "2").first()
-                        self.assertEqual(a, None)
+	def test_artist_delete_2(self):
+		a = Artist.query.filter_by(id = "2").first()
+		self.assertEqual(a.name, 'bob')
+		db.session.delete(a)
+		db.session.commit()
+		a = Artist.query.filter_by(id = "2").first()
+		self.assertEqual(a, None)
 
-        def test_album_insert_2(self):
-                album = Album(id='2',name='bob', url='url', main_artists='main_artist', main_artists_id='artist id', all_artists='all artists', type='type', image_url='image url')
-                db.session.add(album)
-                db.session.commit()
-                album = Album.query.filter_by(id='2').first()
-                self.assertEqual(album.name,"bob")
-
-
-        def test_album_delete_2(self):
-                        a = Album.query.filter_by(id = "2").first()
-                        self.assertEqual(a.name, 'bob')
-                        db.session.delete(a)
-                        db.session.commit()
-                        a = Album.query.filter_by(id = "2").first()
-                        self.assertEqual(a, None)
-
-        def test_track_insert_2(self):
-                track = Track(id='2',name='bob', direct_url='url', main_artist_id='main_artist', all_artists='all artists', duration='dur', explicit=True, popularity=10,preview_url='url',track_no=1,album_id='1')
-                db.session.add(track)
-                db.session.commit()
-                track = Track.query.filter_by(id='2').first()
-                self.assertEqual(track.name,"bob")
+	def test_album_insert_2(self):
+		album = Album(id='2',name='bob', url='url', main_artists='main_artist', main_artists_id='artist id', all_artists='all artists', type='type', image_url='image url')
+		db.session.add(album)
+		db.session.commit()
+		album = Album.query.filter_by(id='2').first()
+		self.assertEqual(album.name,"bob")
 
 
-        def test_track_delete_2(self):
-                        a = Track.query.filter_by(id = "2").first()
-                        self.assertEqual(a.name, 'bob')
-                        db.session.delete(a)
-                        db.session.commit()
-                        a = Track.query.filter_by(id = "2").first()
-                        self.assertEqual(a, None)
+	def test_album_delete_2(self):
+		a = Album.query.filter_by(id = "2").first()
+		self.assertEqual(a.name, 'bob')
+		db.session.delete(a)
+		db.session.commit()
+		a = Album.query.filter_by(id = "2").first()
+		self.assertEqual(a, None)
+
+	def test_track_insert_2(self):
+		track = Track(id='2',name='bob', direct_url='url', main_artist_id='main_artist', all_artists='all artists', duration='dur', explicit=True, popularity=10,preview_url='url',track_no=1,album_id='1')
+		db.session.add(track)
+		db.session.commit()
+		track = Track.query.filter_by(id='2').first()
+		self.assertEqual(track.name,"bob")
+
+
+	def test_track_delete_2(self):
+		a = Track.query.filter_by(id = "2").first()
+		self.assertEqual(a.name, 'bob')
+		db.session.delete(a)
+		db.session.commit()
+		a = Track.query.filter_by(id = "2").first()
+		self.assertEqual(a, None)
 
 
 
