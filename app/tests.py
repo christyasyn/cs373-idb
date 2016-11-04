@@ -22,11 +22,11 @@ class AppDBTestCases(unittest.TestCase):
 		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
 		self.assertEqual(track.name,"All We Know")
 	def test_artist_insert_1(self):
-                artists = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
-                db.session.add()
-                db.session.commit()
-                artist = Artist.query.filter_by(id='1').first()
-                self.assertEqual(artist.name,"bob")
+				artists = Artist(id='1',name='bob', popularity=1, image_url='url', genres='pop', followers=2, url='url')
+				db.session.add()
+				db.session.commit()
+				artist = Artist.query.filter_by(id='1').first()
+				self.assertEqual(artist.name,"bob")
 
 
 	def setUp(self):
