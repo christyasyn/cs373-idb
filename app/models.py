@@ -4,6 +4,7 @@ Models.py file that contains all of the
 database models.
 """
 from loader import db
+from flask import Flask
 from flask.ext.sqlalchemy import BaseQuery
 from flask_sqlalchemy import SQLAlchemy
 import re
@@ -13,7 +14,6 @@ import re
 #from sqlalchemy import Column, Integer, String
 #from sqlalchemy import Sequence
 #from sqlalchemy.orm import sessionmaker
-
 
 
 # -------------------

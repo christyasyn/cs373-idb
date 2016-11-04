@@ -179,14 +179,14 @@ def single_album(id):
 def get_about():
 	return render_template('about.html')
 
-@app.route('/run_unittests')
+@app.route('/run_unittests', methods=['GET'])
 def run_tests():
 	import subprocess
 	from os import path
 	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-	output = subprocess.Popen('. /var/www/cs373-idb/app && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+	output = subprocess.Popen('. /var/www/cs373-idb/app/venv/bin/activate && python3 /var/www/cs373-idb/app/tests.py', stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 	print(output)
-	return jsonify({'output': str(output)})
+	return render_template('unittests.html', output=str(output))
 
 if __name__ == "__main__":
 	#prelist_test()
