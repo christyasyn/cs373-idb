@@ -167,6 +167,7 @@ def single_album(id):
 		"album_img": album.image_url,
 		"album_name": album.name,
 		"artist_name": album.main_artists,
+		"artist_id": album.main_artists_id,
 		"additional_artists": album.get_all_artists,
 		"number_of_tracks": "add later",
 		"tracks": json.dumps(track_data)
