@@ -22,7 +22,10 @@
 
     <!-- Database Tables -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
-    <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.3.js"></script>
+  <script type="text/javascript" src="https://datatables.net/release-datatables/extensions/ColVis/js/dataTables.colVis.js"></script>
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -110,7 +113,13 @@
            $(document).ready(function() 
            {
 
-             $('#example').dataTable( {{ tracks|safe}});   
+             $('#example').DataTable( {{ tracks|safe}});
+
+              $('#example tbody').on('click', 'tr', function () {
+              var data = table.row( this ).data();
+              // alert( 'You clicked on '+data[]+'\'s row' );
+              window.location.href = "/track/" + data[0];
+            });
             });
             $("#example").css("width","1000px")
 
