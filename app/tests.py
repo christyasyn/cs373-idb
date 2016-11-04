@@ -28,27 +28,27 @@ class AppDBTestCases(unittest.TestCase):
 	def test_track_select_1(self):
 		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
 		self.assertEqual(track.name,"All We Know")
-        def test_artist_insert_1(self):
-                db.session.add(Artist(id='1',name='bob'))
-                db.session.commit()
-                artist = db.session.query(Artist).get('1')
-                self.assertEqual(artist.name,"bob")
+		def test_artist_insert_1(self):
+				db.session.add(Artist(id='1',name='bob'))
+				db.session.commit()
+				artist = db.session.query(Artist).get('1')
+				self.assertEqual(artist.name,"bob")
 	'''
 
-        def test_artist_select_1(self):
-                artist = Artist.query.filter_by(id='3TVXtAsR1Inumwj472S9r4').first()
-                self.assertEqual(artist.name,"Drake")
-        def test_album_select_1(self):
-                album = Album.query.filter_by(id='2eSzVxzsdcAJal6U6WqTVB').first()
-                self.assertEqual(album.name,"Closer (Jauz Remix)")
-        def test_track_select_1(self):
-                track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
-                self.assertEqual(track.name,"All We Know")
-        def test_artist_insert_1(self):
-                db.session.add(Artist(id='1',name='bob'))
-                db.session.commit()
-                artist = db.session.query(Artist).get('1')
-                self.assertEqual(artist.name,"bob")
+		def test_artist_select_1(self):
+				artist = Artist.query.filter_by(id='3TVXtAsR1Inumwj472S9r4').first()
+				self.assertEqual(artist.name,"Drake")
+		def test_album_select_1(self):
+				album = Album.query.filter_by(id='2eSzVxzsdcAJal6U6WqTVB').first()
+				self.assertEqual(album.name,"Closer (Jauz Remix)")
+		def test_track_select_1(self):
+				track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
+				self.assertEqual(track.name,"All We Know")
+		def test_artist_insert_1(self):
+				db.session.add(Artist(id='1',name='bob'))
+				db.session.commit()
+				artist = db.session.query(Artist).get('1')
+				self.assertEqual(artist.name,"bob")
 
 
 	# def setUp(self):
