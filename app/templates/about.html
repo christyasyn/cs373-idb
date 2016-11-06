@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Code is modified from bootstrap examples on:http://getbootstrap.com/getting-started/ -->
-<html lang="en"  ng-app = "musicApp">
+<html lang="en"  ng-app = "musicApp" ng-controller = "musicController" >
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,8 +22,10 @@
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
     <!-- AngularJS info-->
-    <!--<script src="bower_components/angular/angular.js"></script> don't need this i don't think-->
+    <script src="../static/js/angular.min.js"></script>
     <script src="../static/js/app.js"></script>
+
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -80,8 +82,8 @@
               <h3>Hi my name is Otis. I am a senior at The University of Texas at Austin studying Computer Science and will be graduating in December 2016. I enjoy mobile software development and watching way too many YouTube videos in my free time. </h3>
               <h4>
                 <p>Major Responsibilities: Database, Back-End</p>
-                <p>Number of commits: 7</p>
-                <p>Number of issues: 1</p>
+                <p>Number of commits: 24</p>
+                <p>Number of issues: 8</p>
                 <p>Number of unit tests: 0</p>
               </h4>
             </div><!-- /.col-lg-4 -->
@@ -91,8 +93,8 @@
               <h3>Ruben enjoys a cold drink on a hot day, beginning conversations with "When I was your age..." and spending an unreasonable amount of time customizing emacs until it looks and acts just like sublime. His future plans involve declaring himself eligible for the 2017 NBA draft and getting a haircut. While he waits for the Spurs to call, he is excited to begin working as an Implementation Engineer at SailPoint Technologies in January of 2017, helping companies come to terms with their identity crisis. </h3>
               <h4>
                 <p>Major Responsibilities: Back-End</p>
-                <p>Number of commits: 8</p>
-                <p>Number of issues: 0</p>
+                <p>Number of commits: 38</p>
+                <p>Number of issues: 2</p>
                 <p>Number of unit tests: 0</p>
               </h4>
             </div><!-- /.col-lg-4 -->
@@ -102,7 +104,7 @@
               <h3>Stewart is a senior at the University of Texas at Austin, currently seeking employment. He has a strong background in computer science and interests in computer graphics, game design, and general software development.</h3>
               <h4>
                 <p>Major Responsibilities: Front End</p>
-                <p>Number of commits: 7</p>
+                <p>Number of commits: 8</p>
                <p>Number of issues: 0</p>
                 <p>Number of unit tests: 0</p>
               </h4>
@@ -127,8 +129,8 @@
               <h3>Carol is a 1995 UT CS graduate and has worked in tech for 20 years, the first 10 as a Java developer/tech lead and the second 10 in management. This is her first semester as a CS Education graduate student, learning how to change the world by bringing CS to every K-12 school in Texas.</h3>
               <h4>
                 <p>Major Responsibilities: Front End, Wiki</p>
-                <p>Number of commits: 12</p>
-                <p>Number of issues: 9</p>
+                <p>Number of commits: 35</p>
+                <p>Number of issues: 10</p>
                 <p>Number of unit tests: 3</p>
               </h4>
             </div><!-- /.col-lg-4 -->
@@ -138,8 +140,8 @@
               <h3>Christy is a Senior Computer Science major at UT Austin. She enjoys trying new cusines and cuddling with her cat. She likes listening to R&B and EDM. </h3>
               <h4>
                 <p>Major Responsibilities: Front-End</p>
-                <p>Number of commits: 30</p>
-                <p>Number of issues: 6</p>
+                <p>Number of commits: 45</p>
+                <p>Number of issues: 17</p>
                 <p>Number of unit tests: 0</p>
               </h4>
            </div><!-- /.col-lg-4 -->
@@ -157,7 +159,7 @@
               <h3>Total number of commits: 49</h3>      
               <h3>Total number of issues: 15</h3>
               <h3>Total number of unit tests: 3</h3>
-              <a href="https://github.com/ChristyTran/cs373-idb/blob/dev/apiary.    apib">
+              <a href="http://docs.imusicdb1.apiary.io/#">
               <h3>Apiary API</h3> </a>
               <a href="https://github.com/ChristyTran/cs373-idb/issues">
               <h3>GitHub Issue Tracker</h3> </a>
@@ -202,8 +204,8 @@
                 <i class="fa fa-play-circle fa-5x"></i>
                 <h2>Run Unit Tests</h2>
                 <div class="row" align="center" stlye="padding-bottom: 15px;">
-                    <button type="button" class="btn btn-primary" ng-click="runTests()" data-toggle="modal" data-target="#myModal">Run Tests
-                    </button>
+                    <a href="/run_unittests"><button type="button" class="btn btn-primary" >Run Tests
+                    </button></a>
                 </div>
               </div>
             </div>
@@ -218,25 +220,26 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title" style="color: black;">Tests Results</h4>
                   </div>
-                  <div class="modal-body" >
+                  <div class="modal-body" >  <!-- $scope.runTests -->
                     <pre>
                         {{ testOutput }}
                     </pre>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
                   </div>
                 </div>
             </div>
           </div>
         </div>
       </div><!-- /UNIT TESTS --> 
+   
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

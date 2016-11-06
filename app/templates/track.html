@@ -29,6 +29,8 @@
     <![endif]-->
     <!-- Custom styles for this template -->
     <link href="../static/css/cover.css" rel="stylesheet" type="text/css">
+            <link href="../static/css/artists.css" rel="stylesheet" type="text/css">
+
   </head>
   <body>
 
@@ -79,9 +81,17 @@
         <div class="col-md-1">Popularity</div>
       </div>
       <div class="row">
-		<div class="col-md-2">{{ album_name|safe }}</div>
+		    <div class="col-md-2">
+          <a href="/album/{{ album_id|safe}}">
+          {{ album_name|safe }}
+          </a>
+        </div>
         <div class="col-md-1">{{ track_number|safe}}</div>
-        <div class="col-md-2">{{ artist_name|safe }}</div>
+        <div class="col-md-2">
+          <a href="/artist/{{ artist_id|safe }}">
+          {{ artist_name|safe }}
+          </a>
+        </div>
         <div class="col-md-1">{{ track_duration|safe }}</div>
         <div class="col-md-1">{{ track_explicit|safe }}</div>
 		<div class="col-md-1">{{ track_popularity|safe}}</div>

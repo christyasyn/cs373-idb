@@ -116,6 +116,11 @@ body {
   font-weight: bold;
 }
 
+.artist img{
+  max-width: 350px;
+  max-height: 350px;
+}
+
 /*
  * Affix and center
  */

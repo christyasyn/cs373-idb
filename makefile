@@ -44,10 +44,12 @@ log:
 run:
 	python3 app/manage.py runserver
 
-model.html: app/models.py
-	cp app/models.py ./
+models.html: app/models.py
+	. app/venv/bin/activate
+	rm models.html
+	cp app/models.py app/loader.py ./
 	pydoc3 -w models
-	rm models.py
+	rm models.py loader.py
 
 artistsShort: Scrape.py
 	python3.5 -c 'import Scrape; Scrape.getids('\"http://kworb.net/spotify/'")'
