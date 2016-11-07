@@ -1,6 +1,6 @@
 from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
-from loader import app, db
+from loader import app, db, cache
 from flask import send_file, jsonify, render_template, make_response
 import json
 import pickle
@@ -33,11 +33,16 @@ def index():
 	return render_template('index.html')
 
 @app.route("/artists", methods=['GET'])
-# @app.cache.cached(timeout=600)
+@cache.cached(timeout=600)
 def get_artists():
-	artists = Artist.query.all()
+#	artists = Artist.query.all()
+	artists = db.session.query(Artist).order_by(Artist.popularity.desc()).all()
+	data = []
+	for artist in artists:
+		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
+		data.append([artist.id, artist.name, genres, str(artist.followers), str(artist.popularity)])
 	artist_data = {}
-	artist_data["aaData"] = [artist.to_list() for artist in artists]
+	artist_data["aaData"] = data
 	artist_data["columns"] = [
 		{ "title": "ID"},
 		{ "title": "Artist" },
@@ -55,10 +60,16 @@ def get_artists():
 	return render_template('artists.html', artists=json.dumps(artist_data))
 
 @app.route('/tracks', methods=['GET'])
+@cache.cached(timeout=300)
 def get_tracks():
-	tracks = Track.query.all()
+#	tracks = Track.query.all()
+	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	data = []
+	for entry in tracks:
+		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
+		data.append(row)
 	track_data = {}
-	track_data['aaData'] = [track.to_list() for track in tracks]
+	track_data['aaData'] = data
 	track_data['columns'] = [
 		{ "title": "ID"},
 		{ "title": "Track" },
@@ -79,6 +90,7 @@ def get_tracks():
 	return render_template('tracks.html', tracks=json.dumps(track_data))
 
 @app.route('/albums', methods=['GET'])
+@cache.cached(timeout=300)
 def get_albums():
 	albums = Album.query.all()
 	album_data = {}
@@ -223,7 +235,7 @@ def api_albums(page=1):
 	return jsonify({'albums': [album.to_json() for album in albums]})
 
 @app.route('/api/track/<string:id>', methods=['GET'])
-def api_album(id=None):
+def api_track(id=None):
 	if id == None:
 		"""Return error"""
 	track = Track.query.filter_by(id=id).first()

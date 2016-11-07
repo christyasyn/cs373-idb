@@ -74,7 +74,7 @@ class Album(db.Model):
             'main_artist' : self.main_artists,
             'main_artist_id' : self.main_artists_id,
             'all_artists' : self.all_artists,
-            'type' : self.db.Column,
+            'type' : self.type,
             'image_url' : self.image_url
         }
         return json_albums
