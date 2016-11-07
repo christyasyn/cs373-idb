@@ -11,7 +11,7 @@ import os
 template_dir = '/var/www/cs373-idb/app/static/templates'
 app = flask.Flask(__name__.split('.')[0])
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///musicdb'
-
+app.config['CACHE_TYPE'] = 'simple'
 
 
 db = SQLAlchemy(app)
