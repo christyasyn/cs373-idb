@@ -191,6 +191,80 @@ def single_album(id):
 def get_about():
 	return render_template('about.html')
 
+@app.route('/search/<string=search>', methods=['GET'])
+def return_search(search=None):
+	artists = Artist.query.filter(search.lower() in name.lower() or search.lower() in genres.lower()).all()
+	artists_data = []
+	for artist in artists:
+		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
+		artists_data.append([artist.id, artist.name, genres, str(artist.followers), str(artist.popularity)])
+	artist_data = {}
+	artist_data["aaData"] = artists_data
+	artist_data["columns"] = [
+		{ "title": "ID"},
+		{ "title": "Artist" },
+		{ "title": "Genre" } ,
+		{ "title": "Followers" },
+		{ "title": "Popularity" }
+		]
+	artist_data["columnDefs"] = [{
+		"targets": [0],
+		"visible": FALSE,
+		"searchable": FALSE
+		}]
+	artist_data['scrollY'] = "500px"
+	artist_data['paging'] = "true"
+
+	albums = Album.query.filter(search.lower() in name.lower() or search.lower() in all_artists.lower()).all()
+	album_data = {}
+	album_data['aaData'] = [album.to_list() for album in albums]
+	album_data['columns'] = [
+		{ "title": "ID" },
+		{ "title": "Album"},
+		{ "title": "Main Artist"},
+		{ "title": "All Artists"}
+	]
+	album_data["columnDefs"] = [{
+		"targets": [0],
+		"visible": FALSE,
+		"searchable": FALSE
+	}]
+	album_data['scrollY'] = "500px"
+	album_data['paging'] = "true"
+
+	tracks = b.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	tracks_data = []
+	for entry in tracks:
+		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
+		tracks_data.append(row)
+	track_data = {}
+	track_data['aaData'] = tracks_data
+	track_data['columns'] = [
+		{ "title": "ID"},
+		{ "title": "Track" },
+        { "title": "Number" },
+        { "title": "Album" },
+        { "title": "Artist" },
+        { "title": "Duration" },
+        { "title": "Explicit" },
+        { "title": "Popularity" }
+	]
+	track_data["columnDefs"] = [{
+	"targets": [0],
+	"visible": FALSE,
+	"searchable": FALSE
+	}]
+	track_data['scrollY'] = "500px"
+	track_data['paging'] = "true"
+
+	template_stuff = {
+		"artists": artist_data,
+		"tracks": track_data,
+		"albums": album_data
+	}
+
+	return render_template('search.html', **template_stuff)
+
 @app.route('/run_unittests')
 def run_tests():
 	import subprocess
