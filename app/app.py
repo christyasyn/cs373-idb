@@ -1,6 +1,6 @@
 from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
-from loader import app, db
+from loader import app, db, cache
 from flask import send_file, jsonify, render_template
 import json
 import pickle
@@ -14,13 +14,13 @@ FALSE = False
 
 # artist_data = {}
 
-def prelist_test():
-	track = Track.query.filter_by(id=id).first()
-	print(track)
 
-	artist_name = Artist.query.filter_by(Artist.id == track.main_artist_id).first().name
-	print(artist_name)
-	print(json.dumps(album_data))
+
+def prelist_test():
+	artists = db.session.query(Artist).order_by(Artist.popularity.desc()).all()
+	entry = artists[0]
+	print(entry.genres.replace('{', '').replace('}', '').replace('\"', ''))
+	print('the query did a thing')
 
 
 
@@ -33,11 +33,16 @@ def index():
 	return render_template('index.html')
 
 @app.route("/artists", methods=['GET'])
-# @app.cache.cached(timeout=600)
+@cache.cached(timeout=60)
 def get_artists():
-	artists = Artist.query.all()
+#	artists = Artist.query.all()
+	artists = db.session.query(Artist).order_by(Artist.popularity.desc()).all()
+	data = []
+	for artist in artists:
+		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
+		data.append([artist.id, artist.name, genres, str(artist.followers), str(artist.popularity)])
 	artist_data = {}
-	artist_data["aaData"] = [artist.to_list() for artist in artists]
+	artist_data["aaData"] = data
 	artist_data["columns"] = [
 		{ "title": "ID"},
 		{ "title": "Artist" },
@@ -55,10 +60,16 @@ def get_artists():
 	return render_template('artists.html', artists=json.dumps(artist_data))
 
 @app.route('/tracks', methods=['GET'])
+@cache.cached(timeout=60)
 def get_tracks():
-	tracks = Track.query.all()
+	#tracks = Track.query.all()
+	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	data = []
+	for entry in tracks:
+		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
+		data.append(row)
 	track_data = {}
-	track_data['aaData'] = [track.to_list() for track in tracks]
+	track_data['aaData'] = data
 	track_data['columns'] = [
 		{ "title": "ID"},
 		{ "title": "Track" },
@@ -89,11 +100,15 @@ def get_albums():
 		{ "title": "Main Artist"},
 		{ "title": "All Artists"}
 	]
-	album_data["columnDefs"] = [{
-		"targets": [0],
+	album_data["columnDefs"] = [
+		{"targets": [0],
 		"visible": FALSE,
-		"searchable": FALSE
-	}]
+		"searchable": FALSE},
+		{"targets": [1],
+		"width": "40%"},
+		{"className": "dt-center",
+		"targets": "_all"}
+	]
 	album_data['scrollY'] = "500px"
 	album_data['paging'] = "true"
 	return render_template('albums.html', albums=json.dumps(album_data))
@@ -189,6 +204,6 @@ def run_tests():
 	return render_template('unittests.html', output=str(output))
 
 if __name__ == "__main__":
-	#prelist_test()
+	prelist_test()
 	app.debug = True
 	app.run()
