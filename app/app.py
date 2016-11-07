@@ -1,7 +1,7 @@
 from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
 from loader import app, db
-from flask import send_file, jsonify, render_template
+from flask import send_file, jsonify, render_template, make_response
 import json
 import pickle
 import sys
@@ -187,6 +187,58 @@ def run_tests():
 	output = subprocess.Popen('. /var/www/cs373-idb/app && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 	print(output)
 	return jsonify({'output': str(output)})
+
+
+#------------------
+# RESTful API stuff
+#------------------
+
+@app.route('/api/artist/<string:id>', methods=['GET'])
+def api_artist(id=None):
+	if id == None:
+		"""Return error"""
+	artist = Artist.query.filter_by(id=id).first()
+	return jsonify({'artist': artist.to_json()})
+
+@app.route('/api/artists/<int:page>', methods=['GET'])
+@app.route('/api/artists', methods=['GET'])
+def api_artists(page=1):
+	query = Artist.query.paginate(page=page, per_page=25)
+	artists = query.items
+	return jsonify({'artists': [artist.to_json() for artist in artists]})
+
+
+@app.route('/api/album/<string:id>', methods=['GET'])
+def api_album(id=None):
+	if id == None:
+		"""Return error"""
+	album = Album.query.filter_by(id=id).first()
+	return jsonify({'album': album.to_json()})
+
+@app.route('/api/albums/<int:page>', methods=['GET'])
+@app.route('/api/albums', methods=['GET'])
+def api_albums(page=1):
+	query = Album.query.paginate(page=page, per_page=25)
+	albums = query.items
+	return jsonify({'albums': [album.to_json() for album in albums]})
+
+@app.route('/api/track/<string:id>', methods=['GET'])
+def api_album(id=None):
+	if id == None:
+		"""Return error"""
+	track = Track.query.filter_by(id=id).first()
+	return jsonify({'track': track.to_json()})
+
+@app.route('/api/tracks/<int:page>', methods=['GET'])
+@app.route('/api/tracks', methods=['GET'])
+def api_tracks(page=1):
+	query = Track.query.paginate(page=page, per_page=25)
+	tracks = query.items
+	return jsonify({'tracks': [track.to_json() for track in tracks]})
+
+@app.errorhandler(404)
+def not_found(error):
+	return make_response(jsonify({'error': 'Not Found'}), 404)
 
 if __name__ == "__main__":
 	#prelist_test()
