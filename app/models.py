@@ -6,6 +6,7 @@ database models.
 from loader import db
 from flask.ext.sqlalchemy import BaseQuery
 from flask_sqlalchemy import SQLAlchemy
+#from sqlalchemy_searchable import make_searchable, SearchQueryMixin
 import re
 
 #dup of above, will delete soon
@@ -13,6 +14,8 @@ import re
 #from sqlalchemy import Column, Integer, String
 #from sqlalchemy import Sequence
 #from sqlalchemy.orm import sessionmaker
+
+#make_searchable()
 
 
 

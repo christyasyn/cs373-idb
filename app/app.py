@@ -2,6 +2,7 @@ from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
 from loader import app, db, cache
 from flask import send_file, jsonify, render_template, make_response
+#from sqlalchemy_searchable import parse_search_query, search
 import json
 import pickle
 import sys
@@ -15,12 +16,13 @@ FALSE = False
 # artist_data = {}
 
 def prelist_test():
-	track = Track.query.filter_by(id=id).first()
-	print(track)
-
-	artist_name = Artist.query.filter_by(Artist.id == track.main_artist_id).first().name
-	print(artist_name)
-	print(json.dumps(album_data))
+	s = 'Drake'
+#	artists = Artist.query.search(s.lower())
+	
+	
+	print(str(len(artists)))
+#	print(artists[0].to_list())
+#	print(json.dumps(album_data))
 
 
 
@@ -191,9 +193,10 @@ def single_album(id):
 def get_about():
 	return render_template('about.html')
 
-@app.route('/search/<string=search>', methods=['GET'])
+@app.route('/search/<string:search>', methods=['GET'])
+@app.route('/search', methods=['GET'])
 def return_search(search=None):
-	artists = Artist.query.filter(search.lower() in name.lower() or search.lower() in genres.lower()).all()
+	artists = Artist.query.filter(search.lower() in Artist.name.lower() or search.lower() in Artist.genres.lower()).all()
 	artists_data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
@@ -270,9 +273,9 @@ def run_tests():
 	import subprocess
 	from os import path
 	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-	output = subprocess.Popen('. /var/www/cs373-idb/app && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+	output = subprocess.Popen('. /var/www/cs373-idb/app/venv/bin/activate && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 	print(output)
-	return jsonify({'output': str(output)})
+	return render_template('test.html', test_output=str(output))
 
 
 #------------------
@@ -327,6 +330,6 @@ def not_found(error):
 	return make_response(jsonify({'error': 'Not Found'}), 404)
 
 if __name__ == "__main__":
-	#prelist_test()
+#	prelist_test()
 	app.debug = True
 	app.run()
