@@ -197,12 +197,25 @@ def get_about():
 @app.route('/search/<string:search>', methods=['GET'])
 @app.route('/search', methods=['GET'])
 def return_search(search=None):
-	print(search)
-	artists = Artist.query.filter(func.lower(search) == func.lower(Artist.name)).all()
+	split_search = search.split()
+	artists = Artist.query.filter(func.lower(Artist.name).contains(search)).all()
 	artists_data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
 		artists_data.append([artist.id, artist.name, genres, str(artist.followers), str(artist.popularity)])
+
+	for partial in split_search:
+		artists = Artist.query.filter(func.lower(Artist.name).contains(partial)).all()
+		for artist in artists:
+			found = False	
+			for item in artists_data:
+				if item[0] == artist.id:
+					found = True
+					break
+			if found == False:
+				genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
+				artists_data.append([artist.id, artist.name, genres, str(artist.followers), str(artist.popularity)])
+
 	artist_data = {}
 	artist_data["aaData"] = artists_data
 	artist_data["columns"] = [
