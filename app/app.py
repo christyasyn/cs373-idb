@@ -306,14 +306,14 @@ def search_album(search):
 	
 	albums = Album.query.filter(func.lower(Album.name).contains(search)).all()
 	albums_data = []
-	for albums in albums:
+	for album in albums:
 		albums_data.append(album.to_list())
 
-	for partial in split_search:
+	for partial in search_split:
 		albums = Album.query.filter(func.lower(Album.name).contains(partial)).all()
 		for album in albums:
 			found = False	
-			for item in album_data:
+			for item in albums_data:
 				if item[0] == album.id:
 					found = True
 					break
@@ -351,7 +351,7 @@ def search_track(search):
 		for entry in tracks:
 			found = False	
 			for item in tracks_data:
-				if item[0] == track.id:
+				if item[0] == entry.Track.id:
 					found = True
 					break
 			if found == False:
