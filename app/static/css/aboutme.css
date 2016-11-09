@@ -8,8 +8,6 @@
 	font-size: 40px;
 	text-align: center;
 	position: relative;
-	top: 100px;
-	left: 0;
 }
 
 
@@ -21,7 +19,7 @@
 	margin-bottom: 18px;
 	text-align: center;
 	position: relative;
-	top: 100px;
+	top: 20px;
 }
 .aboutblobs h2 {
 	font-weight: normal;
@@ -51,7 +49,7 @@
 	margin-bottom: 40px;
 	text-align: center;
 	position: relative;
-	top: 100px;	
+	top: 20px;	
 
 }
 .stats h2 {
