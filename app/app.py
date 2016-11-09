@@ -3,6 +3,7 @@ from models import Artist, Album, Track
 from loader import app, db, cache
 from flask import send_file, jsonify, render_template, make_response
 #from sqlalchemy_searchable import parse_search_query, search
+from sqlalchemy import func
 import json
 import pickle
 import sys
@@ -18,7 +19,7 @@ FALSE = False
 def prelist_test():
 	s = 'Drake'
 #	artists = Artist.query.search(s.lower())
-	
+	artists = Artist.query.filter(func.lower(s) == func.lower(Artist.name)).all()
 	
 	print(str(len(artists)))
 #	print(artists[0].to_list())
@@ -196,7 +197,8 @@ def get_about():
 @app.route('/search/<string:search>', methods=['GET'])
 @app.route('/search', methods=['GET'])
 def return_search(search=None):
-	artists = Artist.query.filter(search.lower() in Artist.name.lower() or search.lower() in Artist.genres.lower()).all()
+	print(search)
+	artists = Artist.query.filter(func.lower(search) == func.lower(Artist.name)).all()
 	artists_data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
@@ -218,7 +220,7 @@ def return_search(search=None):
 	artist_data['scrollY'] = "500px"
 	artist_data['paging'] = "true"
 
-	albums = Album.query.filter(search.lower() in name.lower() or search.lower() in all_artists.lower()).all()
+	albums = Album.query.filter(func.lower(search) == func.lower(Album.name)).all()
 	album_data = {}
 	album_data['aaData'] = [album.to_list() for album in albums]
 	album_data['columns'] = [
@@ -235,7 +237,7 @@ def return_search(search=None):
 	album_data['scrollY'] = "500px"
 	album_data['paging'] = "true"
 
-	tracks = b.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	tracks = db.session.query(Track, Artist, Album).filter(func.lower(search) == func.lower(Track.name)).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
 	tracks_data = []
 	for entry in tracks:
 		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
@@ -261,11 +263,11 @@ def return_search(search=None):
 	track_data['paging'] = "true"
 
 	template_stuff = {
-		"artists": artist_data,
-		"tracks": track_data,
-		"albums": album_data
+		"artists": json.dumps(artist_data),
+		"tracks": json.dumps(track_data),
+		"albums": json.dumps(album_data)
 	}
-
+	#return render_template('test.html', test_output=search)
 	return render_template('search.html', **template_stuff)
 
 @app.route('/run_unittests')
@@ -330,6 +332,6 @@ def not_found(error):
 	return make_response(jsonify({'error': 'Not Found'}), 404)
 
 if __name__ == "__main__":
-#	prelist_test()
+	prelist_test()
 	app.debug = True
 	app.run()
