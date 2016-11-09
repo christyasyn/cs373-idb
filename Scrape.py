@@ -70,6 +70,8 @@ def start_album_populate():
 	except:
 		pass
 
+	if len(ARTISTS_LIST) == start_point:
+		return
 	# access global album list		
 	global ARTIST_ALBUMS
 
@@ -110,7 +112,7 @@ def artist_album_list(a, artist_num):
 	global ARTIST_ALBUMS
 	artist = a['name']
 	ident = a['id']
-	print('Starting: ' + '{0: <25}'.format(artist) + '		' + str(artist_num))
+	# print('Starting: ' + '{0: <25}'.format(artist) + '		' + str(artist_num))
 	# inital request for arts albums
 	# print(artist + '		' + str(artist_count))
 	lock.acquire()
@@ -184,28 +186,35 @@ def artist_album_list(a, artist_num):
 			lock.release()
 		else:
 			break
-	print(artist +  ' complete')
+	# print(artist +  ' complete')
 
 
-def start_track_populate():
+def start_track_populate(album_list, track_progress, cache_file):
+	# read in the list of albums to be used
 	global ARTIST_ALBUMS
 	if len(ARTIST_ALBUMS) == 0:
-		with open('./app/db/artist_albums_cache.pickle', 'rb') as read:
+		with open('./app/db/' + album_list, 'rb') as read:
 			ARTIST_ALBUMS = pickle.load(read)
 
 	start_point = 0
+	# check for progress of track in album_list
 	try:
-		with open('./app/db/track_progress.txt', 'r') as f:
+		with open('./app/db/' + track_progress, 'r') as f:
 			start_point = int(f.readline().rstrip())
 	except:
 		pass
+	print(str(len(ARTIST_ALBUMS)))
+	print(str(start_point))
 
+	# read in existing cached file
+	global ALBUM_TRACKS
 	if start_point != 0:
-		with open('./app/db/album_tracks_cache.pickle', 'rb') as read:
-			ARTIST_ALBUMS = list(pickle.load(read))
+		with open('./app/db/' + cache_file + '.pickle', 'rb') as read:
+			ALBUM_TRACKS = list(pickle.load(read))
 
 	t0 = time.time()
 	threads = []
+	# start iteration through list to fill tracks collection
 	for i in range(start_point, len(ARTIST_ALBUMS)):
 		# Maintain active thread limit
 		while threading.active_count() > 4:
@@ -216,13 +225,13 @@ def start_track_populate():
 				t.join()
 			threads = []
 			# save tracks list
-			with open('./app/db/album_tracks_cache.pickle', 'wb') as out:
+			with open('./app/db/' + cache_file + '.pickle', 'wb') as out:
 				pickle.dump(ALBUM_TRACKS, out)
-			with open('./app/db/album_tracks_cache.txt', 'w') as out:
-				pprint.pprint(ALBUM_TRACKS, stream=out)
-			with open('./app/db/track_progress.txt', 'w') as out:
+			# with open('./app/db/album_tracks_cache.txt', 'w') as out:
+			# 	pprint.pprint(ALBUM_TRACKS, stream=out)
+			with open('./app/db/' + track_progress, 'w') as out:
 				out.write(str(i))
-			print('---------------------Progress Saved---------------------')
+			print('---------------------Progress Saved: ' + str(i) + '---------------------')
 
 		# Start new thread for next album in list	
 		p = threading.Thread(target=album_track_process, args=(ARTIST_ALBUMS[i]['main_artist_id'], ARTIST_ALBUMS[i]['id'], ARTIST_ALBUMS[i]['main_artist'], ARTIST_ALBUMS[i]['name'], i))
@@ -237,9 +246,9 @@ def start_track_populate():
 	print(str(total_time))
 
 	# save tracks list
-	with open('./app/db/album_tracks_cache.pickle', 'wb') as out:
+	with open('./app/db/' + cache_file + '.pickle', 'wb') as out:
 		pickle.dump(ALBUM_TRACKS, out)
-	with open('./app/db/album_tracks_cache.txt', 'w') as out:
+	with open('./app/db/' + cache_file + '.txt', 'w') as out:
 		pprint.pprint(ALBUM_TRACKS, stream=out)
 
 
@@ -248,7 +257,7 @@ def album_track_process(artist_id, album_id, artist, album_name, album_list_numb
 	global ALBUM_TRACKS #access global album tracks list
 	global ARTIST_ALBUMS # access global artist albums list
 	album_duration = 0
-	print("Starting: " + '{0: <65}'.format(artist + " - " + album_name) + str(album_list_number))
+	print("Starting: " + '{0: <9}'.format(str(album_list_number)))
 	lock.acquire()
 	response = requests.get('https://api.spotify.com/v1/albums/' + album_id + '/tracks')
 	tracks = json.loads(response.text)
@@ -274,6 +283,7 @@ def album_track_process(artist_id, album_id, artist, album_name, album_list_numb
 								'track_number': track_info['track_number'], 
 								'name': track_info['name'], 
 								'duration': duration, 
+								'duration_ms': track_info['duration_ms'],
 								'preview': track_info['preview_url'], 
 								'explicit': track_info['explicit'], 
 								'direct_url': track_info['external_urls']['spotify'], 
@@ -281,9 +291,9 @@ def album_track_process(artist_id, album_id, artist, album_name, album_list_numb
 			lock.acquire()
 			ALBUM_TRACKS += [track_list_entry]
 			lock.release()
-		print("Completed: " + '{0: <75}'.format(artist['name'] + ' - '+ album_name) + str(album_list_number))
+		# print("Completed: " + '{0: <75}'.format(artist['name'] + ' - '+ album_name) + str(album_list_number))
 	except:
-		print('Restarting: ' + '{0: <65}'.format(artist['name'] + " - " + album_name) + str(album_list_number) + ': ' + str(response))
+		# print('Restarting: ' + '{0: <65}'.format(artist['name'] + " - " + album_name) + str(album_list_number) + ': ' + str(response))
 		album_track_process(artist_id, album_id, artist, album_name, album_list_number)
 	finally:
 		pass
