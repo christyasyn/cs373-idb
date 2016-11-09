@@ -197,6 +197,72 @@ def get_about():
 @app.route('/search/<string:search>', methods=['GET'])
 @app.route('/search', methods=['GET'])
 def return_search(search=None):
+	
+	# albums = Album.query.filter(func.lower(search) == func.lower(Album.name)).all()
+	# album_data = {}
+	# album_data['aaData'] = [album.to_list() for album in albums]
+	# album_data['columns'] = [
+	# 	{ "title": "ID" },
+	# 	{ "title": "Album"},
+	# 	{ "title": "Main Artist"},
+	# 	{ "title": "All Artists"}
+	# ]
+	# album_data["columnDefs"] = [{
+	# 	"targets": [0],
+	# 	"visible": FALSE,
+	# 	"searchable": FALSE
+	# }]
+	# album_data['scrollY'] = "500px"
+	# album_data['paging'] = "true"
+
+	# tracks = db.session.query(Track, Artist, Album).filter(func.lower(search) == func.lower(Track.name)).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	# tracks_data = []
+	# for entry in tracks:
+	# 	row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
+	# 	tracks_data.append(row)
+	# track_data = {}
+	# track_data['aaData'] = tracks_data
+	# track_data['columns'] = [
+	# 	{ "title": "ID"},
+	# 	{ "title": "Track" },
+ #        { "title": "Number" },
+ #        { "title": "Album" },
+ #        { "title": "Artist" },
+ #        { "title": "Duration" },
+ #        { "title": "Explicit" },
+ #        { "title": "Popularity" }
+	# ]
+	# track_data["columnDefs"] = [{
+	# "targets": [0],
+	# "visible": FALSE,
+	# "searchable": FALSE
+	# }]
+	# track_data['scrollY'] = "500px"
+	# track_data['paging'] = "true"
+
+	template_stuff = {
+		"artists": json.dumps(search_artist(search)),
+		"tracks": json.dumps(search_track(search)),
+		"albums": json.dumps(search_album(search))
+	}
+	#return render_template('test.html', test_output=search)
+	return render_template('search.html', **template_stuff)
+
+@app.route('/run_unittests')
+def run_tests():
+	import subprocess
+	from os import path
+	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
+	output = subprocess.Popen('. /var/www/cs373-idb/app/venv/bin/activate && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
+	print(output)
+	return render_template('test.html', test_output=str(output))
+
+
+#--------------
+# helpers
+#--------------
+
+def search_artist(search):
 	split_search = search.split()
 	artists = Artist.query.filter(func.lower(Artist.name).contains(search)).all()
 	artists_data = []
@@ -233,9 +299,29 @@ def return_search(search=None):
 	artist_data['scrollY'] = "500px"
 	artist_data['paging'] = "true"
 
-	albums = Album.query.filter(func.lower(search) == func.lower(Album.name)).all()
+	return artist_data
+
+def search_album(search):
+	search_split = search.split()
+	
+	albums = Album.query.filter(func.lower(Album.name).contains(search)).all()
+	albums_data = []
+	for albums in albums:
+		albums_data.append(album.to_list())
+
+	for partial in split_search:
+		albums = Album.query.filter(func.lower(Album.name).contains(partial)).all()
+		for album in albums:
+			found = False	
+			for item in album_data:
+				if item[0] == album.id:
+					found = True
+					break
+			if found == False:
+				albums_data.append(album.to_list())
+
 	album_data = {}
-	album_data['aaData'] = [album.to_list() for album in albums]
+	album_data['aaData'] = albums_data
 	album_data['columns'] = [
 		{ "title": "ID" },
 		{ "title": "Album"},
@@ -250,11 +336,28 @@ def return_search(search=None):
 	album_data['scrollY'] = "500px"
 	album_data['paging'] = "true"
 
-	tracks = db.session.query(Track, Artist, Album).filter(func.lower(search) == func.lower(Track.name)).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	return album_data
+
+def search_track(search):
+	search_split = search.split()
+	tracks = db.session.query(Track, Artist, Album).filter(func.lower(Track.name).contains(func.lower(search))).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
 	tracks_data = []
 	for entry in tracks:
 		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
 		tracks_data.append(row)
+
+	for partial in search_split:
+		tracks = db.session.query(Track, Artist, Album).filter(func.lower(Track.name).contains(func.lower(partial))).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+		for entry in tracks:
+			found = False	
+			for item in tracks_data:
+				if item[0] == track.id:
+					found = True
+					break
+			if found == False:
+				row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
+				tracks_data.append(row)
+		
 	track_data = {}
 	track_data['aaData'] = tracks_data
 	track_data['columns'] = [
@@ -275,22 +378,11 @@ def return_search(search=None):
 	track_data['scrollY'] = "500px"
 	track_data['paging'] = "true"
 
-	template_stuff = {
-		"artists": json.dumps(artist_data),
-		"tracks": json.dumps(track_data),
-		"albums": json.dumps(album_data)
-	}
-	#return render_template('test.html', test_output=search)
-	return render_template('search.html', **template_stuff)
+	return track_data
 
-@app.route('/run_unittests')
-def run_tests():
-	import subprocess
-	from os import path
-	p = path.join(path.dirname(path.realpath(__file__)), 'tests.py')
-	output = subprocess.Popen('. /var/www/cs373-idb/app/venv/bin/activate && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
-	print(output)
-	return render_template('test.html', test_output=str(output))
+
+
+
 
 
 #------------------
@@ -345,6 +437,6 @@ def not_found(error):
 	return make_response(jsonify({'error': 'Not Found'}), 404)
 
 if __name__ == "__main__":
-	prelist_test()
-	app.debug = True
+	# prelist_test()
+	# app.debug = True
 	app.run()
