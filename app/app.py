@@ -263,9 +263,9 @@ def return_search(search=None):
 	track_data['paging'] = "true"
 
 	template_stuff = {
-		"artists": artist_data,
-		"tracks": track_data,
-		"albums": album_data
+		"artists": json.dumps(artist_data),
+		"tracks": json.dumps(track_data),
+		"albums": json.dumps(album_data)
 	}
 	#return render_template('test.html', test_output=search)
 	return render_template('search.html', **template_stuff)
