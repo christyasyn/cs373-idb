@@ -15,18 +15,14 @@ db.session.commit()
 
 start_time = time.time()
 
-with open(os.path.join(base, 'artist_ids_cache.pickle'), 'rb') as artist_file:
-        artist_pickle = pickle.load(artist_file)
-        print('artist pickle loaded, good job guys!')
 
-with open(os.path.join(base, 'artist_albums_cache.pickle'), 'rb') as album_file:
-        album_pickle = pickle.load(album_file)
-        print('album pickle loaded, good job guys!')
         
-with open(os.path.join(base, 'album_tracks_cache.pickle'), 'rb') as tracks_file:
-        tracks_pickle = pickle.load(tracks_file)
-        print('tracks pickle loaded, good job guys!')
-def load_artists():
+# insert artist rows into table. 
+# @param cach_file: the cached file containing the row data for each artist
+def load_artists(cache_file):
+        with open(os.path.join(base, cache_file), 'rb') as artist_file:
+            artist_pickle = pickle.load(artist_file)
+            print('artist pickle loaded, good job guys!')
         for a in artist_pickle:
                 idd = a['id']
                 name = a['name']
@@ -45,7 +41,14 @@ def load_artists():
                 db.session.add(artist)
                 db.session.commit()
         print ('Artists committed')
-def load_albums():
+
+# insert album rows into table.
+# @param cache_file: cached file containing the row data for each album
+
+def load_albums(cache_file):
+        with open(os.path.join(base, cache_file), 'rb') as album_file:
+                album_pickle = pickle.load(album_file)
+                print('album pickle loaded, good job guys!')
         for a in album_pickle:
                 idd = a['id']
                 name = a['name']
@@ -73,6 +76,9 @@ def load_albums():
         print ('Albums committed')         
 
 def load_tracks():
+        with open(os.path.join(base, 'album_tracks_cache.pickle'), 'rb') as tracks_file:
+                tracks_pickle = pickle.load(tracks_file)
+                print('tracks pickle loaded, good job guys!')
         for t in tracks_pickle:
                 idd = t['track_id']
                 name = t['name']

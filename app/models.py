@@ -63,22 +63,32 @@ class Album(db.Model):
     id = db.Column(db.String(22), primary_key=True)
     name = db.Column(db.String)
     url = db.Column(db.String)
-    main_artists = db.Column(db.String)
-    main_artists_id = db.Column(db.String(22))
+    main_artist = db.Column(db.String)
+    main_artist_id = db.Column(db.String(22))
     all_artists = db.Column(db.String)
     type = db.Column(db.String)
     image_url = db.Column(db.String)
+    duration = db.Column(db.String)
+    release_date = db.Column(db.String)
+    record_label = db.Column(db.String)
+    popularity = db.Column(db.Integer)
+    number_of_tracks = db.Column(db.Integer)
 
     def to_json(self): 
         json_albums = {
             'id' : self.id,
             'name' : self.name,
             'url' : self.url,
-            'main_artist' : self.main_artists,
-            'main_artist_id' : self.main_artists_id,
+            'main_artist' : self.main_artist,
+            'main_artist_id' : self.main_artist_id,
             'all_artists' : self.all_artists,
             'type' : self.type,
-            'image_url' : self.image_url
+            'image_url' : self.image_url,
+            'duration' : self.duration,
+            'release_date' : self.release_date,
+            'record_label' : self.recodr_label,
+            'popularity' : self.popularity,
+            'number_of_tracks' : self.number_of_tracks
         }
         return json_albums
 
@@ -113,6 +123,7 @@ class Track(db.Model):
     track_no = db.Column(db.Integer)
     album_id = db.Column(db.String)
     duration = db.Column(db.String)
+    duration_ms = db.Column(db.Integer)
     explicit = db.Column(db.Boolean)
     popularity = db.Column(db.Integer)
     preview_url = db.Column(db.String)
@@ -127,6 +138,7 @@ class Track(db.Model):
             'track_no' : self.track_no,
             'album_id' : self.album_id,
             'duration' : self.duration,
+            'duration_ms' : self.duration_ms
             'explicit' : self.explicit,
             'popularity' : self.popularity,
             'preview_url' : self.preview_url,
