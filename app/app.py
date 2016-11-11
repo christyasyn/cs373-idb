@@ -43,11 +43,13 @@ def get_artists():
 	data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
-		data.append([artist.id, artist.name, genres, str(artist.followers), str(artist.popularity)])
+                image_str = "<img src=\"" + artists.image_url + "\" style=\"width:25px;height:25px;\">"
+                data.append([artist.id, image_str, artist.name, genres, str(artist.followers), str(artist.popularity)])
 	artist_data = {}
 	artist_data["aaData"] = data
 	artist_data["columns"] = [
 		{ "title": "ID"},
+                { "title": "image"},
 		{ "title": "Artist" },
 		{ "title": "Genre" } ,
 		{ "title": "Followers" },
@@ -102,8 +104,12 @@ def get_albums():
 		{ "title": "ID" },
 		{ "title": "Album"},
 		{ "title": "Main Artist"},
-		{ "title": "All Artists"}
-	]
+		{ "title": "All Artists"},
+                { "title": "Relase Date"},
+                { "title": "Record Label"},
+                { "title": "No. of Tracks"},
+                { "title": "Popularity"}
+                ]
 	album_data["columnDefs"] = [{
 		"targets": [0],
 		"visible": FALSE,
