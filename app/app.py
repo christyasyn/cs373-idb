@@ -43,13 +43,13 @@ def get_artists():
 	data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
-                image_str = "<img src=\"" + artists.image_url + "\" style=\"width:25px;height:25px;\">"
-                data.append([artist.id, image_str, artist.name, genres, str(artist.followers), str(artist.popularity)])
+		image_str = "<img src=\"" + artists.image_url + "\" style=\"width:25px;height:25px;\">"
+		data.append([artist.id, image_str, artist.name, genres, str(artist.followers), str(artist.popularity)])
 	artist_data = {}
 	artist_data["aaData"] = data
 	artist_data["columns"] = [
 		{ "title": "ID"},
-                { "title": "image"},
+		{ "title": "image"},
 		{ "title": "Artist" },
 		{ "title": "Genre" } ,
 		{ "title": "Followers" },
@@ -78,12 +78,12 @@ def get_tracks():
 	track_data['columns'] = [
 		{ "title": "ID"},
 		{ "title": "Track" },
-        { "title": "Number" },
-        { "title": "Album" },
-        { "title": "Artist" },
-        { "title": "Duration" },
-        { "title": "Explicit" },
-        { "title": "Popularity" }
+		{ "title": "Number" },
+		{ "title": "Album" },
+		{ "title": "Artist" },
+		{ "title": "Duration" },
+		{ "title": "Explicit" },
+		{ "title": "Popularity" }
 	]
 	track_data["columnDefs"] = [{
 	"targets": [0],
@@ -105,11 +105,11 @@ def get_albums():
 		{ "title": "Album"},
 		{ "title": "Main Artist"},
 		{ "title": "All Artists"},
-                { "title": "Relase Date"},
-                { "title": "Record Label"},
-                { "title": "No. of Tracks"},
-                { "title": "Popularity"}
-                ]
+		{ "title": "Relase Date"},
+		{ "title": "Record Label"},
+		{ "title": "No. of Tracks"},
+		{ "title": "Popularity"}
+		]
 	album_data["columnDefs"] = [{
 		"targets": [0],
 		"visible": FALSE,
@@ -203,55 +203,13 @@ def get_about():
 @app.route('/search/<string:search>', methods=['GET'])
 @app.route('/search', methods=['GET'])
 def return_search(search=None):
-	
-	# albums = Album.query.filter(func.lower(search) == func.lower(Album.name)).all()
-	# album_data = {}
-	# album_data['aaData'] = [album.to_list() for album in albums]
-	# album_data['columns'] = [
-	# 	{ "title": "ID" },
-	# 	{ "title": "Album"},
-	# 	{ "title": "Main Artist"},
-	# 	{ "title": "All Artists"}
-	# ]
-	# album_data["columnDefs"] = [{
-	# 	"targets": [0],
-	# 	"visible": FALSE,
-	# 	"searchable": FALSE
-	# }]
-	# album_data['scrollY'] = "500px"
-	# album_data['paging'] = "true"
-
-	# tracks = db.session.query(Track, Artist, Album).filter(func.lower(search) == func.lower(Track.name)).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
-	# tracks_data = []
-	# for entry in tracks:
-	# 	row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
-	# 	tracks_data.append(row)
-	# track_data = {}
-	# track_data['aaData'] = tracks_data
-	# track_data['columns'] = [
-	# 	{ "title": "ID"},
-	# 	{ "title": "Track" },
- #        { "title": "Number" },
- #        { "title": "Album" },
- #        { "title": "Artist" },
- #        { "title": "Duration" },
- #        { "title": "Explicit" },
- #        { "title": "Popularity" }
-	# ]
-	# track_data["columnDefs"] = [{
-	# "targets": [0],
-	# "visible": FALSE,
-	# "searchable": FALSE
-	# }]
-	# track_data['scrollY'] = "500px"
-	# track_data['paging'] = "true"
 
 	template_stuff = {
 		"artists": json.dumps(search_artist(search)),
 		"tracks": json.dumps(search_track(search)),
 		"albums": json.dumps(search_album(search))
 	}
-	#return render_template('test.html', test_output=search)
+
 	return render_template('search.html', **template_stuff)
 
 @app.route('/run_unittests')
@@ -385,11 +343,6 @@ def search_track(search):
 	track_data['paging'] = "true"
 
 	return track_data
-
-
-
-
-
 
 #------------------
 # RESTful API stuff
