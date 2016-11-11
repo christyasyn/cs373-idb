@@ -8,7 +8,7 @@ import pickle
 import time
 import requests
 
-base = './db'
+base = '../../db/'
 
 # clear pending commits
 db.session.commit()

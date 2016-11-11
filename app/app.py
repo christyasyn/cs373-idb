@@ -135,14 +135,14 @@ def single_artist(id):
 	}]
 	album_data['scrollY'] = "500px"
 	album_data['paging'] = "true"
+	image_str = ""
+	if artist.image_url == "":
+		image_str = "https://byteturtle.eu/player/assets/img/default.png"
+	else:
+		image_str = artist.image_url
 	for album in albums:
 		album_data["aaData"].append([album.id,album.name, "add later", "add later"])
 
-		image_str = ""
-		if artist.image_url == "":
-			image_str = "https://byteturtle.eu/player/assets/img/default.png"
-		else:
-			image_str = artist.image_url
 	template_stuff = {
 		"artist_img": image_str,
 		"artist_genres": artist.genres[1:-1].replace("\"",""),
