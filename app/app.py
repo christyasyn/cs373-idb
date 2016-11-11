@@ -43,7 +43,10 @@ def get_artists():
 	data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
-		image_str = "<img src=\"" + artists.image_url + "\" style=\"width:25px;height:25px;\">"
+                if artist.image_url not "":
+                        image_str = "<img src=\"" + artist.image_url + "\" style=\"width:50px;height:50px;\">"
+                else
+                        image_str = "<img src=\"https://byteturtle.edu/player\" style=\"width:50px;height:50px;\">"
 		data.append([artist.id, image_str, artist.name, genres, str(artist.followers), str(artist.popularity)])
 	artist_data = {}
 	artist_data["aaData"] = data
