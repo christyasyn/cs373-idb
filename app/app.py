@@ -43,10 +43,10 @@ def get_artists():
 	data = []
 	for artist in artists:
 		genres = artist.genres.replace('{', '').replace('}', '').replace('\"', '')
-		if artist.image_url not "":
+		if artist.image_url != "":
 			image_str = "<img src=\"" + artist.image_url + "\" style=\"width:50px;height:50px;\">"
-		else
-			image_str = "<img src=\"https://byteturtle.edu/player\" style=\"width:50px;height:50px;\">"
+		else:
+			image_str = "<img src=\"https://byteturtle.eu/player/assets/img/default.png\" style=\"width:50px;height:50px;\">"
 		data.append([artist.id, image_str, artist.name, genres, str(artist.followers), str(artist.popularity)])
 	artist_data = {}
 	artist_data["aaData"] = data
@@ -126,7 +126,7 @@ def get_albums():
 def single_artist(id):
 	artist = Artist.query.filter_by(id=id).first()
 
-	albums = Album.query.filter(Album.main_artists_id==id).all()
+	albums = Album.query.filter(Album.main_artist_id==id).all()
 	album_data = {"aaData": [], "columns":[{"title": "ID"},{"title": "Album"}, {"title": "Tracks"}, {"title": "Duration"}]}
 	album_data["columnDefs"] = [{
 		"targets": [0],
@@ -138,9 +138,14 @@ def single_artist(id):
 	for album in albums:
 		album_data["aaData"].append([album.id,album.name, "add later", "add later"])
 
+        image_str = ""
+        if artist.image_url == "":
+                image_str = "https://byteturtle.eu/player/assets/img/default.png"
+        else:
+                image_str = artist.image_url
 	template_stuff = {
-		"artist_img": artist.image_url,
-		"artist_genres": artist.genres,
+		"artist_img": image_str,
+		"artist_genres": artist.genres[1:-1].replace("\"",""),
 		"artist_followers": artist.followers,
 		"artist_popularity": artist.popularity,
 		"artist_name": artist.name,
@@ -190,8 +195,8 @@ def single_album(id):
 	template_stuff = {
 		"album_img": album.image_url,
 		"album_name": album.name,
-		"artist_name": album.main_artists,
-		"artist_id": album.main_artists_id,
+		"artist_name": album.main_artist,
+		"artist_id": album.main_artist_id,
 		"additional_artists": album.get_all_artists,
 		"number_of_tracks": "add later",
 		"tracks": json.dumps(track_data)
