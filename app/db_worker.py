@@ -67,8 +67,13 @@ def load_albums(cache_file):
                 for k,v in all_artists.items():
                         artist_list.append (v)       
                 album_type = a['type']
+                duration = a['duration']
+                release_date = a['release_date']
+                record_label = a['record_label']
+                popularity = a['popularity']
+                number_of_tracks = a['number_of_tracks']
 
-                album = Album(id=idd, name=name, url=link, main_artists=main_artist, main_artists_id=main_artist_id, all_artists=artist_list, type=album_type, image_url=image) 
+                album = Album(id=idd, name=name, url=link, main_artists=main_artist, main_artists_id=main_artist_id, all_artists=artist_list, type=album_type, image_url=image, duration=duration, release_date=release_date, record_label=record_label, popularity=popularity, number_of_tracks=number_of_tracks) 
                 r = Album.query.get(idd)
                 if not r:
                         db.session.add(album)
@@ -97,7 +102,8 @@ def load_tracks():
                 preview = t['preview']
                 track_number = t['track_number']
                 album_id = t['album_id']
-                track = Track(id=idd, name=name, direct_url=link, main_artist_id=main_artist_id, all_artists=artist_list, duration=duration, explicit=explicit, popularity=popularity, preview_url=preview, track_no=track_number, album_id=album_id )
+                duration_ms = t['duration_ms']
+                track = Track(id=idd, name=name, direct_url=link, main_artist_id=main_artist_id, all_artists=artist_list, duration=duration, explicit=explicit, popularity=popularity, preview_url=preview, track_no=track_number, album_id=album_id, duartion_ms=duraiton_ms)
                 r = Track.query.get(idd)
                 if not r:
                         db.session.add(track)
