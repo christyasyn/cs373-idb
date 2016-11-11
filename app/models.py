@@ -100,7 +100,8 @@ class Album(db.Model):
             if Artist.query.filter_by(id=id).first() != None:
                 all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
         all_artists_names = all_artists_names[0:-2]
-        return [self.id, self.name, self.main_artists, all_artists_names]
+        return [self.id, self.name, self.main_artist, all_artists_names, self.release_date, self.record_label, self.number_of_tracks, self.popularity]
+    
     def get_all_artists(self):
         all_artists_names = ''
         for id in artist_list:
@@ -138,7 +139,7 @@ class Track(db.Model):
             'track_no' : self.track_no,
             'album_id' : self.album_id,
             'duration' : self.duration,
-            'duration_ms' : self.duration_ms
+            'duration_ms' : self.duration_ms,
             'explicit' : self.explicit,
             'popularity' : self.popularity,
             'preview_url' : self.preview_url,
