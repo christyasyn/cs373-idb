@@ -11,21 +11,17 @@
 }
 
 
-.recipe h3{
+.recipe h3 {
 	font-size: 15px;
 }
 
-.recipe-container{
+.recipe-container {
 	width: 360px;
 	margin-top: 15px;
 	margin-right: 20px;
 	display: inline-block;
 }
 
-.drop
-{
-	font-size: 15px;
-}
 
 .box {
 	border: 1px solid white;
@@ -37,4 +33,17 @@
 	position: relative;
 	top: 20px;
 }
+
+
+.details {
+	font-size: 20px;
+	position: relative;
+	padding-left: 50%;
+}
+
+.details h3 {
+	font-size: 30px;
+	padding-right: 40%;
+}
+
 

@@ -79,49 +79,45 @@
 
  
     <div class="recipe">
-
       <!-- TITLE -->
       <h2>
         Recipe Roulette
       </h2>
       <!-- TITLE -->
-
       <div class="container">
         <div class="row">
 
           <!-- NEEDS JS TO DYNAMICALLY PULL UP LIST? -->
           <!-- DROP DOWN -->
-          <div class="recipe-container">
-          <div class="drop">      
-            <h5>Cuisine
+          <div class="recipe-container">   
+            Cuisine
               <select>
                 <option value="0" selected="selected">Select a cuisine</option>
-                <option value="1">African</option>
-                <option value="2">American</option>
-                <option value="3">British</option>
-                <option value="4">Cajun</option>
-                <option value="5">Caribbean</option>
-                <option value="6">Chinese</option>
-                <option value="7">Eastern European</option>
-                <option value="8">French</option>
-                <option value="9">German</option>
-                <option value="10">Greek</option>
-                <option value="11">Indian</option>
-                <option value="12">Irish</option>
-                <option value="13">Italian</option>
-                <option value="14">Japanese</option>
-                <option value="15">Jewish</option>
-                <option value="16">Korean</option>
-                <option value="17">Latin American</option>
-                <option value="18">Mexican</option>
-                <option value="19">Middle Eastern</option>
-                <option value="20">Nordic</option>
-                <option value="21">Southern</option>
-                <option value="22">Spanish</option>
-                <option value="23">Thai</option>
-                <option value="24">Vietnamese</option>                           
+                  <option value="1">African</option>
+                  <option value="2">American</option>
+                  <option value="3">British</option>
+                  <option value="4">Cajun</option>
+                  <option value="5">Caribbean</option>
+                  <option value="6">Chinese</option>
+                  <option value="7">Eastern European</option>
+                  <option value="8">French</option>
+                  <option value="9">German</option>
+                  <option value="10">Greek</option>
+                  <option value="11">Indian</option>
+                  <option value="12">Irish</option>
+                  <option value="13">Italian</option>
+                  <option value="14">Japanese</option>
+                  <option value="15">Jewish</option>
+                  <option value="16">Korean</option>
+                  <option value="17">Latin American</option>
+                  <option value="18">Mexican</option>
+                  <option value="19">Middle Eastern</option>
+                  <option value="20">Nordic</option>
+                  <option value="21">Southern</option>
+                  <option value="22">Spanish</option>
+                  <option value="23">Thai</option>
+                  <option value="24">Vietnamese</option>                           
               </select>
-            </div>
           </div>
           <!-- DROP DOWN -->
 
@@ -139,7 +135,6 @@
           </div>
             <!-- DROP DOWN -->
 
-
           <!-- BUTTON -->
           <div class ="recipe-container">
             <h3>
@@ -149,14 +144,41 @@
             </h3>
           </div>
           <!-- BUTTON -->
-
         </div>
       </div>
     </div>
 
+    <div class="details">
+      <h3>{{title | safe}}</h3>       
 
-    <div class="recipe">
+      <table style="width:25%">  
+      <tr>
+        <th>Cuisine</th>        
+        <th>{{cuisine_id | safe }}</th>
+      </tr>      
+      <tr>
+        <th>Ready In:</th>        
+        <th>{{readyInMinutes | safe }}</th>
+      </tr>      
+      <tr>
+        <th>Calories:</th>        
+        <th>{{calories | safe }}</th>
+      </tr>      
+      <tr>
+        <th>Servings:</th>        
+        <th>{{servings | safe }}</th>
+      </tr>      
+      <tr>
+        <th>Ingredients: </th>        
+        <th>{{recipe_ingredients | safe }}</th>
+      </tr>      
+      <tr>
+        <th>Steps:</th>        
+        <th>{{steps | safe }}</th>
+      </tr>
     </div>
+  </div>
+
     <script type="text/javascipt" charset="utf-8">
       $(document).ready(funciton(){
 
