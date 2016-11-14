@@ -1,5 +1,7 @@
-import requests
+#import requests
 import random
+import urllib3
+import json
 
 EASY_STEPS = 4
 HARD_STEPS = 8
@@ -32,12 +34,14 @@ cuisines = {1:"African",
 
 def get_cuisine_recipes(cuisine,difficulty):
 	cuisines_url = "http://boilerpl8.me/api/cuisines"
-	cr = requests.get(cuisines_url)
-	cx = cr.json()
+	#cr = requests.get(cuisines_url)
+	http = urllib3.PoolManager()
+	cr = http.request('GET', cuisines_url)
+	cx = json.loads(cr.data.decode('utf-8'))
 	cl = cx['cuisines']
 	recipes_url = "http://boilerpl8.me/api/recipes/"
-	rr = requests.get(recipes_url)
-	rx = rr.json()
+	rr = http.request('GET', recipes_url)
+	rx = json.loads(rr.data.decode('utf-8'))
 	rl = rx['recipes']
 	if cuisine != 0:
 		id = 1
@@ -67,7 +71,7 @@ def get_cuisine_recipes(cuisine,difficulty):
 		else:
 			final_result.append(item)
 
-	return (random.choice(final_result))
+	print (random.choice(final_result))
 
 
 
