@@ -7,6 +7,8 @@ from sqlalchemy import func
 import json
 import pickle
 import sys
+import urllib, json
+import boilerplate
 #-----------
 # view pages
 #-----------
@@ -229,6 +231,11 @@ def run_tests():
 	print(output)
 	return render_template('test.html', test_output=str(output))
 
+@app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
+def boilerplate_api(cuisine,difficulty):
+	output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
+	return render_template('test.html', test_output=jsonify(output))
+
 
 #--------------
 # helpers
@@ -406,4 +413,5 @@ def not_found(error):
 if __name__ == "__main__":
 	# prelist_test()
 	# app.debug = True
+	#get_cuisine("")
 	app.run()
