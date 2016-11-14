@@ -7,6 +7,8 @@ from sqlalchemy import func
 import json
 import pickle
 import sys
+import urllib, json
+import boilerplate
 #-----------
 # view pages
 #-----------
@@ -71,7 +73,7 @@ def get_artists():
 @cache.cached(timeout=300)
 def get_tracks():
 #	tracks = Track.query.all()
-	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.popularity>50).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
 	data = []
 	for entry in tracks:
 		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
@@ -100,7 +102,7 @@ def get_tracks():
 @app.route('/albums', methods=['GET'])
 @cache.cached(timeout=300)
 def get_albums():
-	albums = Album.query.all()
+	albums = Album.query.filter(Album.popularity>50).all()
 	album_data = {}
 	album_data['aaData'] = [album.to_list() for album in albums]
 	album_data['columns'] = [
@@ -228,6 +230,11 @@ def run_tests():
 	output = subprocess.Popen('. /var/www/cs373-idb/app/venv/bin/activate && python3 ' + p, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True).communicate()
 	print(output)
 	return render_template('test.html', test_output=str(output))
+
+@app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
+def boilerplate_api(cuisine,difficulty):
+	output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
+	return render_template('test.html', test_output=jsonify(output))
 
 
 #--------------
@@ -406,4 +413,5 @@ def not_found(error):
 if __name__ == "__main__":
 	# prelist_test()
 	# app.debug = True
+	#get_cuisine("")
 	app.run()
