@@ -27,7 +27,7 @@ cuisines = {1:"African",
 			21:"Southern",
 			22:"Spanish",
 			23:"Thai",
-			24:""
+			24:"Vietnamese"
 			}
 
 def get_cuisine_recipes(cuisine,difficulty):
@@ -67,7 +67,7 @@ def get_cuisine_recipes(cuisine,difficulty):
 		else:
 			final_result.append(item)
 
-	print (random.choice(final_result))
+	return (random.choice(final_result))
 
 
 
