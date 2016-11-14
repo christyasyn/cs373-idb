@@ -1,0 +1,40 @@
+/* ABOUTME TITLE
+-------------------------------------------------- */
+
+/* Center align the text below the navbar */
+
+.recipe h2 {
+	font-weight: bold;
+	font-size: 90px;
+	text-align: center;
+	position: relative;
+}
+
+
+.recipe h3{
+	font-size: 15px;
+}
+
+.recipe-container{
+	width: 360px;
+	margin-top: 15px;
+	margin-right: 20px;
+	display: inline-block;
+}
+
+.drop
+{
+	font-size: 15px;
+}
+
+.box {
+	border: 1px solid white;
+}
+
+.dropdown .col-lg-4 {
+	margin-bottom: 18px;
+	text-align: center;
+	position: relative;
+	top: 20px;
+}
+
