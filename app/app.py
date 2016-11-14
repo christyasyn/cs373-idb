@@ -4,11 +4,13 @@ from loader import app, db, cache
 from flask import send_file, jsonify, render_template, make_response
 #from sqlalchemy_searchable import parse_search_query, search
 from sqlalchemy import func
-import json
 import pickle
 import sys
-import urllib, json
-import boilerplate
+import urllib
+import json
+#import boilerplate
+
+
 #-----------
 # view pages
 #-----------
@@ -233,8 +235,15 @@ def run_tests():
 
 @app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
 def boilerplate_api(cuisine,difficulty):
-	output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
-	return render_template('test.html', test_output=jsonify(output))
+	# output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
+        cuisines_url = "http://boilerpl8.me/api/cuisines"
+        cr = urllib.urlopen(cuisines_url)
+        #cr = http.request('GET', cuisines_url)
+        cx = json.load(cr.read()))
+        cl = cx['cuisines']
+        output = jsonify(cl)
+        return render_template('test.html', test_output=output)
+
 
 
 #--------------
