@@ -71,7 +71,7 @@ def get_artists():
 @cache.cached(timeout=300)
 def get_tracks():
 #	tracks = Track.query.all()
-	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.popularity>50).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
 	data = []
 	for entry in tracks:
 		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
@@ -100,7 +100,7 @@ def get_tracks():
 @app.route('/albums', methods=['GET'])
 @cache.cached(timeout=300)
 def get_albums():
-	albums = Album.query.all()
+	albums = Album.query.filter(Album.popularity>50).all()
 	album_data = {}
 	album_data['aaData'] = [album.to_list() for album in albums]
 	album_data['columns'] = [

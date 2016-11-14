@@ -16,8 +16,8 @@ class AppDBTestCases(unittest.TestCase):
 		artist = Artist.query.filter_by(id='3TVXtAsR1Inumwj472S9r4').first()
 		self.assertEqual(artist.name,"Drake")
 	def test_album_select_1(self):
-		album = Album.query.filter_by(id='2eSzVxzsdcAJal6U6WqTVB').first()
-		self.assertEqual(album.name,"Closer (Jauz Remix)")
+		album = Album.query.filter_by(id='5iCP6JeHtNV66LnfCKoFF1').first()
+		self.assertEqual(album.name,"Jason Derulo Special Edition EP")
 	def test_track_select_1(self):
 		track = Track.query.filter_by(id='2rizacJSyD9S1IQUxUxnsK').first()
 		self.assertEqual(track.name,"All We Know")
@@ -26,8 +26,8 @@ class AppDBTestCases(unittest.TestCase):
 		artist = Artist.query.filter_by(name='Drake').first()
 		self.assertEqual(artist.id,"3TVXtAsR1Inumwj472S9r4")
 	def test_album_select_2(self):
-		album = Album.query.filter_by(name='Closer (Jauz Remix)').first()
-		self.assertEqual(album.id,"2eSzVxzsdcAJal6U6WqTVB")
+		album = Album.query.filter_by(name='Y.U. MAD').first()
+		self.assertEqual(album.id,"1wHsOxEWMUAEsAHk9Q3Yz7")
 	def test_track_select_2(self):
 		track = Track.query.filter_by(name='All We Know').first()
 		self.assertEqual(track.id,"2rizacJSyD9S1IQUxUxnsK")
@@ -60,7 +60,7 @@ class AppDBTestCases(unittest.TestCase):
 			self.assertEqual(a, None)
 
 	def test_album_insert_1(self):
-		album = Album(id='1',name='bob', url='url', main_artists='main_artist', main_artists_id='artist id', all_artists='all artists', type='type', image_url='image url')
+		album = Album(id='1',name='bob', url='url', main_artist='main_artist', main_artist_id='artist id', all_artists='all artists', type='type', image_url='image url', release_date=None, popularity=50, record_label='Columbia', duration='2', number_of_tracks='1')
 		db.session.add(album)
 		db.session.commit()
 		album = Album.query.filter_by(id='1').first()
@@ -108,7 +108,7 @@ class AppDBTestCases(unittest.TestCase):
 		self.assertEqual(a, None)
 
 	def test_album_insert_2(self):
-		album = Album(id='2',name='bob', url='url', main_artists='main_artist', main_artists_id='artist id', all_artists='all artists', type='type', image_url='image url')
+		album = Album(id='2',name='bob', url='url', main_artist='main_artist', main_artist_id='artist id', all_artists='all artists', type='type', image_url='image url')
 		db.session.add(album)
 		db.session.commit()
 		album = Album.query.filter_by(id='2').first()
@@ -138,6 +138,26 @@ class AppDBTestCases(unittest.TestCase):
 		db.session.commit()
 		a = Track.query.filter_by(id = "2").first()
 		self.assertEqual(a, None)
+
+
+
+{'all_artists': {'35sCXuy5gN6Or69rZ9vqBs': 'Birdman'},
+   'duration': 0,
+   'id': '4lUrEQxpiG2epegCry4HV8',
+   'image': {'height': 640,
+                         'url': 'https://i.scdn.co/image/28722dc6873c39ae4e754fa2b5a4000842a5cd4e',
+                         'width': 640},
+   'link': 'https://open.spotify.com/album/4lUrEQxpiG2epegCry4HV8',
+   'main_artist': 'Nicki Minaj',
+   'main_artist_id': '0hCNtLu0JehylgoiP8L4Gh',
+   'name': 'Y.U. MAD',
+   'number_of_tracks': 1,
+   'popularity': 14,
+   'record_label': 'Cash Money',
+   'release_date': '2011-09-27',
+   'type': 'album'},
+
+
 
 
 
