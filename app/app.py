@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
 from loader import app, db, cache
@@ -6,7 +9,7 @@ from flask import send_file, jsonify, render_template, make_response
 from sqlalchemy import func
 import pickle
 import sys
-import urllib
+#from urllib.request import urlopen
 import json
 #import boilerplate
 
@@ -233,13 +236,13 @@ def run_tests():
 	print(output)
 	return render_template('test.html', test_output=str(output))
 
-@app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
+#@app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
 def boilerplate_api(cuisine,difficulty):
 	# output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
         cuisines_url = "http://boilerpl8.me/api/cuisines"
-        cr = urllib.urlopen(cuisines_url)
+        cr = urllib.request.urlopen(cuisines_url)
         #cr = http.request('GET', cuisines_url)
-        cx = json.load(cr.read()))
+        cx = json.load(cr.read())
         cl = cx['cuisines']
         output = jsonify(cl)
         return render_template('test.html', test_output=output)
