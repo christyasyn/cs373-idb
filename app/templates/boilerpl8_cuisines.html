@@ -193,7 +193,7 @@
         $.getJSON($SCRIPT_ROOT + "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value, function(data){
 
 	    $("#title").text(data.title);
-	    $("#cuisine_id").text(data.cuisne_id+"%");
+	    $("#cuisine_id").text(data.cuisine_id);
 	    $("#readyInMinutes").text(data.readyInMinutes+"%");
 	    $("#calories").text(data.calories);
 	    $("#servings").text(data.servings);
