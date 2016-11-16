@@ -153,7 +153,7 @@
       <table>  
       <tr>
         <td>Cuisine</td>
-        <td "cuisine+id">{{cuisine_id | safe }}</td>
+        <td id="cuisine_id">{{cuisine_id | safe }}</td>
       </tr>      
       <tr>
         <td>Ready In</td>
@@ -198,8 +198,7 @@
 	    $("#calories").text(data.calories);
 	    $("#servings").text(data.servings);
             $("#steps").text(data.steps);
-            alert("Image: " + data.imageURL);
-  	    $("#image_id").src( "\x22" + data.imageURL  + "\x22");
+  	    $("#image_id").attr('src', data.imageURL).css({'width' : '400px' , 'height' : '400px'});
         });
       }
     </script>
