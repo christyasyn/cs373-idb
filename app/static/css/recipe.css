@@ -1,20 +1,19 @@
 /* ABOUTME TITLE
 -------------------------------------------------- */
 
-/* Center align the text below the navbar */
-body{
-	background-image: url("../images/kitchen.jpg");
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-
+html,body {
+    background: url(../images/kitchen.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
 }
-
 .recipe h2 {
 	font-weight: bold;
 	font-size: 90px;
 	text-align: center;
 	position: relative;
+	text-shadow: 2px 2px #0d1828;
 }
 
 
@@ -51,12 +50,9 @@ body{
 }
 
 .details table {
-	font-size: 20px;
 	width: 60%; 
 	text-align: center; 
-	font-size: 20px;
-	background: white;
-	color: black;
+	font-size: 15px;
 }
 
 .image {
