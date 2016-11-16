@@ -168,9 +168,8 @@ def single_track(id):
 
 	artist_name = Artist.query.filter_by(id=track.main_artist_id).first()
 
-	album_name = Album.query.filter_by(id=track.album_id).first()
+	album_object = Album.query.filter_by(id=track.album_id).first()
 
-	album_img = Album.query.filter_by(track.album_id=album_name.id).first()
 
 	template_stuff = {
 		"track_name": track.name,
@@ -180,9 +179,9 @@ def single_track(id):
 		"track_popularity": track.popularity,
 		"artist_id": artist_name.id,
 		"artist_name": artist_name.name,
-		"album_id": album_name.id,
-		"album_name": album_name.name,
-		"album_img": album_img.image_url
+		"album_id": album_object.id,
+		"album_name": album_object.name,
+		"album_img": album_object.image_url
 	}
 
 	return render_template('track.html', **template_stuff)

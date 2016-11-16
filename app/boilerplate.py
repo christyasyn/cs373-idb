@@ -35,19 +35,11 @@ cuisines = {            1:"African",
 
 def get_cuisine_recipes(cuisine,difficulty):
     cuisines_url = "http://boilerpl8.me/api/cuisines"
-    #cr = requests.get(cuisines_url)
     http = urllib3.PoolManager()
     cr = http.request('GET',cuisines_url)
     cx = json.loads(cr.data.decode('utf-8'))
     cl = cx['cuisines']
-    #cr = urllib.request.urlopen(cuisines_url)
-    #cr = http.request('GET', cuisines_url)
-    #cx = json.load(cr.data)
-    
-    # cl = cx['cuisines']
     recipes_url = "http://boilerpl8.me/api/recipes/"
-    # rr = urllib.request.urlopen(recipes_url)
-    # rx = json.load(rr.data)
     rr = http.request('GET', recipes_url)
     rx = json.loads(rr.data.decode('utf-8'))
     rl = rx['recipes']

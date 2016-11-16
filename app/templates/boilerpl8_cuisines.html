@@ -146,7 +146,7 @@
       </div>
     </div>
     <div class="image">
-      <img id="image_id" src={{ imageURL |safe }}></img>
+      <img id="image_id" src="{{ imageURL |safe }}"></img>
     </div>
     <div class="details">
       <h3 id="title">{{title | safe}}</h3>       
@@ -191,13 +191,15 @@
         var difficulty = document.getElementById("difficulty");
         $SCRIPT_ROOT =  {{ request.script_root|tojson|safe }};
         $.getJSON($SCRIPT_ROOT + "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value, function(data){
-	        $("#title").text(data.title);
-	        $("#cuisine_id").text(data.cuisne_id+"%");
-	        $("#readyInMinutes").text(data.readyInMinutes+"%");
-	        $("#calories").text(data.calories);
-	        $("#servings").text(data.servings);
-          $("#image_id").src(data.imageURL);
-          $("#steps").text(data.steps);
+
+	    $("#title").text(data.title);
+	    $("#cuisine_id").text(data.cuisne_id+"%");
+	    $("#readyInMinutes").text(data.readyInMinutes+"%");
+	    $("#calories").text(data.calories);
+	    $("#servings").text(data.servings);
+            $("#steps").text(data.steps);
+            alert("Image: " + data.imageURL);
+  	    $("#image_id").src( "\x22" + data.imageURL  + "\x22");
         });
       }
     </script>
