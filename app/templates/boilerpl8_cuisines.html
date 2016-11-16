@@ -91,7 +91,7 @@
           <!-- DROP DOWN -->
           <div class="recipe-container">   
             Cuisine
-              <select style="color: black">
+              <select id="cuisine" style="color: black">
                 <option value="0" selected="selected">Select a cuisine</option>
                   <option value="1">African</option>
                   <option value="2">American</option>
@@ -125,7 +125,7 @@
             <!-- DROP DOWN -->
           <div class ="recipe-container">
             <h3> Difficulty 
-              <select style="color: black">
+              <select id="diffculty" style="color: black">
                 <option value="0" selected="selected">Select difficulty</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
@@ -138,7 +138,7 @@
           <!-- BUTTON -->
           <div class ="recipe-container">
             <h3>
-              <div class="button" style="color: black">
+              <div class="button" style="color: black" onclick="">
                 Request Recipe!
               </div>
             </h3>
@@ -179,23 +179,11 @@
     </div>
   </div>
 
-    <script type="text/javascipt" charset="utf-8">
-      $(document).ready(funciton(){
-
-        function resetImg(){
-        id = Math.floor(Math.random() * 2000) + 1);
-        var img = document.getElementById(random);
-
-        var http = new XMLHttpRequest();
-        http.onreadystatechange = function(){
-          if (http.readyState == 4 && http.status == 200)
-            callback(http.responseText);
-        }
-        http.open("GET", "http://boilerpl8.me/api/recipes/" + id, true);
-        http.send(null);
-        
-        $("#random").text("This is a thing");
-      });
+    <script>
+      function getRecipe(){
+        cuisine = document.getElementById("cuisine")
+        diffculty = document.getElementById("difficulty")
+      }
     </script>
 
     <div class="container pillar-content">
