@@ -2,6 +2,13 @@
 -------------------------------------------------- */
 
 /* Center align the text below the navbar */
+body{
+	background-image: url("../images/kitchen.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+
+}
 
 .recipe h2 {
 	font-weight: bold;
@@ -23,10 +30,6 @@
 }
 
 
-.box {
-	border: 1px solid white;
-}
-
 .dropdown .col-lg-4 {
 	margin-bottom: 18px;
 	text-align: center;
@@ -40,7 +43,6 @@
    position: absolute;
    right: 5%;
    height: 100%;
-   background: white;
 }
 
 .details h3 {
@@ -53,6 +55,8 @@
 	width: 60%; 
 	text-align: center; 
 	font-size: 20px;
+	background: white;
+	color: black;
 }
 
 .image {
@@ -65,4 +69,26 @@
 .image .img {
 	max-width: 350px;
 	max-height: 350px;
+
+	background: white;
+	background-size: 370px 370px;
+}
+
+.button {
+	background-color: white;
+	border: none;
+	color: black;
+	padding: 10px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border-radius: 4px;
+	-webkit-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+}
+
+.button:hover {
+	background-color: #843b40;
+	color: white;
 }

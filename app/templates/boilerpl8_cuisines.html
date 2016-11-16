@@ -87,7 +87,6 @@
       <div class="container">
         <div class="row">
 
-          <!-- NEEDS JS TO DYNAMICALLY PULL UP LIST? -->
           <!-- DROP DOWN -->
           <div class="recipe-container">   
             Cuisine
@@ -121,7 +120,6 @@
           </div>
           <!-- DROP DOWN -->
 
-            <!-- NEEDS JS TO DYNAMICALLY PULL UP DATA -->
             <!-- DROP DOWN -->
           <div class ="recipe-container">
             <h3> Difficulty 
@@ -193,14 +191,13 @@
         var difficulty = document.getElementById("difficulty");
         $SCRIPT_ROOT =  {{ request.script_root|tojson|safe }};
         $.getJSON($SCRIPT_ROOT + "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value, function(data){
-	    $("#title").text(data.title);
-	    $("#cuisine_id").text(data.cuisne_id+"%");
-	    $("#readyInMinutes").text(data.readyInMinutes+"%");
-	    $("#calories").text(data.calories);
-	    $("#servings").text(data.servings);
-	    $("#recipe_ingredients").text(data.recipe_ingredients);
-      $("#image_id").src(data.imageURL);
-            $("#steps").text(data.steps);
+	        $("#title").text(data.title);
+	        $("#cuisine_id").text(data.cuisne_id+"%");
+	        $("#readyInMinutes").text(data.readyInMinutes+"%");
+	        $("#calories").text(data.calories);
+	        $("#servings").text(data.servings);
+          $("#image_id").src(data.imageURL);
+          $("#steps").text(data.steps);
         });
       }
     </script>
