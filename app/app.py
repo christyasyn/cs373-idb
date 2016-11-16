@@ -4,7 +4,7 @@
 from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
 from loader import app, db, cache
-from flask import send_file, jsonify, render_template, make_response
+from flask import send_file, jsonify, render_template, make_response, Flask
 #from sqlalchemy_searchable import parse_search_query, search
 from sqlalchemy import func
 import pickle
@@ -12,7 +12,8 @@ import sys
 import urllib3
 #from urllib.request import urlopen
 import json
-import boilerplate
+import requests
+from boilerplate import *
 
 
 #-----------
@@ -239,8 +240,14 @@ def run_tests():
 
 @app.route('/boilerpl8/<int:cuisine>/<int:difficulty>', methods=['GET'])
 @app.route('/boilerpl8', methods=['GET'])
-def boilerplate_api(cuisine=0,difficulty=0):
-	return render_template('test.html', test_output=boilerplate.get_cuisine_recipes(cuisine, difficulty))
+def boilerplate(cuisine=0,difficulty=0):
+	output = ''
+	while True:
+		output = requests.get('http://boilerpl8.me/api/cuisines').content
+		if output != None:
+			break
+	#output = make_response(render_template('test.html', test_output="sanity"))
+	return render_template('test.html', test_output=output)
 
 # 	# output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
 #         cuisines_url = "http://boilerpl8.me/api/cuisines"
@@ -430,5 +437,5 @@ def not_found(error):
 if __name__ == "__main__":
 	# prelist_test()
 	#app.debug = True
-        boilerplate_api(1,4)
+        #boilerplate(1,4)
 	app.run()
