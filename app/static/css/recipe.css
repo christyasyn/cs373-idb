@@ -40,6 +40,7 @@
    position: absolute;
    right: 5%;
    height: 100%;
+   background: white;
 }
 
 .details h3 {
@@ -59,4 +60,9 @@
    position: absolute;
    left: 0%;
    height: 100%;
+}
+
+.image .img {
+	max-width: 350px;
+	max-height: 350px;
 }
