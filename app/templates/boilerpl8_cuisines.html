@@ -148,7 +148,7 @@
       </div>
     </div>
     <div class="image">
-      <img id="image_id" src={{ imageURL |safe }}></img>
+      <img id="image_id" src="{{ imageURL |safe }}"></img>
     </div>
     <div class="details">
       <h3 id="title">{{title | safe}}</h3>       
@@ -198,9 +198,9 @@
 	    $("#readyInMinutes").text(data.readyInMinutes+"%");
 	    $("#calories").text(data.calories);
 	    $("#servings").text(data.servings);
-	    $("#recipe_ingredients").text(data.recipe_ingredients);
-      $("#image_id").src(data.imageURL);
             $("#steps").text(data.steps);
+            alert("Image: " + data.imageURL);
+  	    $("#image_id").src( "\x22" + data.imageURL  + "\x22");
         });
       }
     </script>
