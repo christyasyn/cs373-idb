@@ -1,14 +1,21 @@
+#!/bin/bash
+
+
 from models import Artist, Album, Track
 #from sqlalchemy_searchable import parse_search_query, search
 from loader import app, db, cache
-from flask import send_file, jsonify, render_template, make_response
+from flask import send_file, jsonify, render_template, make_response, Flask
 #from sqlalchemy_searchable import parse_search_query, search
 from sqlalchemy import func
-import json
 import pickle
 import sys
-import urllib, json
-import boilerplate
+import urllib3
+#from urllib.request import urlopen
+import json
+import requests
+from boilerplate import get_cuisine_recipes, test_return
+
+
 #-----------
 # view pages
 #-----------
@@ -222,7 +229,6 @@ def return_search(search=None):
 		"tracks": json.dumps(search_track(search)),
 		"albums": json.dumps(search_album(search))
 	}
-
 	return render_template('search.html', **template_stuff)
 
 @app.route('/run_unittests')
@@ -234,10 +240,28 @@ def run_tests():
 	print(output)
 	return render_template('test.html', test_output=str(output))
 
-@app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
-def boilerplate_api(cuisine,difficulty):
-	output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
-	return render_template('test.html', test_output=jsonify(output))
+@app.route('/boilerpl8', methods=['GET'])
+def boilerplate(cuisine=0,difficulty=0):
+	output = dict(get_cuisine_recipes(cuisine, difficulty))
+	#output = make_response(render_template('test.html', test_output="sanity"))
+	return render_template('boilerpl8_cuisines.html', **output)
+
+
+@app.route('/boilerpl8/cuisine/<int:cuisine>/difficulty/<int:difficulty>', methods=['GET'])
+def boilerplate_2(cuisine, difficulty):
+	output = dict(get_cuisine_recipes(cuisine, difficulty))
+	return jsonify(**output)
+
+ 	# output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
+#         cuisines_url = "http://boilerpl8.me/api/cuisines"
+#         cr = urllib.request.urlopen(cuisines_url)
+#         #cr = http.request('GET', cuisines_url)
+#         cx = json.load(cr.read())
+#         cl = cx['cuisines']
+#         output = jsonify(cl)
+# 	return output
+# #        return render_template('test.html', test_output=output)
+
 
 
 #--------------
@@ -415,6 +439,6 @@ def not_found(error):
 
 if __name__ == "__main__":
 	# prelist_test()
-	# app.debug = True
-	#get_cuisine("")
+	#app.debug = True
+        #boilerplate(1,4)
 	app.run()

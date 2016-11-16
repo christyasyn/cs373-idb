@@ -79,49 +79,45 @@
 
  
     <div class="recipe">
-
       <!-- TITLE -->
       <h2>
         Recipe Roulette
       </h2>
       <!-- TITLE -->
-
       <div class="container">
         <div class="row">
 
           <!-- NEEDS JS TO DYNAMICALLY PULL UP LIST? -->
           <!-- DROP DOWN -->
-          <div class="recipe-container">
-          <div class="drop">      
-            <h5>Cuisine
-              <select>
+          <div class="recipe-container">   
+            Cuisine
+              <select id="cuisine" style="color: black">
                 <option value="0" selected="selected">Select a cuisine</option>
-                <option value="1">African</option>
-                <option value="2">American</option>
-                <option value="3">British</option>
-                <option value="4">Cajun</option>
-                <option value="5">Caribbean</option>
-                <option value="6">Chinese</option>
-                <option value="7">Eastern European</option>
-                <option value="8">French</option>
-                <option value="9">German</option>
-                <option value="10">Greek</option>
-                <option value="11">Indian</option>
-                <option value="12">Irish</option>
-                <option value="13">Italian</option>
-                <option value="14">Japanese</option>
-                <option value="15">Jewish</option>
-                <option value="16">Korean</option>
-                <option value="17">Latin American</option>
-                <option value="18">Mexican</option>
-                <option value="19">Middle Eastern</option>
-                <option value="20">Nordic</option>
-                <option value="21">Southern</option>
-                <option value="22">Spanish</option>
-                <option value="23">Thai</option>
-                <option value="24">Vietnamese</option>                           
+                  <option value="1">African</option>
+                  <option value="2">American</option>
+                  <option value="3">British</option>
+                  <option value="4">Cajun</option>
+                  <option value="5">Caribbean</option>
+                  <option value="6">Chinese</option>
+                  <option value="7">Eastern European</option>
+                  <option value="8">French</option>
+                  <option value="9">German</option>
+                  <option value="10">Greek</option>
+                  <option value="11">Indian</option>
+                  <option value="12">Irish</option>
+                  <option value="13">Italian</option>
+                  <option value="14">Japanese</option>
+                  <option value="15">Jewish</option>
+                  <option value="16">Korean</option>
+                  <option value="17">Latin American</option>
+                  <option value="18">Mexican</option>
+                  <option value="19">Middle Eastern</option>
+                  <option value="20">Nordic</option>
+                  <option value="21">Southern</option>
+                  <option value="22">Spanish</option>
+                  <option value="23">Thai</option>
+                  <option value="24">Vietnamese</option>                           
               </select>
-            </div>
           </div>
           <!-- DROP DOWN -->
 
@@ -129,7 +125,7 @@
             <!-- DROP DOWN -->
           <div class ="recipe-container">
             <h3> Difficulty 
-              <select>
+              <select id="difficulty" style="color: black">
                 <option value="0" selected="selected">Select difficulty</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
@@ -139,52 +135,86 @@
           </div>
             <!-- DROP DOWN -->
 
-
           <!-- BUTTON -->
           <div class ="recipe-container">
             <h3>
-              <button>
+              <button id="getRecipe" class="button" style="color: black">
                 Request Recipe!
               </button>
             </h3>
           </div>
           <!-- BUTTON -->
-
         </div>
       </div>
     </div>
 
+    <div class="details">
+      <h3 id="title">{{title | safe}}</h3>       
 
-    <div class="recipe">
+      <table style="width: 60%; text-align: center">  
+      <tr>
+        <td>Cuisine</td>
+        <td "cuisine+id">{{cuisine_id | safe }}</td>
+      </tr>      
+      <tr>
+        <td>Ready In:</td>
+        <td id="readInMinutes">{{readyInMinutes | safe }}</td>
+      </tr>      
+      <tr>
+        <td>Calories:</td>
+        <td id="calories">{{calories | safe }}</td>
+      </tr>      
+      <tr>
+        <td>Servings:</td>
+        <td id="servings">{{servings | safe }}</td>
+      </tr>      
+      <tr>
+        <td>Ingredients: </td>   
+        <td id="recipe_ingredients">{{recipe_ingredients | safe }}</td>
+      </tr>      
+      <tr>
+        <td>Steps:</td>
+        <td id="steps">{{steps | safe }}</td>
+      </tr>
     </div>
-    <script type="text/javascipt" charset="utf-8">
-      $(document).ready(funciton(){
+  </div>
 
-        function resetImg(){
-        id = Math.floor(Math.random() * 2000) + 1);
-        var img = document.getElementById(random);
-
-        var http = new XMLHttpRequest();
-        http.onreadystatechange = function(){
-          if (http.readyState == 4 && http.status == 200)
-            callback(http.responseText);
-        }
-        http.open("GET", "http://boilerpl8.me/api/recipes/" + id, true);
-        http.send(null);
-        
-        $("#random").text("This is a thing");
-      });
-    </script>
 
     <div class="container pillar-content">
-      <a href="http://boilerpl8.me" id="api_link">
+      <a href="http://boilerpl8.me/recipes/{{ id|safe }}" id="api_link">
         Link
       </a>
     <br/>
     </div>
 
 
-      
+    <script>      
+     // document.getElementById("getRecipe").onclick = function(){recipe()};
+
+      function recipe(){
+        var cuisine = document.getElementById("cuisine");
+        var difficulty = document.getElementById("difficulty");
+//	alert("Cuisine: " + cuisine + " Difficulty: " + difficulty);
+	      window.location.href = "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value + "/";
+      }
+    </script>
+    <script>
+      document.getElementById("getRecipe").onclick = function(){update_values()};
+      function update_values(){
+        var cuisine = document.getElementById("cuisine");
+        var difficulty = document.getElementById("difficulty");
+        $SCRIPT_ROOT =  {{ request.script_root|tojson|safe }};
+        $.getJSON($SCRIPT_ROOT + "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value, function(data){
+	    $("#title").text(data.title);
+	    $("#cuisine_id").text(data.cuisne_id+"%");
+	    $("#readyInMinutes").text(data.readyInMinutes+"%");
+	    $("#calories").text(data.calories);
+	    $("#servings").text(data.servings);
+	    $("#recipe_ingredients").text(data.recipe_ingredients);
+            $("#steps").text(data.steps);
+        });
+      }
+    </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

@@ -1,7 +1,7 @@
 #import requests
 import random
 #import urllib.request
-import urllib3.PoolManger
+import urllib3
 import json
 
 EASY_STEPS = 4
@@ -38,15 +38,20 @@ def get_cuisine_recipes(cuisine,difficulty):
     #cr = requests.get(cuisines_url)
     http = urllib3.PoolManager()
     cr = http.request('GET',cuisines_url)
-    cx = json.loads(cr.data.decode('utf-8')
+    cx = json.loads(cr.data.decode('utf-8'))
+    cl = cx['cuisines']
     #cr = urllib.request.urlopen(cuisines_url)
     #cr = http.request('GET', cuisines_url)
     #cx = json.load(cr.data)
-    cl = cx['cuisines']
+    
+    # cl = cx['cuisines']
     recipes_url = "http://boilerpl8.me/api/recipes/"
-    rr = urllib.request.urlopen(recipes_url)
-    rx = json.load(rr.data)
+    # rr = urllib.request.urlopen(recipes_url)
+    # rx = json.load(rr.data)
+    rr = http.request('GET', recipes_url)
+    rx = json.loads(rr.data.decode('utf-8'))
     rl = rx['recipes']
+
     if cuisine != 0:
         id = 1
         for val in cl:
@@ -75,8 +80,7 @@ def get_cuisine_recipes(cuisine,difficulty):
         else:
             final_result.append(item)
 
-    print (random.choice(final_result))
+    return (random.choice(final_result))
 
-
-
-get_cuisine_recipes(1,0)
+def test_return():
+	return "this is a test"

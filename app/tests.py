@@ -2,7 +2,7 @@ import os
 import unittest
 import tempfile
 from models import *
-from flask import * 
+import flask
 from app import db, app
 #from sqlalchemy.orm import sessionmaker
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -138,27 +138,6 @@ class AppDBTestCases(unittest.TestCase):
 		db.session.commit()
 		a = Track.query.filter_by(id = "2").first()
 		self.assertEqual(a, None)
-
-
-
-{'all_artists': {'35sCXuy5gN6Or69rZ9vqBs': 'Birdman'},
-   'duration': 0,
-   'id': '4lUrEQxpiG2epegCry4HV8',
-   'image': {'height': 640,
-                         'url': 'https://i.scdn.co/image/28722dc6873c39ae4e754fa2b5a4000842a5cd4e',
-                         'width': 640},
-   'link': 'https://open.spotify.com/album/4lUrEQxpiG2epegCry4HV8',
-   'main_artist': 'Nicki Minaj',
-   'main_artist_id': '0hCNtLu0JehylgoiP8L4Gh',
-   'name': 'Y.U. MAD',
-   'number_of_tracks': 1,
-   'popularity': 14,
-   'record_label': 'Cash Money',
-   'release_date': '2011-09-27',
-   'type': 'album'},
-
-
-
 
 
 	# def setUp(self):
