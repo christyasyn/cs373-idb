@@ -149,32 +149,32 @@
     </div>
 
     <div class="details">
-      <h3>{{title | safe}}</h3>       
+      <h3 id="title">{{title | safe}}</h3>       
 
       <table style="width: 60%; text-align: center">  
       <tr>
         <td>Cuisine</td>
-        <td>{{cuisine_id | safe }}</td>
+        <td "cuisine+id">{{cuisine_id | safe }}</td>
       </tr>      
       <tr>
         <td>Ready In:</td>
-        <td>{{readyInMinutes | safe }}</td>
+        <td id="readInMinutes">{{readyInMinutes | safe }}</td>
       </tr>      
       <tr>
         <td>Calories:</td>
-        <td>{{calories | safe }}</td>
+        <td id="calories">{{calories | safe }}</td>
       </tr>      
       <tr>
         <td>Servings:</td>
-        <td>{{servings | safe }}</td>
+        <td id="servings">{{servings | safe }}</td>
       </tr>      
       <tr>
         <td>Ingredients: </td>   
-        <td>{{recipe_ingredients | safe }}</td>
+        <td id="recipe_ingredients">{{recipe_ingredients | safe }}</td>
       </tr>      
       <tr>
         <td>Steps:</td>
-        <td>{{steps | safe }}</td>
+        <td id="steps">{{steps | safe }}</td>
       </tr>
     </div>
   </div>
@@ -189,13 +189,30 @@
 
 
     <script>      
-      document.getElementById("getRecipe").onclick = function(){recipe()};
+     // document.getElementById("getRecipe").onclick = function(){recipe()};
 
       function recipe(){
         var cuisine = document.getElementById("cuisine");
         var difficulty = document.getElementById("difficulty");
 //	alert("Cuisine: " + cuisine + " Difficulty: " + difficulty);
-	window.location.href = "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value;
+	      window.location.href = "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value + "/";
+      }
+    </script>
+    <script>
+      document.getElementById("getRecipe").onclick = function(){update_values()};
+      function update_values(){
+        var cuisine = document.getElementById("cuisine");
+        var difficulty = document.getElementById("difficulty");
+        $SCRIPT_ROOT =  {{ request.script_root|tojson|safe }};
+        $.getJSON($SCRIPT_ROOT + "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value, function(data){
+	    $("#title").text(data.title);
+	    $("#cuisine_id").text(data.cuisne_id+"%");
+	    $("#readyInMinutes").text(data.readyInMinutes+"%");
+	    $("#calories").text(data.calories);
+	    $("#servings").text(data.servings);
+	    $("#recipe_ingredients").text(data.recipe_ingredients);
+            $("#steps").text(data.steps);
+        });
       }
     </script>
     <!-- Bootstrap core JavaScript
