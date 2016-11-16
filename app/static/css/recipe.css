@@ -34,6 +34,7 @@ html,body {
 	text-align: center;
 	position: relative;
 	top: 20px;
+	font-weight: bold;
 }
 
 
@@ -42,17 +43,21 @@ html,body {
    position: absolute;
    right: 5%;
    height: 100%;
+   color: white;
+   text-shadow: 2px 2px #0d1828;
+   font-weight: bold;
 }
 
 .details h3 {
 	font-size: 30px;
 	padding-right: 40%;
+	font-weight: bold;
 }
 
 .details table {
 	width: 60%; 
 	text-align: center; 
-	font-size: 15px;
+	font-size: 25px;
 }
 
 .image {
@@ -63,16 +68,13 @@ html,body {
 }
 
 .image .img {
-	max-width: 350px;
-	max-height: 350px;
-
 	background: white;
 	background-size: 370px 370px;
 }
 
 .button {
 	background-color: white;
-	border: none;
+	border: white;
 	color: black;
 	padding: 10px 30px;
 	text-align: center;
@@ -87,4 +89,17 @@ html,body {
 .button:hover {
 	background-color: #843b40;
 	color: white;
+}
+
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  background-size: 100px 100px;
+  border: 1px solid black;
+  opacity: .7;
+}
+
+div.transbox tr{
+  color:black;
+  opacity: 1;
 }
