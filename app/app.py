@@ -163,6 +163,8 @@ def single_track(id):
 
 	album_name = Album.query.filter_by(id=track.album_id).first()
 
+	album_img = Album.query.filter_by(track.album_id=album_name.id).first()
+
 	template_stuff = {
 		"track_name": track.name,
 		"track_duration": track.duration,
@@ -172,7 +174,8 @@ def single_track(id):
 		"artist_id": artist_name.id,
 		"artist_name": artist_name.name,
 		"album_id": album_name.id,
-		"album_name": album_name.name
+		"album_name": album_name.name,
+		"album_img": album_img.image_url
 	}
 
 	return render_template('track.html', **template_stuff)
