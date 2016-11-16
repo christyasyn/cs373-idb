@@ -226,7 +226,6 @@ def return_search(search=None):
 		"tracks": json.dumps(search_track(search)),
 		"albums": json.dumps(search_album(search))
 	}
-
 	return render_template('search.html', **template_stuff)
 
 @app.route('/run_unittests')
@@ -238,7 +237,7 @@ def run_tests():
 	print(output)
 	return render_template('test.html', test_output=str(output))
 
-@app.route('/boilerpl8/cuisine/<int:cuisine>/difficulty/<int:difficulty>/', methods=['GET'])
+@app.route('/boilerpl8/cuisine/<int:cuisine>/difficulty/<int:difficulty>', methods=['GET'])
 @app.route('/boilerpl8', methods=['GET'])
 def boilerplate(cuisine=0,difficulty=0):
 	output = dict(get_cuisine_recipes(cuisine, difficulty))
