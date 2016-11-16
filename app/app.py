@@ -237,9 +237,10 @@ def run_tests():
 	print(output)
 	return render_template('test.html', test_output=str(output))
 
-@app.route('/boilerplate/<int:cuisine>/<int:difficulty>')
-def boilerplate_api(cuisine,difficulty):
-	return boilerplate.get_cuisine_recipes(cuisine, difficulty)
+@app.route('/boilerpl8/<int:cuisine>/<int:difficulty>', methods=['GET'])
+@app.route('/boilerpl8', methods=['GET'])
+def boilerplate_api(cuisine=0,difficulty=0):
+	return render_template('test.html', test_output=boilerplate.get_cuisine_recipes(cuisine, difficulty))
 
 # 	# output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
 #         cuisines_url = "http://boilerpl8.me/api/cuisines"
