@@ -125,7 +125,7 @@
             <!-- DROP DOWN -->
           <div class ="recipe-container">
             <h3> Difficulty 
-              <select id="diffculty" style="color: black">
+              <select id="difficulty" style="color: black">
                 <option value="0" selected="selected">Select difficulty</option>
                 <option value="1">Low</option>
                 <option value="2">Medium</option>
@@ -138,9 +138,9 @@
           <!-- BUTTON -->
           <div class ="recipe-container">
             <h3>
-              <div class="button" style="color: black" onclick="">
+              <button id="getRecipe" class="button" style="color: black">
                 Request Recipe!
-              </div>
+              </button>
             </h3>
           </div>
           <!-- BUTTON -->
@@ -151,50 +151,53 @@
     <div class="details">
       <h3>{{title | safe}}</h3>       
 
-      <table style="width:25%">  
+      <table style="width: 60%; text-align: center">  
       <tr>
-        <th>Cuisine</th>        
-        <th>{{cuisine_id | safe }}</th>
+        <td>Cuisine</td>
+        <td>{{cuisine_id | safe }}</td>
       </tr>      
       <tr>
-        <th>Ready In:</th>        
-        <th>{{readyInMinutes | safe }}</th>
+        <td>Ready In:</td>
+        <td>{{readyInMinutes | safe }}</td>
       </tr>      
       <tr>
-        <th>Calories:</th>        
-        <th>{{calories | safe }}</th>
+        <td>Calories:</td>
+        <td>{{calories | safe }}</td>
       </tr>      
       <tr>
-        <th>Servings:</th>        
-        <th>{{servings | safe }}</th>
+        <td>Servings:</td>
+        <td>{{servings | safe }}</td>
       </tr>      
       <tr>
-        <th>Ingredients: </th>        
-        <th>{{recipe_ingredients | safe }}</th>
+        <td>Ingredients: </td>   
+        <td>{{recipe_ingredients | safe }}</td>
       </tr>      
       <tr>
-        <th>Steps:</th>        
-        <th>{{steps | safe }}</th>
+        <td>Steps:</td>
+        <td>{{steps | safe }}</td>
       </tr>
     </div>
   </div>
 
-    <script>
-      function getRecipe(){
-        cuisine = document.getElementById("cuisine")
-        diffculty = document.getElementById("difficulty")
-      }
-    </script>
 
     <div class="container pillar-content">
-      <a href="http://boilerpl8.me" id="api_link">
+      <a href="http://boilerpl8.me/recipes/{{ id|safe }}" id="api_link">
         Link
       </a>
     <br/>
     </div>
 
 
-      
+    <script>      
+      document.getElementById("getRecipe").onclick = function(){recipe()};
+
+      function recipe(){
+        var cuisine = document.getElementById("cuisine");
+        var difficulty = document.getElementById("difficulty");
+//	alert("Cuisine: " + cuisine + " Difficulty: " + difficulty);
+	window.location.href = "/boilerpl8/cuisine/" + cuisine.value + "/difficulty/" + difficulty.value + "/";
+      }
+    </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

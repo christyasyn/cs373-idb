@@ -80,8 +80,7 @@ def get_cuisine_recipes(cuisine,difficulty):
         else:
             final_result.append(item)
 
-    print (random.choice(final_result))
+    return (random.choice(final_result))
 
-
-
-
+def test_return():
+	return "this is a test"

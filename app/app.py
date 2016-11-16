@@ -13,7 +13,7 @@ import urllib3
 #from urllib.request import urlopen
 import json
 import requests
-from boilerplate import *
+from boilerplate import get_cuisine_recipes, test_return
 
 
 #-----------
@@ -238,16 +238,12 @@ def run_tests():
 	print(output)
 	return render_template('test.html', test_output=str(output))
 
-@app.route('/boilerpl8/<int:cuisine>/<int:difficulty>', methods=['GET'])
+@app.route('/boilerpl8/cuisine/<int:cuisine>/difficulty/<int:difficulty>/', methods=['GET'])
 @app.route('/boilerpl8', methods=['GET'])
 def boilerplate(cuisine=0,difficulty=0):
-	output = ''
-	while True:
-		output = requests.get('http://boilerpl8.me/api/cuisines').content
-		if output != None:
-			break
+	output = dict(get_cuisine_recipes(cuisine, difficulty))
 	#output = make_response(render_template('test.html', test_output="sanity"))
-	return render_template('test.html', test_output=output)
+	return render_template('boilerpl8_cuisines.html', **output)
 
 # 	# output = boilerplate.get_cuisine_recipes(cuisine,difficulty)
 #         cuisines_url = "http://boilerpl8.me/api/cuisines"
