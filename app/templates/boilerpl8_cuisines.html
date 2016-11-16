@@ -147,46 +147,34 @@
         </div>
       </div>
     </div>
-
+    <div class="image">
+      <img id="image_id" src={{ imageURL |safe }}></img>
+    </div>
     <div class="details">
       <h3 id="title">{{title | safe}}</h3>       
-
-      <table style="width: 60%; text-align: center">  
+      <table>  
       <tr>
         <td>Cuisine</td>
         <td "cuisine+id">{{cuisine_id | safe }}</td>
       </tr>      
       <tr>
-        <td>Ready In:</td>
+        <td>Ready In</td>
         <td id="readInMinutes">{{readyInMinutes | safe }}</td>
       </tr>      
       <tr>
-        <td>Calories:</td>
+        <td>Calories</td>
         <td id="calories">{{calories | safe }}</td>
       </tr>      
       <tr>
-        <td>Servings:</td>
+        <td>Servings</td>
         <td id="servings">{{servings | safe }}</td>
-      </tr>      
+      </tr>       
       <tr>
-        <td>Ingredients: </td>   
-        <td id="recipe_ingredients">{{recipe_ingredients | safe }}</td>
-      </tr>      
-      <tr>
-        <td>Steps:</td>
+        <td>Steps</td>
         <td id="steps">{{steps | safe }}</td>
       </tr>
-    </div>
+    </table>
   </div>
-
-
-    <div class="container pillar-content">
-      <a href="http://boilerpl8.me/recipes/{{ id|safe }}" id="api_link">
-        Link
-      </a>
-    <br/>
-    </div>
-
 
     <script>      
      // document.getElementById("getRecipe").onclick = function(){recipe()};
@@ -211,6 +199,7 @@
 	    $("#calories").text(data.calories);
 	    $("#servings").text(data.servings);
 	    $("#recipe_ingredients").text(data.recipe_ingredients);
+      $("#image_id").src(data.imageURL);
             $("#steps").text(data.steps);
         });
       }
