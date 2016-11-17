@@ -38,8 +38,8 @@ test:
 
 log:
 	# git log > IDB1.log
-	git log > IDB2.log
-	# git log > IDB3.log
+	#git log > IDB2.log
+	 git log > IDB3.log
 
 run:
 	python3 app/manage.py runserver

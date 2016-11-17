@@ -6,6 +6,7 @@ database models.
 from loader import db
 from flask_sqlalchemy import SQLAlchemy, BaseQuery
 import re
+
 # -------------------
 # @Artists
 # -------------------
@@ -22,7 +23,11 @@ class Artist(db.Model):
     popularity = db.Column(db.Integer)
     image_url = db.Column(db.String)
 
-    def to_json(self): 
+    def to_json(self):
+        """
+        Creates a json file for the API interface
+        """
+        
         json_artist = {
             'id' : self.id,
             'name' : self.name,
@@ -34,11 +39,16 @@ class Artist(db.Model):
         }
         return json_artist
     def to_list(self):
+        """
+        Creates a list of the artist data object
+        """
+        
         genres = str(self.genres)
         genres = genres.replace('{', '')
         genres = genres.replace('}', '')
         genres = genres.replace('\"', '')
         return [self.id, self.name, genres, str(self.followers), str(self.popularity)]
+
     def __repr__(self):
         return '%s' % self.name
     def __str__ (self):
@@ -46,6 +56,10 @@ class Artist(db.Model):
 
 
 class Album(db.Model):
+    """
+    Model for Albums Database
+    """
+
     __tablename__ = 'albums'
     id = db.Column(db.String(22), primary_key=True)
     name = db.Column(db.String)
@@ -61,7 +75,11 @@ class Album(db.Model):
     popularity = db.Column(db.Integer)
     number_of_tracks = db.Column(db.Integer)
 
-    def to_json(self): 
+    def to_json(self):
+        """
+        Creates a json file for the API interface 
+        """
+
         json_albums = {
             'id' : self.id,
             'name' : self.name,
@@ -80,22 +98,23 @@ class Album(db.Model):
         return json_albums
 
     def to_list(self):
-        #artist_list = self.all_artists[1:-1]
-        #artist_list = artist_list.split(",")
-        #all_artists_names = ''
-        #for id in artist_list:
-        #    if Artist.query.filter_by(id=id).first() != None:
-        #        all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
-        #all_artists_names = all_artists_names[0:-2]
+        """
+        Creates a list of the album data object.
+        """
+
         return [self.id, self.name, self.main_artist, self.release_date, self.record_label, self.number_of_tracks, self.popularity]
     
     def get_all_artists(self):
+        """
+        Queries the database and returns a list object for each artist in the datbase. 
+        """
         all_artists_names = ''
         for id in artist_list:
             if Artist.query.filter_by(id=id).first() != None:
                 all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
         all_artists_names = all_artists_names[0:-2]
         return all_artists_names
+
     def __repr__(self):
         return 'Album %r' % self.name
     def __str__(self):
@@ -103,6 +122,10 @@ class Album(db.Model):
 
 
 class Track(db.Model):
+    """
+    Models for Track Database
+    """
+
     __tablename__ = 'tracks'
     id = db.Column(db.String(22), primary_key=True)
     name = db.Column(db.String)
@@ -118,6 +141,10 @@ class Track(db.Model):
     direct_url = db.Column(db.String)
 
     def to_json(self): 
+        """
+        Creates a list of the data object.
+        """
+
         json_albums = {
             'id' : self.id,
             'name' : self.name,
@@ -134,6 +161,10 @@ class Track(db.Model):
         }
         return json_albums
     def to_list(self):
+        """
+        Creates a list of the track data object.
+        """
+
         album_name = Album.query.filter_by(id=self.album_id).first().name
         artist_name = Artist.query.filter_by(id=self.main_artist_id).first().name
         return [self.id, self.name, str(self.track_no), album_name, artist_name, self.duration, str(self.explicit), str(self.popularity)]
