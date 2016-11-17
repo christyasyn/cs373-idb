@@ -69,18 +69,23 @@
     ================================================= -->
 
     <div class="container pillar-content">
-
+      <div class="track"><!--Album Image-->
+        <img src={{ album_img|safe }}></img>
+	<br/>
+	<br/>
+	  <iframe src="https://embed.spotify.com/?uri=spotify:track:{{ track_id|safe }}" width="250" height="80" frameborder="0" allowtransparency="true"></iframe>
       <h1>{{ track_name|safe }}</h1>
-
-	  <div class="row"> <!-- Table Headers -->
+      </div><!--End Album image-->
+      <div class="table" style="padding-left: 250px;">
+	  <div class="row" style="margin:0 auto;"> <!-- Table Headers -->
 		<div class="col-md-2">Album</div>
-		<div class="col-md-1">Track #</div>
+		<div class="col-md-1">Track#</div>
         <div class="col-md-2">Artist</div>
         <div class="col-md-1">Duration</div>
 		<div class="col-md-1">Explicit</div>
         <div class="col-md-1">Popularity</div>
       </div>
-      <div class="row">
+      <div class="row" style="margin:0 auto;">
 		    <div class="col-md-2">
           <a href="/album/{{ album_id|safe}}">
           {{ album_name|safe }}
@@ -96,7 +101,7 @@
         <div class="col-md-1">{{ track_explicit|safe }}</div>
 		<div class="col-md-1">{{ track_popularity|safe}}</div>
       </div>
-      
+     </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

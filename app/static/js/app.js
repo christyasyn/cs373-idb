@@ -9,7 +9,7 @@ musicApp.controller('musicController', function musicController($scope, $http) {
         $scope.testOutput = '\nPlease wait for the tests... '
         $http.get('/run_unittests').then(function(result){
             $scope.finished = true;
-            $scope.testOutput = '\n' + result;
+            $scope.testOutput = '\n' + result.data.output;
         });
         //return ($scope.testOutput); // it gets back through testOutput instead
     }

@@ -3,8 +3,7 @@
 #-----------------
 
 import flask
-#from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from flask_cache import Cache
 
 import os
@@ -16,5 +15,3 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///musicdb'
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
 db = SQLAlchemy(app)
-
-#import app

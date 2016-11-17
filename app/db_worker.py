@@ -8,25 +8,21 @@ import pickle
 import time
 import requests
 
-base = './db'
+base = '../../db/'
 
 # clear pending commits
 db.session.commit()
 
 start_time = time.time()
 
-with open(os.path.join(base, 'artist_ids_cache.pickle'), 'rb') as artist_file:
-        artist_pickle = pickle.load(artist_file)
-        print('artist pickle loaded, good job guys!')
 
-with open(os.path.join(base, 'artist_albums_cache.pickle'), 'rb') as album_file:
-        album_pickle = pickle.load(album_file)
-        print('album pickle loaded, good job guys!')
         
-with open(os.path.join(base, 'album_tracks_cache.pickle'), 'rb') as tracks_file:
-        tracks_pickle = pickle.load(tracks_file)
-        print('tracks pickle loaded, good job guys!')
-def load_artists():
+# insert artist rows into table. 
+# @param cach_file: the cached file containing the row data for each artist
+def load_artists(cache_file):
+        with open(os.path.join(base, cache_file), 'rb') as artist_file:
+            artist_pickle = pickle.load(artist_file)
+            print('artist pickle loaded, good job guys!')
         for a in artist_pickle:
                 idd = a['id']
                 name = a['name']
@@ -45,7 +41,14 @@ def load_artists():
                 db.session.add(artist)
                 db.session.commit()
         print ('Artists committed')
-def load_albums():
+
+# insert album rows into table.
+# @param cache_file: cached file containing the row data for each album
+
+def load_albums(cache_file):
+        with open(os.path.join(base, cache_file), 'rb') as album_file:
+                album_pickle = pickle.load(album_file)
+                print('album pickle loaded, good job guys!')
         for a in album_pickle:
                 idd = a['id']
                 name = a['name']
@@ -64,15 +67,23 @@ def load_albums():
                 for k,v in all_artists.items():
                         artist_list.append (v)       
                 album_type = a['type']
+                duration = a['duration']
+                release_date = a['release_date']
+                record_label = a['record_label']
+                popularity = a['popularity']
+                number_of_tracks = a['number_of_tracks']
 
-                album = Album(id=idd, name=name, url=link, main_artists=main_artist, main_artists_id=main_artist_id, all_artists=artist_list, type=album_type, image_url=image) 
+                album = Album(id=idd, name=name, url=link, main_artist=main_artist, main_artist_id=main_artist_id, all_artists=artist_list, type=album_type, image_url=image, duration=duration, release_date=release_date, record_label=record_label, popularity=popularity, number_of_tracks=number_of_tracks) 
                 r = Album.query.get(idd)
                 if not r:
                         db.session.add(album)
                         db.session.commit()
         print ('Albums committed')         
 
-def load_tracks():
+def load_tracks(cache_file):
+        with open(os.path.join(base, cache_file), 'rb') as tracks_file:
+                tracks_pickle = pickle.load(tracks_file)
+                print('tracks pickle loaded, good job guys!')
         for t in tracks_pickle:
                 idd = t['track_id']
                 name = t['name']
@@ -91,7 +102,8 @@ def load_tracks():
                 preview = t['preview']
                 track_number = t['track_number']
                 album_id = t['album_id']
-                track = Track(id=idd, name=name, direct_url=link, main_artist_id=main_artist_id, all_artists=artist_list, duration=duration, explicit=explicit, popularity=popularity, preview_url=preview, track_no=track_number, album_id=album_id )
+                duration_ms = t['duration_ms']
+                track = Track(id=idd, name=name, direct_url=link, main_artist_id=main_artist_id, all_artists=artist_list, duration=duration, explicit=explicit, popularity=popularity, preview_url=preview, track_no=track_number, album_id=album_id, duration_ms=duration_ms)
                 r = Track.query.get(idd)
                 if not r:
                         db.session.add(track)

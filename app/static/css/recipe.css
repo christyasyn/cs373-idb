@@ -1,0 +1,108 @@
+/* ABOUTME TITLE
+-------------------------------------------------- */
+
+html,body {
+    background: url(../images/kitchen.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
+}
+.recipe h2 {
+	font-weight: bold;
+	font-size: 90px;
+	text-align: center;
+	position: relative;
+	text-shadow: 2px 2px #0d1828;
+}
+
+
+.recipe h3 {
+	font-size: 15px;
+}
+
+.recipe-container {
+	width: 360px;
+	margin-top: 15px;
+	margin-right: 20px;
+	display: inline-block;
+}
+
+
+.dropdown .col-lg-4 {
+	margin-bottom: 18px;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	font-weight: bold;
+}
+
+
+.details {
+   width: 50%;
+   position: absolute;
+   right: 5%;
+   height: 100%;
+   color: white;
+   text-shadow: 2px 2px #0d1828;
+   font-weight: bold;
+}
+
+.details h3 {
+	font-size: 30px;
+	padding-right: 40%;
+	font-weight: bold;
+}
+
+.details table {
+	width: 70%; 
+	text-align: center; 
+	font-size: 18px;
+}
+
+.image {
+   width: 50%;
+   position: absolute;
+   left: 8%;
+   height: 100%;
+}
+
+.image .img {
+	width: 300px;
+	height: 300px;
+	max-width: 100%;
+
+			   
+}
+
+.button {
+	background-color: white;
+	border: white;
+	color: black;
+	padding: 10px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border-radius: 4px;
+	-webkit-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+}
+
+.button:hover {
+	background-color: #843b40;
+	color: white;
+}
+
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  background-size: 100px 100px;
+  border: 1px solid black;
+  opacity: .7;
+}
+
+div.transbox tr{
+  color:black;
+  opacity: 1;
+}
