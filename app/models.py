@@ -93,14 +93,14 @@ class Album(db.Model):
         return json_albums
 
     def to_list(self):
-        artist_list = self.all_artists[1:-1]
-        artist_list = artist_list.split(",")
-        all_artists_names = ''
-        for id in artist_list:
-            if Artist.query.filter_by(id=id).first() != None:
-                all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
-        all_artists_names = all_artists_names[0:-2]
-        return [self.id, self.name, self.main_artist, all_artists_names, self.release_date, self.record_label, self.number_of_tracks, self.popularity]
+        #artist_list = self.all_artists[1:-1]
+        #artist_list = artist_list.split(",")
+        #all_artists_names = ''
+        #for id in artist_list:
+        #    if Artist.query.filter_by(id=id).first() != None:
+        #        all_artists_names += Artist.query.filter_by(id=id).first().name + ', '
+        #all_artists_names = all_artists_names[0:-2]
+        return [self.id, self.name, self.main_artist, self.release_date, self.record_label, self.number_of_tracks, self.popularity]
     
     def get_all_artists(self):
         all_artists_names = ''

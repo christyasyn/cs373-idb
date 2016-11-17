@@ -184,7 +184,8 @@ def single_track(id):
 		"artist_name": artist_name.name,
 		"album_id": album_object.id,
 		"album_name": album_object.name,
-		"album_img": album_object.image_url
+		"album_img": album_object.image_url,
+		"track_id": id
 	}
 
 	return render_template('track.html', **template_stuff)
@@ -214,7 +215,8 @@ def single_album(id):
 		"artist_id": album.main_artist_id,
 		"release_date": album.release_date,
 		"record_label": album.record_label,
-		"tracks": json.dumps(track_data)
+		"tracks": json.dumps(track_data),
+		"album_id": id
 	}
 
 	return render_template('album.html', **template_stuff)

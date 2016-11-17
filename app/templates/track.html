@@ -71,6 +71,9 @@
     <div class="container pillar-content">
       <div class="track"><!--Album Image-->
         <img src={{ album_img|safe }}></img>
+	<br/>
+	<br/>
+	  <iframe src="https://embed.spotify.com/?uri=spotify:track:{{ track_id|safe }}" width="250" height="80" frameborder="0" allowtransparency="true"></iframe>
       <h1>{{ track_name|safe }}</h1>
       </div><!--End Album image-->
       <div class="table" style="padding-left: 250px;">
