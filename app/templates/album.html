@@ -89,8 +89,8 @@
             <div class="rTable"><!--Inner Table Artist Stats-->
               <div class="rTableRow">
                 <div class="rTableHead">Artist</div>
-                <div class="rTableHead">Additional Artists</div>
-                <div class="rTableHead">Number of Tracks</div>
+                <div class="rTableHead">Release Date</div>
+                <div class="rTableHead">Record Label</div>
               </div>
 
               <div class="rTableRow">
@@ -99,8 +99,8 @@
                   {{ artist_name|safe }}
                   </a>
                 </div>
-                <div class="rTableCell">{{ additional_artists|safe }}</div>
-                <div class="rTableCell">{{ number_of_tracks|safe }}</div>
+                <div class="rTableCell">{{ release_date|safe }}</div>
+                <div class="rTableCell">{{ record_label|safe }}</div>
               </div>
             </div><!--end of artists stats-->
           </div>

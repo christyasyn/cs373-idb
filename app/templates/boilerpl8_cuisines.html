@@ -145,7 +145,7 @@
         </div>
       </div>
     </div>
-    <div class="image">
+    <div class="image" style="width:300px; height:300px; max-width:100%;">
       <img id="image_id" src="{{ imageURL |safe }}"></img>
     </div>
     <div class="details">
@@ -199,7 +199,7 @@
 	    $("#calories").text(data.calories);
 	    $("#servings").text(data.servings);
             $("#steps").text(data.steps);
-  	    $("#image_id").attr('src', data.imageURL).css({'width' : '400px' , 'height' : '400px'});
+  	    $("#image_id").attr('src', data.imageURL);
         });
       }
     </script>

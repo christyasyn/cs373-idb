@@ -67,20 +67,22 @@ def get_artists():
 		{ "title": "Followers" },
 		{ "title": "Popularity" }
 		]
-	artist_data["columnDefs"] = [{
-		"targets": [0],
-		"visible": FALSE,
-		"searchable": FALSE
-		}]
-	artist_data['scrollY'] = "500px"
+	artist_data["columnDefs"] = [{"targets": [0], "visible": FALSE, "searchable": FALSE},
+		{"width": "15%", "targets": [1]},
+		{"width": "35%", "targets": [2]},
+		{"width": "20%", "targets": [3]},
+		{"width": "15%", "targets": [4, 5]}
+		]
+#	artist_data['scrollY'] = "700px"
 	artist_data['paging'] = "true"
+	artist_data['order'] = [[4, 'desc']]
 	return render_template('artists.html', artists=json.dumps(artist_data))
 
 @app.route('/tracks', methods=['GET'])
-@cache.cached(timeout=300)
+@cache.cached()
 def get_tracks():
 #	tracks = Track.query.all()
-	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.popularity>50).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
+	tracks = db.session.query(Track, Artist, Album).filter(Track.album_id == Album.id).filter(Track.popularity>35).filter(Track.main_artist_id == Artist.id).order_by(Track.popularity.desc()).all()
 	data = []
 	for entry in tracks:
 		row = [entry.Track.id, entry.Track.name, str(entry.Track.track_no), entry.Album.name, entry.Artist.name, entry.Track.duration, str(entry.Track.explicit), str(entry.Track.popularity)]
@@ -102,12 +104,13 @@ def get_tracks():
 	"visible": FALSE,
 	"searchable": FALSE
 	}]
-	track_data['scrollY'] = "500px"
+#	track_data['scrollY'] = "700px"
 	track_data['paging'] = "true"
+	track_data['order'] = [[7, 'desc']]
 	return render_template('tracks.html', tracks=json.dumps(track_data))
 
 @app.route('/albums', methods=['GET'])
-@cache.cached(timeout=300)
+@cache.cached()
 def get_albums():
 	albums = Album.query.filter(Album.popularity>50).all()
 	album_data = {}
@@ -116,7 +119,6 @@ def get_albums():
 		{ "title": "ID" },
 		{ "title": "Album"},
 		{ "title": "Main Artist"},
-		{ "title": "All Artists"},
 		{ "title": "Relase Date"},
 		{ "title": "Record Label"},
 		{ "title": "No. of Tracks"},
@@ -127,8 +129,9 @@ def get_albums():
 		"visible": FALSE,
 		"searchable": FALSE
 	}]
-	album_data['scrollY'] = "500px"
+#	album_data['scrollY'] = "700px"
 	album_data['paging'] = "true"
+	album_data['order'] = [[6, 'desc']]
 	return render_template('albums.html', albums=json.dumps(album_data))
 
 @app.route('/artist/<string:id>', methods=['GET'])
@@ -142,7 +145,7 @@ def single_artist(id):
 		"visible": FALSE,
 		"searchable": FALSE
 	}]
-	album_data['scrollY'] = "500px"
+	album_data['scrollY'] = "400px"
 	album_data['paging'] = "true"
 	image_str = ""
 	if artist.image_url == "":
@@ -150,7 +153,7 @@ def single_artist(id):
 	else:
 		image_str = artist.image_url
 	for album in albums:
-		album_data["aaData"].append([album.id,album.name, "add later", "add later"])
+		album_data["aaData"].append([album.id,album.name, album.number_of_tracks, album.duration])
 
 	template_stuff = {
 		"artist_img": image_str,
@@ -198,8 +201,9 @@ def single_album(id):
 		"visible": FALSE,
 		"searchable": FALSE
 	}]
-	track_data['scrollY'] = "500px"
+	track_data['scrollY'] = "600px"
 	track_data['paging'] = "true"
+	track_data['order'] = [[1, 'asc']]
 	for track in tracks:
 		track_data['aaData'].append([track.id,track.track_no, track.name, track.duration])
 
@@ -208,8 +212,8 @@ def single_album(id):
 		"album_name": album.name,
 		"artist_name": album.main_artist,
 		"artist_id": album.main_artist_id,
-		"additional_artists": album.get_all_artists,
-		"number_of_tracks": "add later",
+		"release_date": album.release_date,
+		"record_label": album.record_label,
 		"tracks": json.dumps(track_data)
 	}
 

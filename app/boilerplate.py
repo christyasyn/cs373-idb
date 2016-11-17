@@ -59,6 +59,7 @@ def get_cuisine_recipes(cuisine,difficulty):
             result.append(val)
 
     final_result = []
+
     for item in result:
         if difficulty == 1:
             if item['numberOfSteps'] <= EASY_STEPS:
@@ -72,7 +73,12 @@ def get_cuisine_recipes(cuisine,difficulty):
         else:
             final_result.append(item)
 
-    return (random.choice(final_result))
+    
+    ret = (random.choice(final_result))
+    new_request = http.request('GET', cuisines_url + "/" + str(ret["cuisine_id"]))
+    nr = json.loads(new_request.data.decode('utf-8'))
+    ret["cuisine_id"]=nr["title"]
+    return ret
 
 def test_return():
 	return "this is a test"
