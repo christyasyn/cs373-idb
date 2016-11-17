@@ -10,7 +10,7 @@
     <meta name="author" content="iMusicDB Team">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>iMusicDB Track Page</title>
+    <title>Recipe Roulette</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
@@ -145,9 +145,13 @@
         </div>
       </div>
     </div>
-    <div class="image" style="width:300px; height:300px; max-width:100%;">
-      <img id="image_id" src="{{ imageURL |safe }}"></img>
-    </div>
+<div class="container">
+<table>
+<tr style="vertical-align: top">
+<td>
+     <img id="image_id" src="{{ imageURL |safe }}" style="width:400px; max-width:100%;"></img>
+</td>
+<td>
     <div class="details">
       <h3 id="title">{{title | safe}}</h3>       
       <table>  
@@ -172,6 +176,10 @@
         <td id="steps">{{steps | safe }}</td>
       </tr>
     </table>
+</td>
+</tr>
+</table>
+</div>
   </div>
 
 
