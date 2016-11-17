@@ -4,11 +4,7 @@ import tempfile
 from models import *
 import flask
 from app import db, app
-#from sqlalchemy.orm import sessionmaker
-from flask.ext.sqlalchemy import SQLAlchemy
-
-# app = Flask(__name__)
-# db = SQLAlchemy(app)
+from flask_sqlalchemy import SQLAlchemy
 
 class AppDBTestCases(unittest.TestCase):
 
@@ -30,7 +26,7 @@ class AppDBTestCases(unittest.TestCase):
 		self.assertEqual(album.id,"1wHsOxEWMUAEsAHk9Q3Yz7")
 	def test_track_select_2(self):
 		track = Track.query.filter_by(name='All We Know').first()
-		self.assertEqual(track.id,"2rizacJSyD9S1IQUxUxnsK")
+		self.assertEqual(track.id,"4dSFpcFAtXQD6MGZWVddhk")
 
 
 	def test_artist_select_none(self):

@@ -4,21 +4,8 @@ Models.py file that contains all of the
 database models.
 """
 from loader import db
-from flask.ext.sqlalchemy import BaseQuery
-from flask_sqlalchemy import SQLAlchemy
-#from sqlalchemy_searchable import make_searchable, SearchQueryMixin
+from flask_sqlalchemy import SQLAlchemy, BaseQuery
 import re
-
-#dup of above, will delete soon
-#from sqlalchemy.ext.declarative import declarative_base
-#from sqlalchemy import Column, Integer, String
-#from sqlalchemy import Sequence
-#from sqlalchemy.orm import sessionmaker
-
-#make_searchable()
-
-
-
 # -------------------
 # @Artists
 # -------------------
